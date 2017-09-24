@@ -8,18 +8,18 @@ ___
 #### *Disclaimer* These instructions are for \*nix systems
 
 1. In order for **speak** to work on your machine, you will need to have `Node.js` and `npm` installed.
-... First, refresh your local package index and then install `Node.js` from the repositories: 
+...First, refresh your local package index and then install `Node.js` from the repositories: 
 ```
 sudo apt-get update
 sudo apt-get install nodejs
 ```
 
-... Next, we want to make sure we have `npm` installed, which is the `Node.js` package manager:
+...Next, we want to make sure we have `npm` installed, which is the `Node.js` package manager:
 ```
 sudo apt-get install npm
 ```
 
-... Finally, you will want to make sure you have the necessary dependencies for `npm`:
+...Finally, you will want to make sure you have the necessary dependencies for `npm`:
 ```
 npm install
 ```
@@ -39,7 +39,7 @@ git checkout develop
 cd react-backend
 ```
 
-... Once you're in the `react-backend` folder, simply run:
+...Once you're in the `react-backend` folder, simply run:
 ```
 npm start
 ```
