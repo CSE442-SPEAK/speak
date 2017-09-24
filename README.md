@@ -21,12 +21,6 @@ Next, we want to make sure we have `npm` installed, which is the `Node.js` packa
 sudo apt-get install npm
 ```
 
-Finally, you will want to make sure you have the necessary dependencies for `npm`:
-
-```
-npm install
-```
-
 ### 2. Then, you will need to clone the **speak** repository. 
 ```
 git clone https://github.com/CSE442-SPEAK/speak.git
@@ -42,10 +36,16 @@ git checkout develop
 cd react-backend
 ```
 
-Once you're in the `react-backend` folder, simply run:
+Once you're in the `react-backend` folder, first run to make sure you have the necessary dependencies for `npm`:
 
 ```
-npm start
+npm install
+```
+
+Finally, simply run
+
+```
+npm install
 ```
 
 Congratulations! You have successfully deployed **speak**!
