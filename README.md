@@ -36,7 +36,9 @@ git checkout develop
 cd react-backend
 ```
 
-Once you're in the `react-backend` folder, first run the following to make sure you have the necessary dependencies for `npm`:
+### 4. From `react-backend`, go to the `client` folder:
+
+Once you're in the `client` folder, first run the following to make sure you have the necessary dependencies for `npm`:
 
 ```
 npm install
@@ -45,7 +47,7 @@ npm install
 Finally, simply run:
 
 ```
-npm install
+npm start
 ```
 
 Congratulations! You have successfully deployed **speak**!
