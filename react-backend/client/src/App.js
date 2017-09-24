@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import PetitionList from './PetitionList';
-import Navigation from './Navigation';
-import Banner from './Banner';
-import CreatePetition from './CreatePetition';
 
-const App = () => {
-  return (
-    <div className="App">
-      <Navigation/>
-      <Banner/>
-      <PetitionList/>
-      <CreatePetition/>
+import Navigation from './Navigation';
+import Main from './Main';
+
+
+const App = () => (
+    <div>
+      <Navigation />
+      <Main />
     </div>
-  );
-};
+);
 
 export default App;
