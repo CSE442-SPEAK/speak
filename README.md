@@ -36,7 +36,7 @@ git checkout develop
 cd react-backend
 ```
 
-Once you're in the `react-backend` folder, first run to make sure you have the necessary dependencies for `npm`:
+Once you're in the `react-backend` folder, first run the following to make sure you have the necessary dependencies for `npm`:
 
 ```
 npm install
