@@ -42,7 +42,7 @@ Once you're in the `react-backend` folder, first run the following to make sure 
 npm install
 ```
 
-Finally, simply run
+Finally, simply run:
 
 ```
 npm install
