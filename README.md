@@ -5,9 +5,9 @@ ___
 
 ## How-to Instructions to Deploy speak
 
-#### *Disclaimer* These instructions are for \*nix systems
+#### *Disclaimer:* These instructions are for \*nix systems.
 
-1. In order for **speak** to work on your machine, you will need to have `Node.js` and `npm` installed.
+### 1. In order for **speak** to work on your machine, you will need to have `Node.js` and `npm` installed.
 
 First, refresh your local package index and then install `Node.js` from the repositories: 
 ```
@@ -27,17 +27,17 @@ Finally, you will want to make sure you have the necessary dependencies for `npm
 npm install
 ```
 
-2. Then, you will need to clone the **speak** repository. 
+### 2. Then, you will need to clone the **speak** repository. 
 ```
 git clone https://github.com/CSE442-SPEAK/speak.git
 ```
 
-3. Once you have the repository on your local machine, the next step is make sure you are on the `develop` branch:
+### 3. Once you have the repository on your local machine, the next step is make sure you are on the `develop` branch:
 ```
 git checkout develop
 ```
 
-4. In your local copy of the `speak` repository, maneuver to the `react-backend` folder:
+### 4. In your local copy of the `speak` repository, maneuver to the `react-backend` folder:
 ```
 cd react-backend
 ```
