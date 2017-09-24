@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { ListGroupItem } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
+import SignButton from './SignButton';
 
 class PetitionListElement extends Component {
 
   render() {
     return (
       <div className="PetitionListElement">
-        <ListGroupItem header={this.props.title}>description.....</ListGroupItem>
+        <Panel collapsible header={this.props.title}>
+          <p>description.....</p>
+          <SignButton/>
+        </Panel>
       </div>
     );
   }
