@@ -36,7 +36,7 @@ git checkout develop
 cd react-backend
 ```
 
-### 4. From `react-backend`, go to the `client` folder:
+### 5. From `react-backend`, go to the `client` folder:
 
 Once you're in the `client` folder, first run the following to make sure you have the necessary dependencies for `npm`:
 
