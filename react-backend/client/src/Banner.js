@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import CreatePetitionButton from './CreatePetitionButton';
+import './Banner.css';
 
 class Banner extends Component {
   render() {
