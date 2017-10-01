@@ -10,7 +10,7 @@ class Navigation extends Component {
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#">speak</a>
+              <a href="/">speak</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

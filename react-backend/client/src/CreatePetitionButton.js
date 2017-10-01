@@ -5,7 +5,7 @@ class CreatePetitionButton extends Component {
   render() {
     return (
       <div className="CreatePetitionButton">
-        <Button bsStyle="success">Create a Petition</Button>
+        <Button bsStyle="success" href="/create">Create a Petition</Button>
       </div>
     );
   }

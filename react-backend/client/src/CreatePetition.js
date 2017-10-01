@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CreatePetition.css';
 import { FormGroup } from 'react-bootstrap';
 import TitleForm from './TitleForm';
 import DescriptionForm from './DescriptionForm';
