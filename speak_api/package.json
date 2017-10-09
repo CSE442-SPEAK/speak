@@ -2,7 +2,7 @@
   "name": "speak",
   "version": "1.0.0",
   "description": "A web-app for petitions at the University at Buffalo. speak lets students organize political action on campus by creating petions and gathering signatures from other students. || CSE442, Fall '17. ",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/CSE442-SPEAK/speak/issues"
   },
-  "homepage": "https://github.com/CSE442-SPEAK/speak#readme"
+  "homepage": "https://github.com/CSE442-SPEAK/speak#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.1",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0"
+  }
 }
