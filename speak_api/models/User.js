@@ -19,7 +19,7 @@ deleteUser:function(id, callback){
 },
 
 updateUser:function(id, User, callback){
-    return db.query("Update user set name=?,email=?,ubit=?,type=?,major=? where petition_id=?", [User.name, User.email, User.ubit, User.type, User.major, id],
+    return db.query("Update user set name=?,email=?,ubit=?,type=?,major=? where petition_id=?", [User.name, User.email, User.ubit, User.type, User.major, id], callback);
 },
 
 getUsersOfType:function(type, callback){
