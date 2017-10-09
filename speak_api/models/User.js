@@ -24,7 +24,7 @@ updateUser:function(id, User, callback){
 
 getUsersOfType:function(type, callback){
     return db.query("Select * from user where type=?", [type], callback);
-}
+},
 
 getUsersOfMajor:function(major, callback){
     return db.query("Select * from user where major=?", [major], callback);

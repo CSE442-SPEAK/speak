@@ -61,7 +61,7 @@ getPetitionSignatureCount:function(petition_id, callback){
 
 updatePetitionSignatureCount:function(petition_id, count, callback) {
     return db.query("Update petition set count=?, where petition_id=?",[count,petition_id],callback);
-}
+},
 
 // Petition date of creation
 getPetitionDate:function(petition_id, callback){
