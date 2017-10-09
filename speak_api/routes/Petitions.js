@@ -14,5 +14,31 @@ if(req.params.petition_id) {
         }
     });
 }
+
 else {
-    Task.getAllPetitions(
+    Task.getAllPetitions(function(err, rows) {
+        if(err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+}
+}); // GET request, passing in petition_id
+
+router.get('/:user_id?', function(req, res, next) {
+
+if(req.params.user_id) {
+    Petition.getPetitionsOfUser(req.params.user_id, function(err, rows) {
+        if(err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+}
+}); // GET request, passing in user_id
+
+module.exports = router; 
