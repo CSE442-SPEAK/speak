@@ -11,7 +11,7 @@ getPetitionById:function(petition_id, callback){
 },
 
 addPetition:function(Petition, callback){
-    return db.query("Insert into petition values(?,?,?,?,?,?,?)", [Petition.title, Petition.description, Petition.tags, Petition.category, Petition.who_can_sign, Petition.deadline, Petition.signature_goal], callback);
+    return db.query("Insert into petition values(?,?,?,?,?,?,?)", [Petition.title, Petition.description, Petition.tags, Petition.category, Petition.permissions, Petition.deadline, Petition.signature_goal], callback);
 },
 
 deletePetition:function(petiton_id, callback){
@@ -19,7 +19,7 @@ deletePetition:function(petiton_id, callback){
 },
 
 updatePetition:function(petition_id, Petition, callback){
-    return db.query("Update petition set title=?,status=? where petition_id=?", [Petition.title, Petition.status, petition_id],
+    return db.query("Update petition set title=?,status=? where petition_id=?", [Petition.title, Petition.status, petition_id],callback);
 },
 
 getPetitionsOfUser:function(user_id, callback){
@@ -58,6 +58,10 @@ getPetitionCategory:function(petition_id, callback){
 getPetitionSignatureCount:function(petition_id, callback){
     return db.query("Select signature_count from petition where petition_id=?", [petition_id], callback);
 },
+
+updatePetitionSignatureCount:function(petition_id, count, callback) {
+    return db.query("Update petition set count=?, where petition_id=?",[count,petition_id],callback);
+}
 
 // Petition date of creation
 getPetitionDate:function(petition_id, callback){
