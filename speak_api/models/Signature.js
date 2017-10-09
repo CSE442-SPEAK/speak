@@ -16,8 +16,15 @@ getSignaturesOfUser:function(user_id, callback) {
 
 getSignatureById:function(signature_id, callback) {
     return db.query("Select * from signature where signature_id=?", [signature_id], callback);
-}
+},
 
+addSignature:function(Signature, callback) {
+    return db.query("Insert into signature values(?,?)", [Signature.petition_id, Signature.user_id], callback);
+},
+
+deleteSignature:function(signature_id, callback){
+    return db.query("Delete from signature where signature_id=?", [signature_id], callback);
+}
 }; // var Signature
 
 module.exports = Signature;
