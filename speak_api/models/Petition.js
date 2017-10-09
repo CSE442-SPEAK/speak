@@ -26,10 +26,6 @@ getPetitionsOfUser:function(user_id, callback){
     return db.query("Select * from petition where user_id=?", [user_id], callback);
 },
 
-getPetitionsOfUser:function(user_id, callback){
-    return db.query("Select * from petition where user_id=?", [user_id], callback);
-},
-
 getPetitionsOfCategory:function(category, callback){
     return db.query("Select * from petition where category=?", [category], callback);
 },
