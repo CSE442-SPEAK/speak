@@ -33,3 +33,13 @@ CREATE TABLE IF NOT EXISTS 'signature' (
   'user_id' int,
   'date' smalldatetime,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO 'petition' ('petition_id', 'title', 'description') VALUES
+(1,'Heated Bus Stops','We wants the bus stops to be warm in the winter!');
+
+INSERT INTO 'user' ('id','name','email','ubit','type','major') VALUES
+(1,'Katie James','knjames@buffalo.edu',50113704,'Undergrad','CSE');
+
+INSERT INTO 'signatures' ('signature_id','petition_id','user_id') VALUES
+(1,1,1);
