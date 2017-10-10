@@ -16,7 +16,7 @@ if(req.params.petition_id) {
 }
 
 else {
-    Task.getAllPetitions(function(err, rows) {
+    Petition.getAllPetitions(function(err, rows) {
         if(err) {
             res.json(err);
         }
