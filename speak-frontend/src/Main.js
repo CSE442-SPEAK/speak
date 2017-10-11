@@ -5,6 +5,7 @@ import ExamplePetition from './ExamplePetition';
 import CreatePetition from './CreatePetition';
 import ErrorPage from'./ErrorPage';
 import LogIn from './LogIn';
+import SignUp from './SignUp';
 
 const Main = () => (
   <main>
@@ -14,6 +15,7 @@ const Main = () => (
       <Route path='/create' component={CreatePetition}/>
       <Route path='*' component={ErrorPage}/>
       <Route path='/login' component={LogIn}/>
+      <Route path='/signup' component={SignUp}/>
     </Switch>
   </main>
 );
