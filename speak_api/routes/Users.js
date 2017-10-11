@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 
-router.get('/:petition_id?', function(req, res, next) {
+router.get('/:user_id?', function(req, res, next) {
 
 if(req.params.user_id) {
     User.getUserById(req.params.user_id, function(err,rows) {

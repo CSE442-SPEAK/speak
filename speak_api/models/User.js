@@ -11,7 +11,7 @@ getUserById:function(user_id, callback){
 },
 
 addUser:function(User, callback){
-    return db.query("Insert into user values(?,?,?,?,?,?,?)", [User.name, User.email, User.ubit, User.type, User.major], callback);
+    return db.query("Insert into user(user_id,name,email,ubit,type,major) values(?,?,?,?,?,?)", [User.user_id,User.name, User.email, User.ubit, User.type, User.major], callback);
 },
 
 deleteUser:function(user_id, callback){
