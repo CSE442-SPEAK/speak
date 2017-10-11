@@ -78,7 +78,31 @@ if(req.params.signature_id) {
         }
     });
 }
+else {
+    Signature.addSignature(req.body, function(err, rows) {
+        if(err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+}
 }); // POST request, passing in signature_id
+
+router.post('/', function(req, res, next) {
+
+    Signature.addSignature(req.body, function(err, rows) {
+        if(err) {
+            res.json(err);
+        }
+        else {
+            res.json(rows);
+        }
+    });
+
+}); // POST request, passing in signature_id
+
 
 router.delete('/:signature_id', function(req, res, next) {
 
