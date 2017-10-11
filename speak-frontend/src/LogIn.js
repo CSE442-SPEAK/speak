@@ -8,15 +8,11 @@ class LogIn extends Component {
   render() {
     return (
       <div className="LogIn">
-        <FormGroup>
-          <TitleForm/>
-          <DescriptionForm/>
-          <MinimumForm/>
-          <CreateButton/>
-        </FormGroup>
       </div>
     );
   }
 
 
+
 }
+export default LogIn
