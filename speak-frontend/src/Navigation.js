@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import SignInButton from './SignInButton';
+import SignUpButton from './SignUpButton';
 import LogInButton from './LogInButton';
 
 class Navigation extends Component {
@@ -16,7 +16,7 @@ class Navigation extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <SignInButton/>
+              <SignUpButton/>
             </Nav>
             <Nav pullRight>
               <LogInButton/>
