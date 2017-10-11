@@ -41,4 +41,16 @@ if(req.params.user_id) {
 }
 }); // GET request, passing in user_id
 
+router.post('/', function(req, res, next) {
+	Petition.addPetition(req.body,function(err,count) {
+		if(err) {
+			res.json(err);
+		}
+		else {
+			res.json(res.body);
+		}
+	});
+
+});
+
 module.exports = router; 

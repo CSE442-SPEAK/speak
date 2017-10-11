@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,11 @@
   },
   "homepage": "https://github.com/CSE442-SPEAK/speak#readme",
   "dependencies": {
+    "config": "^1.26.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "express": "^4.16.1",
+    "jade": "^1.11.0",
     "morgan": "^1.9.0",
     "mysql": "^2.15.0"
   }
