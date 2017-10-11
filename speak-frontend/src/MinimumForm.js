@@ -9,6 +9,7 @@ class MinimumForm extends Component {
         <FormControl
           type="text"
           placeholder="Integer value"
+          bsSize="large"
         />
       </div>
     );

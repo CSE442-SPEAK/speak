@@ -9,6 +9,7 @@ class TitleForm extends Component {
         <FormControl
           type="text"
           placeholder="Title"
+          bsSize="large"
         />
         <FormControl.Feedback />
       </div>

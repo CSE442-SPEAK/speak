@@ -6,7 +6,7 @@ class DescriptionForm extends Component {
     return (
       <div className="DescriptionForm">
         <ControlLabel>Petition description</ControlLabel>
-        <FormControl componentClass="textarea" placeholder="Description"/>
+        <FormControl componentClass="textarea" placeholder="Description" bsSize="large"/>
       </div>
     );
   }

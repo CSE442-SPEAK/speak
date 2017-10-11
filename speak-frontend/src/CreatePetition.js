@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CreatePetition.css';
-import { FormGroup } from 'react-bootstrap';
+import { FormGroup, Grid, Row, Col } from 'react-bootstrap';
 import TitleForm from './TitleForm';
 import DescriptionForm from './DescriptionForm';
 import MinimumForm from './MinimumForm';
@@ -39,12 +39,18 @@ class CreatePetition extends Component {
   render() {
     return (
       <div className="CreatePetition">
-        <FormGroup>
-          <TitleForm/>
-          <DescriptionForm/>
-          <MinimumForm/>
-          <CreateButton/>
-        </FormGroup>
+        <Grid>
+            <Row classname="show-grid">
+                <Col xs={12} md={8} xsOffset={2}>
+                    <FormGroup>
+                        <TitleForm/>
+                        <DescriptionForm/>
+                        <MinimumForm/>
+                        <CreateButton/>
+                    </FormGroup>
+                </Col>
+            </Row>
+        </Grid>
       </div>
     );
   }
