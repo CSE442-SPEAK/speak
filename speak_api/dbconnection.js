@@ -1,9 +1,12 @@
 var mysql=require('mysql');
-var connection=mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'',
-    database:'speak'
+var connection=mysql.createPool({
+
+host:'localhost',
+user:'root',
+password:'',
+database:'speak',
+//insecureAuth: true
+
 });
 
 connection.connect(function(err) {
