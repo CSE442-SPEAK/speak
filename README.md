@@ -75,7 +75,7 @@ npm install
 Then, run:
 
 ```
-npm run
+npm start
 ```
 
 ### 8. Still in your local copy of the `speak` repository, **in a separate terminal** maneuver to the `speak-frontend` folder:
@@ -93,7 +93,7 @@ npm install
 Then, run:
 
 ```
-npm run
+npm start
 ```
 
 Congratulations! You have successfully deployed **speak**!
