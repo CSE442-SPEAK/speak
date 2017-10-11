@@ -9,8 +9,7 @@ class ExamplePetition extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          title: "",
-          description: "",
+          petitions: []
       };
       this.componentDidMount = this.componentDidMount.bind(this);
 
@@ -18,17 +17,16 @@ class ExamplePetition extends Component {
   
   componentDidMount() {
       fetch('/Petitions/1')
-      .then( function(response) {
+/*      .then( function(response) {
           window.alert(JSON.stringify(response));
-      });
-/*      .then( response => response.json())
-      .then( data => {
-          this.setState({
-              title: data.title,
-              description: data.description,
-          });
       });*/
-  };
+      .then( response => response.json())
+      .then( petitions => 
+          this.setState(
+              {petitions}
+          )
+       );
+  }
   
   render() {
     console.log("hi")
@@ -38,10 +36,11 @@ class ExamplePetition extends Component {
           <h1>  
           Example Petition
           </h1>
-          <h2>
-          {this.state.title}
-          {this.state.description}
-          </h2>
+          {this.state.petitions.map(petition =>
+            <div key={petition.id}>
+                <h2> {petition.title} </h2>
+                <h3> {petition.description} </h3>
+            </div>)}
           <SignButton/>
         </FormGroup>
       </div>
