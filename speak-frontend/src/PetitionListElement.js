@@ -8,7 +8,7 @@ class PetitionListElement extends Component {
     return (
       <div className="PetitionListElement">
         <Panel collapsible header={this.props.title}>
-          <p>description.....</p>
+          <p>{this.props.description}</p>
           <SignButton/>
         </Panel>
       </div>
