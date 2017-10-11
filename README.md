@@ -7,7 +7,7 @@ ___
 
 #### *Disclaimer:* These instructions are for \*nix systems.
 
-### 1. In order for **speak** to work on your machine, you will need to have `Node.js` and `npm` installed.
+### 1. In order for **speak** to work on your machine, you will first need to have `Node.js` and `npm` installed.
 
 First, refresh your local package index and then install `Node.js` from the repositories: 
 ```
@@ -21,7 +21,13 @@ Next, we want to make sure we have `npm` installed, which is the `Node.js` packa
 sudo apt-get install npm
 ```
 
-### 2. Then, you will need to clone the **speak** repository. 
+### 2. You will also need to install `MySQL`. 
+
+```
+sudo apt-get install mysql
+```
+
+### 3. Then, you will need to clone the **speak** repository. 
 ```
 git clone https://github.com/CSE442-SPEAK/speak.git
 ```
