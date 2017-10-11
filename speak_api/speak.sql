@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `petition` (
   `title` varchar(500),
   `description` text(1500),
   `tags` varchar(500),
-  `owner` varchar(500),
+  `owner` int,
   `category` varchar(100),
   `permissions` varchar(100),
   `deadline` date,

@@ -15,7 +15,7 @@ getCreatorOfPetition:function(petition_id, callback){
 },
 
 addPetition:function(Petition, callback){
-    return db.query("Insert into petition (petition_id, owner, title, description, tags, category, permissions, deadline, signature_goal, date) values(?,?,?,?,?,?,?,?,?,?)",[Petition.petition_id,Petition.owner,Petition.title,Petition.description,Petition.tags,Petition.category,Petition.permissions,Petition.deadline,Petition.signature_goal,Petition.date], callback);
+    return db.query("Insert into petition(petition_id, title, description, tags, owner, category, permissions, deadline, signature_goal, signatures, date) values(?,?,?,?,?,?,?,?,?,?,?)", [Petition.petition_id, Petition.title, Petition.description, Petition.tags, Petition.owner, Petition.category, Petition.permissions, Petition.deadline, Petition.signature_goal, Petition.signatures, Petition.date], callback);
 },
 
 deletePetition:function(petiton_id, callback){
