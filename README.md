@@ -46,7 +46,27 @@ git checkout develop
 cd speak_api
 ```
 
-### 6. Install `npm` dependencies for `speak_api`.
+### 6. At this point, you will need to set up the speak database via the `MySQL` shell:
+
+First, start up `MySQL`:
+
+```
+sudo mysql
+```
+
+Next, pass in the `speak.sql` file:
+
+```
+msql> speak.sql
+```
+
+**A NOTE:** If the statement fails, it is likely that your MySQL installation does not have local file capability enabled by default. See [href](https://dev.mysql.com/doc/refman/5.7/en/load-data-local.html) for more information on how to change this. 
+
+```
+cd speak_api
+```
+
+### 7. Install `npm` dependencies for `speak_api`.
 
 ```
 npm install
@@ -58,13 +78,13 @@ Then, run:
 npm run
 ```
 
-### 7. Still in your local copy of the `speak` repository, **in a separate terminal** maneuver to the `speak-frontend` folder:
+### 8. Still in your local copy of the `speak` repository, **in a separate terminal** maneuver to the `speak-frontend` folder:
 
 ```
 cd speak-frontend
 ```
 
-### 8. Install `npm` dependencies for `speak-frontend`:
+### 9. Install `npm` dependencies for `speak-frontend`:
 
 ```
 npm install
@@ -74,6 +94,7 @@ Then, run:
 
 ```
 npm run
+```
 
 Congratulations! You have successfully deployed **speak**!
 
