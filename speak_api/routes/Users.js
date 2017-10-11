@@ -8,7 +8,7 @@ if(req.params.user_id) {
     User.getUserById(req.params.user_id, function(err,rows) {
         if(err) {
             res.json(err);
-        }`
+        }
         else {
             res.json(rows);
         }
