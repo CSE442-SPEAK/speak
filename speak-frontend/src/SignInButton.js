@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 
-class SignInButton extends Component {
+class SignUpButton extends Component {
   render() {
     return (
-      <div className="SignInButton">
-        <Button bsStyle="primary">Sign In</Button>
+      <div className="SignUpButton">
+        <Button bsStyle="primary" bsSize="large">Sign Up</Button>
       </div>
     );
   }
 }
 
-export default SignInButton;
+export default SignUpButton;
