@@ -4,7 +4,6 @@ import { FormGroup } from 'react-bootstrap';
 import TitleForm from './TitleForm';
 import DescriptionForm from './DescriptionForm';
 import MinimumForm from './MinimumForm';
-//import CreateButton from './CreateButton';
 
 class SignUp extends Component {
     
@@ -15,7 +14,6 @@ class SignUp extends Component {
           <TitleForm/>
           <DescriptionForm/>
           <MinimumForm/>
-          <CreateButton/>
         </FormGroup>
       </div>
     );
