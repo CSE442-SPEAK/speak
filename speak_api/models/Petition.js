@@ -19,7 +19,7 @@ deletePetition:function(petiton_id, callback){
 },
 
 updatePetition:function(petition_id, Petition, callback){
-    return db.query("Update petition set title=?,status=? where petition_id=?", [Petition.title, Petition.status, petition_id],callback);
+    return db.query("Update petition set title=?,status=? where petition_id=?", [Petition.title, Petition.status, petition_id], callback);
 },
 
 getPetitionsOfUser:function(user_id, callback){
