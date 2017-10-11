@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import SignUpButton from './SignUpButton';
 import LogInButton from './LogInButton';
+import AccountButton from './AccountButton';
 
 class Navigation extends Component {
   render() {
@@ -20,6 +21,9 @@ class Navigation extends Component {
             </Nav>
             <Nav pullRight>
               <LogInButton/>
+            </Nav>
+            <Nav pullRight>
+              <AccountButton/>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
