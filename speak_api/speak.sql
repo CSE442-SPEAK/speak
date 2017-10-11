@@ -4,23 +4,23 @@ SET time_zone = "+00:00";
 CREATE DATABASE speak;
 
 CREATE TABLE IF NOT EXISTS `petition` (
-  `petition_id` int,
-  `title` varchar(500),
+  `petition_id` int not null auto_increment,
+  `title` varchar(500) not null,
   `description` text(1500),
   `tags` varchar(500),
-  `owner` int,
+  `owner` int not null,
   `category` varchar(100),
   `permissions` varchar(100),
   `deadline` date,
   `signature_goal` int,
-  `signatures` int,
-  `date` date,
+  `signatures` int default 0,
+/*  `date` date not null default(getdate()),*/
   PRIMARY KEY(`petition_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int,
-  `name` varchar(100),
+  `user_id` int not null auto_increment,
+  `name` varchar(100) not null,
   `email` varchar(100),
   `ubit` int,
   `type` varchar(100),
@@ -29,10 +29,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `signature` (
-  `signature_id` int,
-  `petition_id` int,
-  `user_id` int,
-  `date` date,
+  `signature_id` int not null auto_increment,
+  `petition_id` int not null,
+  `user_id` int not null,
+/*  `date` date not null default(getdate()),*/
   PRIMARY KEY(`signature_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
