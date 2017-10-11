@@ -10,6 +10,7 @@ ___
 ### 1. In order for **speak** to work on your machine, you will first need to have `Node.js` and `npm` installed.
 
 First, refresh your local package index and then install `Node.js` from the repositories: 
+
 ```
 sudo apt-get update
 sudo apt-get install nodejs
@@ -28,33 +29,51 @@ sudo apt-get install mysql
 ```
 
 ### 3. Then, you will need to clone the **speak** repository. 
+
 ```
 git clone https://github.com/CSE442-SPEAK/speak.git
 ```
 
-### 3. Once you have the repository on your local machine, the next step is make sure you are on the `develop` branch:
+### 4. Once you have the repository on your local machine, the next step is make sure you are on the `develop` branch:
+
 ```
 git checkout develop
 ```
 
-### 4. In your local copy of the `speak` repository, maneuver to the `react-backend` folder:
+### 5. In your local copy of the `speak` repository, maneuver to the `speak_api` folder:
+
 ```
-cd react-backend
+cd speak_api
 ```
 
-### 5. From `react-backend`, go to the `client` folder:
-
-Once you're in the `client` folder, first run the following to make sure you have the necessary dependencies for `npm`:
+### 6. Install `npm` dependencies for `speak_api`.
 
 ```
 npm install
 ```
 
-Finally, simply run:
+Then, run:
 
 ```
-npm start
+npm run
 ```
+
+### 7. Still in your local copy of the `speak` repository, **in a separate terminal** maneuver to the `speak-frontend` folder:
+
+```
+cd speak-frontend
+```
+
+### 8. Install `npm` dependencies for `speak-frontend`:
+
+```
+npm install
+```
+
+Then, run:
+
+```
+npm run
 
 Congratulations! You have successfully deployed **speak**!
 
