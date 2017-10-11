@@ -57,7 +57,7 @@ sudo mysql
 Next, pass in the `speak.sql` file:
 
 ```
-msql> speak.sql
+mysql> speak.sql
 ```
 
 **A NOTE:** If the statement fails, it is likely that your MySQL installation does not have local file capability enabled by default. See the [MySQL documentation](https://dev.mysql.com/doc/refman/5.7/en/load-data-local.html) for more information on how to change this. 
