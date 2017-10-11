@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './LogIn.css';
-import { FormGroup, Form, Col, Row, ControlLabel, FormControl, Checkbox,Button } from 'react-bootstrap';
+import { FormGroup, Form, Col, Row, ControlLabel, FormControl, Checkbox,Button, Grid } from 'react-bootstrap';
 
 class LogIn extends Component {
 
@@ -8,6 +8,8 @@ class LogIn extends Component {
     return (
       <div className="LogIn">
       <Form horizontal>
+      <Grid>
+      <Row>
     <FormGroup controlId="formHorizontalEmail">
       <Col componentClass={ControlLabel} sm={2}>
         Email
@@ -21,26 +23,29 @@ class LogIn extends Component {
       <Col componentClass={ControlLabel} sm={2}>
         Password
       </Col>
-      <Col sm={10}>
+      <Col sm={10} Offset={2}>
         <FormControl type="password" placeholder="Password" />
       </Col>
     </FormGroup>
 
     <FormGroup>
-      <Col smOffset={2} sm={10}>
+      <Col smOffset={2} sm={10} >
         <Checkbox>Remember me</Checkbox>
       </Col>
     </FormGroup>
 
     <FormGroup>
-      <Col smOffset={2} sm={10}>
+      <Col smOffset={2} sm={10} Offset={2}>
         <Button type="submit">
-          Sign in
+          Log in
         </Button>
       </Col>
     </FormGroup>
+    </Row>
+  </Grid>
   </Form>
-      </div>
+</div>
+
     );
   }
 
