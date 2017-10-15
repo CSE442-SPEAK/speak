@@ -15,9 +15,6 @@ class PetitionList extends Component {
   
   componentDidMount() {
       fetch('/Petitions')
-/*      .then( function(response) {
-          window.alert(JSON.stringify(response));
-      });*/
       .then( response => response.json())
       .then( petitions => 
           this.setState(

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
-import SignButton from './SignButton';
+import { Panel, Button } from 'react-bootstrap';
 
 class PetitionListElement extends Component {
 
@@ -9,7 +8,9 @@ class PetitionListElement extends Component {
       <div className="PetitionListElement">
         <Panel collapsible header={this.props.title}>
           <p>{this.props.description}</p>
-          <SignButton/>
+          <div className="LearnMoreButton">
+            <Button bsStyle="success">Learn more</Button>
+          </div>
         </Panel>
       </div>
     );
