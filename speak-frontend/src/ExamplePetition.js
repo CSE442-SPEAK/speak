@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
 import { FormGroup } from 'react-bootstrap';
 import SignButton from './SignButton';
 import './ExamplePetition.css';

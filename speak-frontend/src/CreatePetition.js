@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-//import axios from 'axios';
 import './CreatePetition.css';
 import { FormGroup, Grid, Row, Col, Button, ControlLabel, FormControl } from 'react-bootstrap';
-/*import TitleForm from './TitleForm';
-import DescriptionForm from './DescriptionForm';
-import MinimumForm from './MinimumForm';
-import CreateButton from './CreateButton';*/
 
 class CreatePetition extends Component {
     
