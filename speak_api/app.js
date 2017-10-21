@@ -42,6 +42,13 @@ if (app.get('env') === 'development') {
     });
 }
 
+if (module === require.main) {
+    const server = app.listen(process.env.PORT || 3001, () => {
+        const port = server.address().port;
+        consold.log(`App listening on port ${port}`);
+    }};
+}
+
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
