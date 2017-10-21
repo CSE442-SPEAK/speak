@@ -8,7 +8,7 @@ var routes = require('./routes/index');
 var Users = require('./routes/Users');
 var Petitions = require('./routes/Petitions');
 var Signatures = require('./routes/Signatures');
-var app = express();
+const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -32,6 +32,14 @@ app.use(function(req,res,next) {
     next(err);
 });
 
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+	message: err.message,
+	error: {}
+    });
+});
+
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
@@ -42,19 +50,11 @@ if (app.get('env') === 'development') {
     });
 }
 
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
-
 if (module === require.main) {
     const server = app.listen(process.env.PORT || 3001, () => {
         const port = server.address().port;
-        consold.log(`App listening on port ${port}`);
-    })};
-}
+        console.log(`App listening on port ${port}`);
+    })}
+
 
 module.exports = app;
