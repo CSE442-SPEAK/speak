@@ -46,13 +46,7 @@ class CreatePetition extends Component {
         'signature_goal': this.state.signatureGoal
       };
       
-      window.alert(JSON.stringify(petition));
-/*      axios.post('/Petitions/', {
-            title: this.state.title,
-            description: this.state.description,
-            owner: '2',
-            signature_goal: this.state.signatureGoal,
-      })*/
+//      window.alert(JSON.stringify(petition));
       fetch('/Petitions/', {
           method: 'POST',
           headers: {

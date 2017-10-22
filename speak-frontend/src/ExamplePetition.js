@@ -12,8 +12,8 @@ class ExamplePetition extends Component {
           petitions: [],
 //          signatures: [],
           signaturePetition: 0,
-          signatureUser: 0,
-          signatureDate: "",
+          signatureUser: 0
+//          signatureDate: "",
       };
       this.componentDidMount = this.componentDidMount.bind(this);
       this.addSignature = this.addSignature.bind(this);
@@ -21,16 +21,13 @@ class ExamplePetition extends Component {
   }
   
   componentDidMount() {
-      var today = new Date();
-//      da = today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate();
-      fetch('/Petitions/1')
-/*      .then( function(response) {
-          window.alert(JSON.stringify(response));
-      });*/
+//      var today = new Date();
+//      day = today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate();
+      fetch('/Petitions/2')
       .then( response => response.json())
       .then( petitions => 
           this.setState(
-              {petitions: petitions,
+              {petitions: petitions
               }
           )
        );
@@ -45,21 +42,17 @@ class ExamplePetition extends Component {
   
   addSignature = event => {
       event.preventDefault();
-/*      this.state.petitions.map(petition =>
-        window.alert(JSON.stringify(petition.id)),
-      )*/
-      var today = new Date();
-//      window.alert(JSON.stringify(this.state.petitions[0].id));
+//      var today = new Date();
       this.setState(
-        {signaturePetition: 3,
+        {signaturePetition: this.state.petitions[0].petition_id,
         // Need to get ID of signed in user
-         signatureUser: -2,
-         signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
+         signatureUser: 1,
+//         signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
         }, function(){
               var signature = {
                 'petition_id': this.state.signaturePetition,
                 'user_id': this.state.signatureUser,
-                'date': this.state.signatureDate,
+//                'date': this.state.signatureDate,
               };
               
               window.alert(JSON.stringify(signature));
@@ -94,19 +87,13 @@ class ExamplePetition extends Component {
           Example Petition
           </h1>
           {this.state.petitions.map(petition =>
-            <div key={petition.id}>
+            <div key={petition.petition_id}>
                 <h2> {petition.title} </h2>
                 <h3> {petition.description} </h3>
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
             </div>)
-/*            this.setState(
-                {signaturePetition: petition.id,
-                 signatureUser: petition.owner,
-                 signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
-                }
-            )*/
            }
         </FormGroup>
       </div>
