@@ -4,10 +4,10 @@ import SignButton from './SignButton';
 import './ExamplePetition.css';
 
 class ExamplePetition extends Component {
-    
+
   constructor(props) {
       super(props);
-      
+
       this.state = {
           petitions: [],
 //          signatures: [],
@@ -19,13 +19,13 @@ class ExamplePetition extends Component {
       this.addSignature = this.addSignature.bind(this);
 
   }
-  
+
   componentDidMount() {
 //      var today = new Date();
 //      day = today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate();
       fetch('/Petitions/2')
       .then( response => response.json())
-      .then( petitions => 
+      .then( petitions =>
           this.setState(
               {petitions: petitions
               }
@@ -33,13 +33,13 @@ class ExamplePetition extends Component {
        );
 /*      fetch('/Signatures')
       .then( response => response.json())
-      .then( petitions => 
+      .then( petitions =>
           this.setState(
               {petitions}
           )
        );       */
   }
-  
+
   addSignature = event => {
       event.preventDefault();
 //      var today = new Date();
@@ -54,7 +54,7 @@ class ExamplePetition extends Component {
                 'user_id': this.state.signatureUser,
 //                'date': this.state.signatureDate,
               };
-              
+
               window.alert(JSON.stringify(signature));
 
               fetch('/Signatures/', {
@@ -66,24 +66,26 @@ class ExamplePetition extends Component {
               })
               .then(response => {
                     console.log(response, 'Signature added!');
+                    window.location.reload();
+                    window.alert("Successfully signed petition!");
               })
               .catch(err => {
                     console.log(err, 'Signature not added, try again');
               });
         }
       );
-           
 
-        
+
+
   }
-  
+
   render() {
     console.log("hi")
-    
+
     return (
       <div className="ExamplePetition">
         <FormGroup>
-          <h1>  
+          <h1>
           Example Petition
           </h1>
           {this.state.petitions.map(petition =>
