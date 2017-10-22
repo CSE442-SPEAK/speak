@@ -66,6 +66,7 @@ if(req.params.user_id) {
 }
 }); // GET request, passing in user_id
 
+/*
 router.post('/:signature_id', function(req, res, next) {
 
 if(req.params.signature_id) {
@@ -88,7 +89,7 @@ else {
         }
     });
 }
-}); // POST request, passing in signature_id
+}); // POST request, passing in signature_id */
 
 router.post('/', function(req, res, next) {
 
@@ -101,7 +102,7 @@ router.post('/', function(req, res, next) {
         }
     });
 
-}); // POST request, passing in signature_id
+}); // POST request, passing in user_id and petition_id
 
 
 router.delete('/:signature_id', function(req, res, next) {
