@@ -3,7 +3,7 @@ import './CreatePetition.css';
 import { FormGroup, Grid, Row, Col, Button, ControlLabel, FormControl } from 'react-bootstrap';
 
 class CreatePetition extends Component {
-    
+
   constructor(props) {
       super(props);
       this.handleTitle = this.handleTitle.bind(this);
@@ -15,25 +15,25 @@ class CreatePetition extends Component {
           signatureGoal: "",
       };
   }
-  
+
   handleTitle(event) {
       this.setState({
         title: event.target.value });
 //      window.alert(event.target.value)
   }
-  
+
   handleDescription(event) {
       this.setState({
         description: event.target.value });
   }
-  
+
   handleSignatureGoal(event) {
       this.setState({
           signatureGoal: event.target.value });
   }
   addPetition = event => {
       event.preventDefault();
-     
+
       this.setState({
           title: event.target.value,
           description: event.target.value,
@@ -45,7 +45,7 @@ class CreatePetition extends Component {
         'owner': '2',
         'signature_goal': this.state.signatureGoal
       };
-      
+
 //      window.alert(JSON.stringify(petition));
       fetch('/Petitions/', {
           method: 'POST',
@@ -57,13 +57,14 @@ class CreatePetition extends Component {
       .then(response => {
             console.log(response, 'Petition added!');
             window.location.reload();
+            window.alert("Successfully created petition!");
       })
       .catch(err => {
             console.log(err, 'Petition not added, try again');
       });
-        
+
   }
-  
+
   render() {
     return (
       <div className="CreatePetition">
