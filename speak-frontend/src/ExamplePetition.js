@@ -86,7 +86,7 @@ class ExamplePetition extends Component {
         <FormGroup>
           {this.state.petitions.map(petition =>
             <div key={petition.petition_id}>
-                <h1> {petition.title} </h2>
+                <h1> {petition.title} </h1>
                 <h3> {petition.description} </h3>
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
