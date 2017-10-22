@@ -7,7 +7,6 @@ class ExamplePetition extends Component {
 
   constructor(props) {
       super(props);
-
       this.state = {
           petitions: [],
 //          signatures: [],
@@ -23,7 +22,7 @@ class ExamplePetition extends Component {
   componentDidMount() {
 //      var today = new Date();
 //      day = today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate();
-      fetch('/Petitions/2')
+      fetch('/Petitions/' + parseInt(this.props.match.params.id))
       .then( response => response.json())
       .then( petitions =>
           this.setState(

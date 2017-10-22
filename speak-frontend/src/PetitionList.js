@@ -29,9 +29,9 @@ class PetitionList extends Component {
         <h2>Petitions</h2>
         <Accordion>
           {this.state.petitions.map(petition =>
-            <div key={petition.id}>
+            <div key={petition.petition_id}>
                 <Accordion>
-                <PetitionListElement title={petition.title} description={petition.description}/>
+                <PetitionListElement id={petition.petition_id} title={petition.title} description={petition.description}/>
                 </Accordion>
             </div>)}
         </Accordion>
