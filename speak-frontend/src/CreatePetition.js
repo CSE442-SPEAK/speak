@@ -56,6 +56,7 @@ class CreatePetition extends Component {
       })
       .then(response => {
             console.log(response, 'Petition added!');
+            window.location.reload();
       })
       .catch(err => {
             console.log(err, 'Petition not added, try again');

@@ -9,7 +9,7 @@ class PetitionListElement extends Component {
         <Panel collapsible header={this.props.title}>
           <p>{this.props.description}</p>
           <div className="LearnMoreButton">
-            <Button bsStyle="success">Learn more</Button>
+            <Button bsStyle="success" href="/example">Learn more</Button>
           </div>
         </Panel>
       </div>

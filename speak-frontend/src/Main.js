@@ -12,6 +12,7 @@ const Main = () => (
     <Switch>
       <Route exact path='/' component={Home}/>
       <Route path='/example' component={ExamplePetition}/>
+//        <Route path="/example/:petitionId" component={ExamplePetition}/>
       <Route path='/create' component={CreatePetition}/>
       <Route path='/login' component={LogIn}/>
       <Route path='/signup' component={SignUp}/>
