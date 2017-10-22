@@ -9,7 +9,8 @@ class ExamplePetition extends Component {
       super(props);
       this.state = {
           petitions: [],
-//          signatures: [],
+          signatures: [],
+          names: [],
           signaturePetition: 0,
           signatureUser: 0
 //          signatureDate: "",
@@ -77,6 +78,20 @@ class ExamplePetition extends Component {
 
 
   }
+
+  function getNames = event => {
+    event.preventDefault();
+      // (2) get the signatures with the same petition id
+      fetch('/Signatures/' + this.state.signaturePetition)
+      .then( response => response.json())
+      .then( signatures =>
+          this.setState(
+              {signatures: signatures
+              }
+          )
+    );
+  }
+
 
   render() {
     console.log("hi")
