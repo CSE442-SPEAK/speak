@@ -12,7 +12,23 @@ if (config.get('INSTANCE_CONNECTION_NAME') && config.get('NODE_ENV') === 'produc
 	options.socketPath = `/cloudsql/${confin.get('INSTANCE_CONNECTION_NAME')}`
 }
 
+connection = mysql.createConnection(options);
 
+if (module === require.main) {
+  const prompt = require('prompt');
+  prompt.start();
+
+  console.log(
+    `Running this script directly will allow you to initialize your mysql database.
+    This script will not modify any existing tables.`);
+
+  prompt.get(['user', 'password'], (err, result) => {
+    if (err) {
+      return;
+    }
+    createSchema(result);
+  });
+}
 
 function createSchema (config) {
   const connection = mysql.createConnection(extend({
@@ -61,7 +77,5 @@ function createSchema (config) {
     }
   );
 }
-
-connection = createSchema(options);
 
 module.exports=connection;
