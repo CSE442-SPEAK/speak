@@ -9,7 +9,7 @@ const options = {
 };
 
 if (config.get('INSTANCE_CONNECTION_NAME') && config.get('NODE_ENV') === 'production') {
-	options.socketPath = `/cloudsql/${confin.get('INSTANCE_CONNECTION_NAME')}`
+	options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`
 }
 
 _connection = mysql.createConnection(options);

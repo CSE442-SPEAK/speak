@@ -1,5 +1,4 @@
-runtime:nodejs
-env:flex
-
+runtime: nodejs
+env: flex
 beta_settings:
     cloud_sql_instances: speak-182609:us-central1:speak-test
