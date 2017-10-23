@@ -19,7 +19,11 @@ getSignatureById:function(signature_id, callback) {
 },
 
 addSignature:function(Signature, callback) {
+<<<<<<< HEAD
     return db.query("Insert into signature(petition_id, user_id) values(?,?)", [Signature.petition_id, Signature.user_id], callback);
+=======
+    return db.query("Insert into signature(petition_id,user_id) values(?,?)", [Signature.petition_id, Signature.user_id], callback);
+>>>>>>> deployYaml
 },
 
 deleteSignature:function(signature_id, callback){
