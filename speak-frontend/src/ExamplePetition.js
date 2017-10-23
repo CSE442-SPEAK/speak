@@ -1,21 +1,8 @@
 import React, { Component } from 'react';
 import { FormGroup, Button, Table } from 'react-bootstrap';
 import SignButton from './SignButton';
-//import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
 import './ExamplePetition.css';
 import { Grid, Row, Col} from 'react-bootstrap';
-
-/*const {
-    FacebookShareButton,
-    EmailShareButton,
-} = ShareButtons;
-
-const {
-    FacebookShareCount,
-} = ShareCounts;
-
-const FacebookIcon = generateShareIcon('facebook');
-const EmailIcon = generateShareIcon('email');*/
 
 class ExamplePetition extends Component {
 
@@ -36,25 +23,9 @@ class ExamplePetition extends Component {
       this.displaySignatures = this.displaySignatures.bind(this);
 
   }
-
+  
+  // Get the signatures with the same petition id
   getSignatures() {
-/*      return new Promise((resolve, reject) => {
-          // (2) get the signatures with the same petition id
-          fetch('/Signatures/' + this.props.match.params.id)
-          .then( response => response.json())
-          .then( signatures =>
-              this.setState(
-                  {signatures: signatures}
-              );
-              resolve("Success! Got signatures!");
-            )
-           .catch(err => {
-               reject("Failed!")
-            }
-           )
-        }
-      )*/
-          // (2) get the signatures with the same petition id
           fetch('/Signatures/petition_id/' + this.props.match.params.id)
           .then( response => response.json())
           .then( signatures =>
@@ -64,23 +35,9 @@ class ExamplePetition extends Component {
               ),
            )
   }
-
+  
+  // Get users who have signed the petition from Users table
   getUsers() {
-/*      return new Promise((resolve, reject) => {
-          this.state.signatures.map(signature =>
-            fetch('/Users/' + signature.user_id)
-            .then( response => response.json())
-            .then( users =>
-              names.push(users[0].name)
-              )
-          );
-          this.setState(
-            {names: names}
-          );
-          window.alert(JSON.stringify(names));
-          resolve("Success! Got names!");
-        }
-      )*/
           window.alert(this.state.signatures[0].user_id);
           if(this.state.signatures){
 //              var names = [];
@@ -93,7 +50,8 @@ class ExamplePetition extends Component {
               );
           }
   }
-
+  
+  // Get user names
   getNames() {
       var names = [];
       this.state.users.map(user =>
@@ -102,48 +60,18 @@ class ExamplePetition extends Component {
       this.setState(
         {names}
       )
-      //return names;
   }
 
-/*  getPetitions() {
-      return new Promise((resolve, reject) => {
-          fetch('/Petitions/' + parseInt(this.props.match.params.id))
-          .then( response => response.json())
-          .then( petitions =>
-              this.setState(
-                  {petitions: petitions
-                  }
-              );
-              resolve("Success!");
-              )
-           .catch(err => {
-               reject("Failed!")
-           })
-        }
-      )
-          fetch('/Petitions/' + parseInt(this.props.match.params.id))
-          .then( response => response.json())
-          .then( petitions =>
-              this.setState(
-                  {petitions: petitions},
-                  this.getSignatures
-              ),
-            )
-  }*/
-
+  // Get petition from Petitions table
   componentDidMount() {
-          fetch('/Petitions/' + parseInt(this.props.match.params.id))
-          .then( response => response.json())
-          .then( petitions =>
-              this.setState(
-                  {petitions: petitions},
-                  this.getSignatures
-              ),
-            )
-/*        .then(getSignatures)
-        .then(getNames)*/
-//      var today = new Date();
-//      day = today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate();
+      fetch('/Petitions/' + parseInt(this.props.match.params.id))
+      .then( response => response.json())
+      .then( petitions =>
+          this.setState(
+              {petitions: petitions},
+              this.getSignatures
+          ),
+      )
   }
 
   addSignature = event => {
@@ -161,8 +89,6 @@ class ExamplePetition extends Component {
 //                'date': this.state.signatureDate,
               };
 
-//              window.alert(JSON.stringify(signature));
-
               fetch('/Signatures/', {
                   method: 'POST',
                   headers: {
@@ -172,7 +98,7 @@ class ExamplePetition extends Component {
               })
               .then(response => {
                     console.log(response, 'Signature added!');
-//                    window.location.reload();
+
                     window.alert("Successfully signed petition!");
               })
               .catch(err => {
@@ -182,6 +108,7 @@ class ExamplePetition extends Component {
       );
   }
 
+  // Does not work
   displaySignatures = event => {
       event.preventDefault();
       return (
@@ -204,8 +131,7 @@ class ExamplePetition extends Component {
   }
 
   render() {
-    console.log("hi");
-
+      
     return (
       <div className="ExamplePetition">
       <Grid>
@@ -219,6 +145,7 @@ class ExamplePetition extends Component {
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
+                // See Signatures does not work
                 <div className="Signatures">
                     <Button type="submit" onClick={this.displaySignatures}>See Signatures</Button>
                 </div>
