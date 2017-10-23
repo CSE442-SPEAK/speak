@@ -38,7 +38,6 @@ class ExamplePetition extends Component {
   
   // Get users who have signed the petition from Users table
   getUsers() {
-          window.alert(this.state.signatures[0].user_id);
           if(this.state.signatures){
 //              var names = [];
               this.state.signatures.map(signature =>
@@ -142,7 +141,6 @@ class ExamplePetition extends Component {
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
-                // See Signatures does not work
                 <div className="Signatures">
                     <Button type="submit" onClick={this.displaySignatures}>See Signatures</Button>
                 </div>
