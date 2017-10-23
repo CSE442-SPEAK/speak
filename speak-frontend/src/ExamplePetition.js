@@ -23,10 +23,10 @@ class ExamplePetition extends Component {
       this.displaySignatures = this.displaySignatures.bind(this);
 
   }
-  
+
   // Get the signatures with the same petition id
   getSignatures() {
-          fetch('/Signatures/petition_id/' + this.props.match.params.id)
+          fetch('https://speak-frontend.appspot.com/Signatures/petition_id/' + this.props.match.params.id)
           .then( response => response.json())
           .then( signatures =>
               this.setState(
@@ -35,13 +35,13 @@ class ExamplePetition extends Component {
               ),
            )
   }
-  
+
   // Get users who have signed the petition from Users table
   getUsers() {
           if(this.state.signatures){
 //              var names = [];
               this.state.signatures.map(signature =>
-                fetch('/Users/' + signature.user_id)
+                fetch('https://speak-frontend.appspot.com/Users/' + signature.user_id)
                 .then( response => response.json())
                 .then( users =>
                     {users}
@@ -49,7 +49,7 @@ class ExamplePetition extends Component {
               );
           }
   }
-  
+
   // Get user names
   getNames() {
       var names = [];
@@ -63,7 +63,7 @@ class ExamplePetition extends Component {
 
   // Get petition from Petitions table
   componentDidMount() {
-      fetch('/Petitions/' + parseInt(this.props.match.params.id))
+      fetch('https://speak-frontend.appspot.com/Petitions/' + parseInt(this.props.match.params.id))
       .then( response => response.json())
       .then( petitions =>
           this.setState(
@@ -88,7 +88,7 @@ class ExamplePetition extends Component {
 //                'date': this.state.signatureDate,
               };
 
-              fetch('/Signatures/', {
+              fetch('https://speak-frontend.appspot.com/Signatures/', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json'
@@ -130,7 +130,7 @@ class ExamplePetition extends Component {
   }
 
   render() {
-      
+
     return (
       <div className="ExamplePetition">
         <FormGroup>
