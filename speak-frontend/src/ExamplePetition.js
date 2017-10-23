@@ -134,9 +134,6 @@ class ExamplePetition extends Component {
       
     return (
       <div className="ExamplePetition">
-      <Grid>
-      <Row>
-      <Col xs={12} xsOffset={2} md={8}>
         <FormGroup>
           {this.state.petitions.map(petition =>
             <div key={petition.petition_id}>
@@ -154,9 +151,6 @@ class ExamplePetition extends Component {
 
            {JSON.stringify(this.state.signatures)}
         </FormGroup>
-        </Col>
-        </Row>
-        </Grid>
       </div>
     );
   }
