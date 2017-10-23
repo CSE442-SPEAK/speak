@@ -15,7 +15,7 @@ class PetitionList extends Component {
   }
   
   componentDidMount() {
-      fetch('/Petitions/1')
+      fetch('/Petitions/')
       .then( response => response.json())
       .then( petitions => 
           this.setState(

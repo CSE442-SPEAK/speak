@@ -9,13 +9,13 @@
 
 }
 
-.h1 {
+h1.title {
   background-color: #80bfff;
   padding-top:2%;
   padding-bottom: 2%;
 }
 
-.h3 {
+h3.desc {
 background-color: #80bfff;
 padding-top: 2%;
 padding-bottom: 2%;
