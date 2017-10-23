@@ -8,6 +8,7 @@ var routes = require('./routes/index');
 var Users = require('./routes/Users');
 var Petitions = require('./routes/Petitions');
 var Signatures = require('./routes/Signatures');
+const config = require('./config');
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
