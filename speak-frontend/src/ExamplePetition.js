@@ -3,6 +3,7 @@ import { FormGroup, Button, Table } from 'react-bootstrap';
 import SignButton from './SignButton';
 //import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
 import './ExamplePetition.css';
+import { Grid, Row, Col} from 'react-bootstrap';
 
 /*const {
     FacebookShareButton,
@@ -92,7 +93,7 @@ class ExamplePetition extends Component {
               );
           }
   }
-  
+
   getNames() {
       var names = [];
       this.state.users.map(user =>
@@ -180,7 +181,7 @@ class ExamplePetition extends Component {
         }
       );
   }
-  
+
   displaySignatures = event => {
       event.preventDefault();
       return (
@@ -204,9 +205,12 @@ class ExamplePetition extends Component {
 
   render() {
     console.log("hi");
-    
+
     return (
       <div className="ExamplePetition">
+      <Grid>
+      <Row>
+      <Col xs={12} xsOffset={2} md={8}>
         <FormGroup>
           {this.state.petitions.map(petition =>
             <div key={petition.petition_id}>
@@ -223,7 +227,9 @@ class ExamplePetition extends Component {
 
            {JSON.stringify(this.state.signatures)}
         </FormGroup>
-
+        </Col>
+        </Row>
+        </Grid>
       </div>
     );
   }
