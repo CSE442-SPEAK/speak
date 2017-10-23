@@ -27,7 +27,7 @@ updatePetition:function(petition_id, Petition, callback){
 },
 
 getPetitionsOfUser:function(user_id, callback){
-    return db.query("Select * from petition where user_id=?", [user_id], callback);
+    return db.query("Select * from petition where owner=?", [user_id], callback);
 },
 
 getPetitionsOfCategory:function(category, callback){
@@ -95,5 +95,4 @@ getPetitionUpdates:function(petition_id, callback){
 
 }; // var Petition
 
-module.exports = Petition; 
-
+module.exports = Petition;

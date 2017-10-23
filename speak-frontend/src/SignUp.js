@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './SignUp.css';
-import { Grid, FormGroup, Form, Col, Row, ControlLabel, FormControl, Checkbox, Button, HelpBlock } from 'react-bootstrap';
-import TitleForm from './TitleForm';
-import DescriptionForm from './DescriptionForm';
-import MinimumForm from './MinimumForm';
+import { Grid, FormGroup, Col, Row, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
 
 function FieldGroup({ id, label, help, ...props }) {
     return (

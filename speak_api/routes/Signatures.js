@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/:signature_id?', function(req, res, next) {
+router.get('/:signature_id', function(req, res, next) {
 
 if(req.params.signature_id) {
     Signature.getSignatureById(req.params.signature_id, function(err, rows) {
@@ -38,7 +38,7 @@ else {
 }
 }); // GET request, passing in signature_id
 
-router.get('/:petition_id?', function(req, res, next) {
+router.get('/petition_id/:petition_id', function(req, res, next) {
 
 if(req.params.petition_id) {
     Signature.getSignaturesOfPetition(req.params.petition_id, function(err, rows) {
@@ -52,7 +52,7 @@ if(req.params.petition_id) {
 }
 }); // GET request, passing in petition_id
 
-router.get('/:user_id?', function(req, res, next) {
+router.get('/user_id/:user_id', function(req, res, next) {
 
 if(req.params.user_id) {
     Signature.getSignaturesOfUser(req.params.user_id, function(err, rows) {
@@ -66,6 +66,7 @@ if(req.params.user_id) {
 }
 }); // GET request, passing in user_id
 
+/*
 router.post('/:signature_id', function(req, res, next) {
 
 if(req.params.signature_id) {
@@ -88,7 +89,7 @@ else {
         }
     });
 }
-}); // POST request, passing in signature_id
+}); // POST request, passing in signature_id */
 
 router.post('/', function(req, res, next) {
 
@@ -101,7 +102,7 @@ router.post('/', function(req, res, next) {
         }
     });
 
-}); // POST request, passing in signature_id
+}); // POST request, passing in user_id and petition_id
 
 
 router.delete('/:signature_id', function(req, res, next) {
@@ -117,4 +118,3 @@ router.delete('/:signature_id', function(req, res, next) {
 }); // DELETE request, passing in signature_id
 
 module.exports = router;
-

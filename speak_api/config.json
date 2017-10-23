@@ -1,0 +1,11 @@
+{
+  "GCLOUD_PROJECT": "speak-182609",
+  "DATA_BACKEND": "cloudsql",
+  "MYSQL_USER": "accountA",
+  "MYSQL_PASSWORD": "",
+  "INSTANCE_CONNECTION_NAME": "speak-182609:us-central1:speak-test",
+  "OAUTH2_CLIENT_ID": "967874741505-an4c51i6jkhlfnsgfp94c2bhnc6r52co.apps.googleusercontent.com",
+  "OAUTH2_CLIENT_SECRET": "hqDstbaUZYq02g1UJRLcN_Rj",
+  "OAUTH2_CALLBACK": "https://speak-182609.appspot.com/auth/google/callback",
+  "MEMCACHE_URL": "memcached-13879.c1.us-central1-2.gce.cloud.redislabs.com:13879"
+}

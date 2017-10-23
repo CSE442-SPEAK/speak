@@ -1,3 +1,28 @@
-.SignPetition {
+.ExamplePetition {
   text-align: center;
+  background: #589
+   url("http://holytrinity.academy/wp-content/uploads/2016/11/Blue-Background.jpg")
+  center center no-repeat;
+  color: #FFF;
+  padding-top: 5%;
+  padding-bottom: 5%;
+
+}
+
+h1.title {
+  text-align: center;
+  background: #589
+   url("https://i.pinimg.com/736x/4e/68/59/4e6859e3d959228ea7444a01992e45d2--blue-gray-bathroom-paint-blue-gray-bedroom.jpg")
+  center center no-repeat;
+  padding-top:2%;
+  padding-bottom: 2%;
+}
+
+h3.desc {
+  text-align: center;
+  background: #589
+   url("https://i.pinimg.com/736x/4e/68/59/4e6859e3d959228ea7444a01992e45d2--blue-gray-bathroom-paint-blue-gray-bedroom.jpg")  
+  center center no-repeat;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
