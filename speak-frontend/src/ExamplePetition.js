@@ -17,27 +17,108 @@ class ExamplePetition extends Component {
       };
       this.componentDidMount = this.componentDidMount.bind(this);
       this.addSignature = this.addSignature.bind(this);
+      this.getSignatures = this.getSignatures.bind(this);
+      this.getNames = this.getNames.bind(this);
 
   }
+  
+  getSignatures() {
+/*      return new Promise((resolve, reject) => {
+          // (2) get the signatures with the same petition id
+          fetch('/Signatures/' + this.props.match.params.id)
+          .then( response => response.json())
+          .then( signatures =>
+              this.setState(
+                  {signatures: signatures}
+              );
+              resolve("Success! Got signatures!");
+            )
+           .catch(err => {
+               reject("Failed!")
+            }
+           )
+        }
+      )*/
+          // (2) get the signatures with the same petition id
+          fetch('/Signatures/' + this.props.match.params.id)
+          .then( response => response.json())
+          .then( signatures =>
+              this.setState(
+                  {signatures},
+                  this.getNames
+              ),
+           )
+  }
+  
+  getNames() {
+/*      return new Promise((resolve, reject) => {
+          this.state.signatures.map(signature =>
+            fetch('/Users/' + signature.user_id)
+            .then( response => response.json())
+            .then( users =>
+              names.push(users[0].name)
+              )
+          );
+          this.setState(
+            {names: names}
+          );
+          window.alert(JSON.stringify(names));
+          resolve("Success! Got names!");
+        }
+      )*/
+          var names = [];
+          this.state.signatures.map(signature =>
+            fetch('/Users/' + signature.user_id)
+            .then( response => response.json())
+            .then( users =>
+              names.push(users[0].name)
+              )
+          );
+          this.setState(
+            {names: names}
+          );
+          window.alert(JSON.stringify(names));      
+  }
 
+/*  getPetitions() {
+      return new Promise((resolve, reject) => {
+          fetch('/Petitions/' + parseInt(this.props.match.params.id))
+          .then( response => response.json())
+          .then( petitions =>
+              this.setState(
+                  {petitions: petitions
+                  }
+              );
+              resolve("Success!");
+              )
+           .catch(err => {
+               reject("Failed!")
+           })
+        }
+      ) 
+          fetch('/Petitions/' + parseInt(this.props.match.params.id))
+          .then( response => response.json())
+          .then( petitions =>
+              this.setState(
+                  {petitions: petitions},
+                  this.getSignatures
+              ),
+            )
+  }*/
+  
   componentDidMount() {
+          fetch('/Petitions/' + parseInt(this.props.match.params.id))
+          .then( response => response.json())
+          .then( petitions =>
+              this.setState(
+                  {petitions: petitions},
+                  this.getSignatures
+              ),
+            )
+/*        .then(getSignatures)
+        .then(getNames)*/
 //      var today = new Date();
 //      day = today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate();
-      fetch('/Petitions/' + parseInt(this.props.match.params.id))
-      .then( response => response.json())
-      .then( petitions =>
-          this.setState(
-              {petitions: petitions
-              }
-          )
-       );
-/*      fetch('/Signatures')
-      .then( response => response.json())
-      .then( petitions =>
-          this.setState(
-              {petitions}
-          )
-       );       */
   }
 
   addSignature = event => {
@@ -66,7 +147,7 @@ class ExamplePetition extends Component {
               })
               .then(response => {
                     console.log(response, 'Signature added!');
-                    window.location.reload();
+//                    window.location.reload();
                     window.alert("Successfully signed petition!");
               })
               .catch(err => {
@@ -74,22 +155,6 @@ class ExamplePetition extends Component {
               });
         }
       );
-
-
-
-  }
-
-  function getNames = event => {
-    event.preventDefault();
-      // (2) get the signatures with the same petition id
-      fetch('/Signatures/' + this.state.signaturePetition)
-      .then( response => response.json())
-      .then( signatures =>
-          this.setState(
-              {signatures: signatures
-              }
-          )
-    );
   }
 
 
@@ -108,7 +173,9 @@ class ExamplePetition extends Component {
                 </div>
             </div>)
            }
+           {this.state.names}
         </FormGroup>
+        
       </div>
     );
   }
