@@ -21,7 +21,7 @@ class ExamplePetition extends Component {
       this.getNames = this.getNames.bind(this);
 
   }
-  
+
   getSignatures() {
 /*      return new Promise((resolve, reject) => {
           // (2) get the signatures with the same petition id
@@ -49,7 +49,7 @@ class ExamplePetition extends Component {
               ),
            )
   }
-  
+
   getNames() {
 /*      return new Promise((resolve, reject) => {
           this.state.signatures.map(signature =>
@@ -77,7 +77,7 @@ class ExamplePetition extends Component {
           this.setState(
             {names: names}
           );
-          window.alert(JSON.stringify(names));      
+          window.alert(JSON.stringify(names));
   }
 
 /*  getPetitions() {
@@ -95,7 +95,7 @@ class ExamplePetition extends Component {
                reject("Failed!")
            })
         }
-      ) 
+      )
           fetch('/Petitions/' + parseInt(this.props.match.params.id))
           .then( response => response.json())
           .then( petitions =>
@@ -105,7 +105,7 @@ class ExamplePetition extends Component {
               ),
             )
   }*/
-  
+
   componentDidMount() {
           fetch('/Petitions/' + parseInt(this.props.match.params.id))
           .then( response => response.json())
@@ -157,7 +157,20 @@ class ExamplePetition extends Component {
       );
   }
 
+  /*
+  this is the feature of the share buttons on social media
+  */
+   const {
+     FacebookShareButton,
+     EmailShareButton,
+       } = ShareButtons;
 
+   const FacebookIcon = generateShareIcon('facebook');
+   const EmailIcon = generateShareIcon('email');
+
+   const {FacebookShareCount} = ShareCounts;
+
+   <FacebookShareCount url={www.facebook.com}/>
   render() {
     console.log("hi")
 
@@ -175,7 +188,7 @@ class ExamplePetition extends Component {
            }
            {this.state.names}
         </FormGroup>
-        
+
       </div>
     );
   }
