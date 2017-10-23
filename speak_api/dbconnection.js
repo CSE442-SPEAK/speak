@@ -5,14 +5,19 @@ console.log(config);
 const options = {
 	user: config.get('MYSQL_USER'),
 	password: config.get('MYSQL_PASSWORD'),
-	database:'bookshelf'
+	database:'speak'
 };
 
 if (config.get('INSTANCE_CONNECTION_NAME') && config.get('NODE_ENV') === 'production') {
 	options.socketPath = `/cloudsql/${confin.get('INSTANCE_CONNECTION_NAME')}`
 }
 
-connection = mysql.createConnection(options);
+_connection = mysql.createConnection(options);
+
+module.exports = {
+	createSchema: createSchema,
+	connection: _connection
+};
 
 if (module === require.main) {
   const prompt = require('prompt');
@@ -77,5 +82,3 @@ function createSchema (config) {
     }
   );
 }
-
-module.exports=connection;
