@@ -39,40 +39,9 @@ git clone https://github.com/CSE442-SPEAK/speak.git
 ```
 git checkout develop
 ```
+### 5. Get permission to access the Google Cloud Platform project. Please contact us directly to get these permissions through our ryver channel.
 
-### 5. In your local copy of the `speak` repository, maneuver to the `speak_api` folder:
-
-```
-cd speak_api
-```
-
-### 6. At this point, you will need to set up the speak database via the `MySQL` shell:
-
-First, start up `MySQL`:
-
-```
-sudo mysql
-```
-
-Next, pass in the `speak.sql` file:
-
-```
-mysql> speak.sql
-```
-
-**A NOTE:** If the statement fails, it is likely that your MySQL installation does not have local file capability enabled by default. See the [MySQL documentation](https://dev.mysql.com/doc/refman/5.7/en/load-data-local.html) for more information on how to change this. 
-
-```
-cd speak_api
-```
-
-### 7. Install `npm` dependencies for `speak_api`.
-
-```
-npm install
-```
-
-Then, run:
+### 6. Follow the first set of instructions at https://cloud.google.com/nodejs/getting-started/using-cloud-sql to connect to the database up to "Run the app on your local machine". Running the app will occur in the speak_api directory.
 
 ```
 npm start
