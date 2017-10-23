@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PetitionListElement from './PetitionListElement';
 import { Accordion } from 'react-bootstrap';
+import './PetitionList.css';
 
 class PetitionList extends Component {
     
@@ -29,9 +30,9 @@ class PetitionList extends Component {
         <h2>Petitions</h2>
         <Accordion>
           {this.state.petitions.map(petition =>
-            <div key={petition.id}>
+            <div key={petition.petition_id}>
                 <Accordion>
-                <PetitionListElement title={petition.title} description={petition.description}/>
+                <PetitionListElement id={petition.petition_id} title={petition.title} description={petition.description}/>
                 </Accordion>
             </div>)}
         </Accordion>
