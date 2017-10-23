@@ -1,0 +1,33 @@
+{
+  "name": "speak",
+  "version": "1.0.0",
+  "description": "A web-app for petitions at the University at Buffalo. speak lets students organize political action on campus by creating petions and gathering signatures from other students. || CSE442, Fall '17. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "init-cloudsql": "node dbconnection.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSE442-SPEAK/speak.git"
+  },
+  "author": "Katie James <knjames@buffalo.edu>, Heeba Kariapper <heebakar@buffalo.edu>, Wendy Shi <wenxuans@buffalo.edu>, Doris Kwan <doriskwa@buffalo.edu>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSE442-SPEAK/speak/issues"
+  },
+  "homepage": "https://github.com/CSE442-SPEAK/speak#readme",
+  "dependencies": {
+    "config": "^1.26.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.1",
+    "jade": "^1.11.0",
+    "lodash": "^4.17.4",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "nconf": "^0.8.5",
+    "prompt": "^1.0.0"
+  }
+}
