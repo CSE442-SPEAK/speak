@@ -5,7 +5,7 @@ class SignUpButton extends Component {
   render() {
     return (
       <div className="SignUpButton">
-        <Button bsStyle="primary" bsSize="large" href="/signup" active>Sign Up</Button>
+        <Button bsStyle="primary" bsSize="large" href="/signup" >Sign Up</Button>
       </div>
     );
   }

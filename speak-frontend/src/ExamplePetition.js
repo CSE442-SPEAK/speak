@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { FormGroup, Button } from 'react-bootstrap';
 import SignButton from './SignButton';
+//import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
 import './ExamplePetition.css';
+
+/*const {
+    FacebookShareButton,
+    EmailShareButton,
+} = ShareButtons;
+
+const {
+    FacebookShareCount,
+} = ShareCounts;
+
+const FacebookIcon = generateShareIcon('facebook');
+const EmailIcon = generateShareIcon('email');*/
 
 class ExamplePetition extends Component {
 
@@ -77,7 +90,7 @@ class ExamplePetition extends Component {
           this.setState(
             {names: names}
           );
-          window.alert(JSON.stringify(names));
+//          window.alert(JSON.stringify(names));
   }
 
 /*  getPetitions() {
@@ -136,7 +149,7 @@ class ExamplePetition extends Component {
 //                'date': this.state.signatureDate,
               };
 
-              window.alert(JSON.stringify(signature));
+//              window.alert(JSON.stringify(signature));
 
               fetch('/Signatures/', {
                   method: 'POST',
@@ -160,20 +173,10 @@ class ExamplePetition extends Component {
   /*
   this is the feature of the share buttons on social media
   */
-   const {
-     FacebookShareButton,
-     EmailShareButton,
-       } = ShareButtons;
 
-   const FacebookIcon = generateShareIcon('facebook');
-   const EmailIcon = generateShareIcon('email');
-
-   const {FacebookShareCount} = ShareCounts;
-
-   <FacebookShareCount url={www.facebook.com}/>
   render() {
-    console.log("hi")
-
+    console.log("hi");
+    
     return (
       <div className="ExamplePetition">
         <FormGroup>
@@ -187,6 +190,7 @@ class ExamplePetition extends Component {
             </div>)
            }
            {this.state.names}
+         
         </FormGroup>
 
       </div>
