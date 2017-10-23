@@ -38,7 +38,7 @@ function createSchema (config) {
   connection.query(
 		`CREATE DATABASE IF NOT EXISTS \`speak\`
 			DEFAULT CHARACTER SET = 'utf8'
-			DEFAULT COLLATE 'utf8_general_ci'
+			DEFAULT COLLATE 'utf8_general_ci';
 		USE \`speak\`;
 
 		CREATE TABLE IF NOT EXISTS \`speak\`.\`petition\` (
