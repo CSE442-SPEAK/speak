@@ -14,11 +14,6 @@ if (config.get('INSTANCE_CONNECTION_NAME') && config.get('NODE_ENV') === 'produc
 
 _connection = mysql.createConnection(options);
 
-module.exports = {
-	createSchema: createSchema,
-	connection: _connection
-};
-
 if (module === require.main) {
   const prompt = require('prompt');
   prompt.start();
@@ -31,7 +26,7 @@ if (module === require.main) {
     if (err) {
       return;
     }
-    createSchema(result);
+    _connection = createSchema(result);
   });
 }
 
@@ -72,7 +67,7 @@ function createSchema (config) {
 		  \`signature_id\` int not null auto_increment,
 		  \`petition_id\` int not null,
 		  \`user_id\` int not null,
-		  PRIMARY KEY(\`signature_id\`));`
+		  PRIMARY KEY(\`signature_id\`));`,
     (err) => {
       if (err) {
         throw err;
@@ -82,3 +77,5 @@ function createSchema (config) {
     }
   );
 }
+connection = _connection;
+module.exports = connection;
