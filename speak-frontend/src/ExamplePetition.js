@@ -24,7 +24,6 @@ class ExamplePetition extends Component {
           petitions: [],
           signatures: [],
           names: [],
-          signaturePetition: 0,
           signatureUser: 0
 //          signatureDate: "",
       };
@@ -32,6 +31,7 @@ class ExamplePetition extends Component {
       this.addSignature = this.addSignature.bind(this);
       this.getSignatures = this.getSignatures.bind(this);
       this.getNames = this.getNames.bind(this);
+      this.displaySignatures = this.displaySignatures.bind(this);
 
   }
 
@@ -86,6 +86,7 @@ class ExamplePetition extends Component {
             .then( users =>
               names.push(users[0].name)
               )
+            .then( )
           );
           this.setState(
             {names: names}
@@ -138,13 +139,13 @@ class ExamplePetition extends Component {
       event.preventDefault();
 //      var today = new Date();
       this.setState(
-        {signaturePetition: this.state.petitions[0].petition_id,
+        {
         // Need to get ID of signed in user
-         signatureUser: 1,
+         signatureUser: 2,
 //         signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
         }, function(){
               var signature = {
-                'petition_id': this.state.signaturePetition,
+                'petition_id': this.props.match.params.id,
                 'user_id': this.state.signatureUser,
 //                'date': this.state.signatureDate,
               };
@@ -169,10 +170,15 @@ class ExamplePetition extends Component {
         }
       );
   }
-
-  /*
-  this is the feature of the share buttons on social media
-  */
+  
+  displaySignatures = event => {
+      event.preventDefault();
+      return (
+        <div className="SignaturesList">
+            {this.state.names}
+        </div> 
+      );
+  }
 
   render() {
     console.log("hi");
@@ -187,10 +193,12 @@ class ExamplePetition extends Component {
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
+                <div className="Signatures">
+                    <Button type="submit" onClick={this.displaySignatures}>See Signatures</Button>
+                </div>
             </div>)
            }
-           {this.state.names}
-         
+           {JSON.stringify(this.state.signatures)}
         </FormGroup>
 
       </div>
