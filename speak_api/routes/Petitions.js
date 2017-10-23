@@ -2,6 +2,18 @@ var express = require('express');
 var router = express.Router();
 var Petition = require('../models/Petition');
 
+router.get('/', function(req, res, next) {
+
+  Petition.getAllPetitions(function(err, rows) {
+    if(err) {
+      res.json(err);
+    }
+    else {
+      res.json(rows);
+    }
+  });
+});
+
 router.get('/:petition_id', function(req, res, next) {
 
 if(req.params.petition_id) {

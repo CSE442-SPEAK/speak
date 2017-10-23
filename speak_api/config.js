@@ -12,7 +12,13 @@ nconf
     'MYSQL_USER',
     'MYSQL_PASSWORD',
     'NODE_ENV',
-    'PORT'
+    'PORT',
+    'CLOUD_BUCKET',
+    'MEMCACHE_URL',
+    'OAUTH2_CLIENT_ID',
+    'OAUTH2_CLIENT_SECRET',
+    'OAUTH2_CALLBACK',
+    'SECRET'
   ])
   // 3. Config file
   .file({ file: path.join(__dirname, 'config.json') })
