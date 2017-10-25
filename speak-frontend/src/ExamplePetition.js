@@ -147,7 +147,7 @@ class ExamplePetition extends Component {
             </div>)
            }
 
-           {//JSON.stringify(this.state.signatures)}
+//           {JSON.stringify(this.state.signatures)}
         </FormGroup>
       </div>
     );
