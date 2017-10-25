@@ -23,7 +23,7 @@ class ExamplePetition extends Component {
       this.displaySignatures = this.displaySignatures.bind(this);
 
   }
-  
+
   // Get the signatures with the same petition id
   getSignatures() {
           fetch('/Signatures/petition_id/' + this.props.match.params.id)
@@ -35,7 +35,7 @@ class ExamplePetition extends Component {
               ),
            )
   }
-  
+
   // Get users who have signed the petition from Users table
   getUsers() {
           if(this.state.signatures){
@@ -49,7 +49,7 @@ class ExamplePetition extends Component {
               );
           }
   }
-  
+
   // Get user names
   getNames() {
       var names = [];
@@ -130,7 +130,7 @@ class ExamplePetition extends Component {
   }
 
   render() {
-      
+
     return (
       <div className="ExamplePetition">
         <FormGroup>
@@ -140,14 +140,14 @@ class ExamplePetition extends Component {
                 <h3 class="desc"> {petition.description} </h3>
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
-                </div>
+                </div>/*
                 <div className="Signatures">
                     <Button type="submit" onClick={this.displaySignatures}>See Signatures</Button>
-                </div>
+                </div>*/
             </div>)
            }
 
-           {JSON.stringify(this.state.signatures)}
+           {//JSON.stringify(this.state.signatures)}
         </FormGroup>
       </div>
     );

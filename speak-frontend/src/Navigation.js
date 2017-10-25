@@ -21,10 +21,10 @@ class Navigation extends Component {
             </Nav>
             <Nav pullRight>
               <LogInButton/>
-            </Nav>
+            </Nav>/*
             <Nav pullRight>
               <AccountButton/>
-            </Nav>
+            </Nav>*/
           </Navbar.Collapse>
         </Navbar>
       </div>
