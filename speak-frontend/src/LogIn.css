@@ -4,6 +4,15 @@
    url("http://holytrinity.academy/wp-content/uploads/2016/11/Blue-Background.jpg")
   center center no-repeat;
   color: #FFF;
-  padding-top: 12%;
-  padding-bottom: 5%;
+  padding-top: 2%;
+  padding-bottom: 3%;
+}
+
+h1 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+    padding-bottom: 2%;
 }

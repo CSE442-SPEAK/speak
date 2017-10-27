@@ -141,13 +141,9 @@ class ExamplePetition extends Component {
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
-                <div className="Signatures">
-                    <Button type="submit" onClick={this.displaySignatures}>See Signatures</Button>
-                </div>
             </div>)
            }
 
-           {JSON.stringify(this.state.signatures)}
         </FormGroup>
       </div>
     );

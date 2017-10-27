@@ -22,9 +22,6 @@ class Navigation extends Component {
             <Nav pullRight>
               <LogInButton/>
             </Nav>
-            <Nav pullRight>
-              <AccountButton/>
-            </Nav>
           </Navbar.Collapse>
         </Navbar>
       </div>
