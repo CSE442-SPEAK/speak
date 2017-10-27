@@ -47,7 +47,7 @@ class CreatePetition extends Component {
       };
 
 //      window.alert(JSON.stringify(petition));
-      fetch('/Petitions/', {
+      fetch('https://speak-182609.appspot.com/Petitions/', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'

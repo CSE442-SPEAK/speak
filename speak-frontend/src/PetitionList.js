@@ -4,7 +4,7 @@ import { Accordion } from 'react-bootstrap';
 import './PetitionList.css';
 
 class PetitionList extends Component {
-    
+
   constructor(props) {
       super(props);
       this.state = {
@@ -13,17 +13,17 @@ class PetitionList extends Component {
       this.componentDidMount = this.componentDidMount.bind(this);
 
   }
-  
+
   componentDidMount() {
-      fetch('/Petitions/')
+      fetch('https://speak-182609.appspot.com/petitions/')
       .then( response => response.json())
-      .then( petitions => 
+      .then( petitions =>
           this.setState(
               {petitions}
           )
        );
   }
-  
+
   render() {
     return (
       <div className="PetitionList">
