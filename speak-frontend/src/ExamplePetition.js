@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, Button, Table } from 'react-bootstrap';
+import { FormGroup, Button, Table, Panel, Well, Collapse } from 'react-bootstrap';
 import SignButton from './SignButton';
 import './ExamplePetition.css';
 import { Grid, Row, Col} from 'react-bootstrap';
@@ -111,7 +111,7 @@ class ExamplePetition extends Component {
   displaySignatures = event => {
       event.preventDefault();
       return (
-        <Table striped bordered condensed hover>
+        <table class="striped bordered condensed hover">
         <thead>
         <tr>
         <th>#</th>
@@ -125,7 +125,7 @@ class ExamplePetition extends Component {
           </tr>
 
          </tbody>
-        </Table>
+        </table>
       );
   }
 
@@ -135,19 +135,27 @@ class ExamplePetition extends Component {
       <div className="ExamplePetition">
         <FormGroup>
           {this.state.petitions.map(petition =>
+		  
             <div key={petition.petition_id}>
-                <h1 class="title"> {petition.title} </h1>
-                <h3 class="desc"> {petition.description} </h3>
+                <h1 class="title"> <Panel header={petition.title} bsStyle="primary"> <h3 class="desc"> {petition.description} </h3> </Panel></h1>
+                
                 <div className="SignButton">
-                    <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
-                </div>
+                    <Button type="submit" bsStyle="primary" bsSize="lg" onClick={this.addSignature}>Sign</Button>
+                </div> <br/><br/><br/><br/><br/>
                 <div className="Signatures">
-                    <Button type="submit" onClick={this.displaySignatures}>See Signatures</Button>
+				
+					<Panel bsStyle="primary">
+						<Button type="submit" onClick={() => this.setState({ open: !this.state.open })}>See Signatures</Button><br/>
+						<Collapse in={this.state.open}>
+						  <div class="test">
+							{JSON.stringify(this.state.signatures)}
+						  </div>
+						</Collapse>
+						
+					</Panel>
                 </div>
             </div>)
            }
-
-           {JSON.stringify(this.state.signatures)}
         </FormGroup>
       </div>
     );
