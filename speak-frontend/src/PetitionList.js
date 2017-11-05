@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PetitionListElement from './PetitionListElement';
-import { Accordion } from 'react-bootstrap';
+import { Grid, Row, Col, Button} from 'react-bootstrap';
 import './PetitionList.css';
 
 class PetitionList extends Component {
@@ -28,14 +28,11 @@ class PetitionList extends Component {
     return (
       <div className="PetitionList">
         <h2>Petitions</h2>
-        <Accordion>
           {this.state.petitions.map(petition =>
-            <div key={petition.petition_id}>
-                <Accordion>
-                <PetitionListElement id={petition.petition_id} title={petition.title} description={petition.description}/>
-                </Accordion>
-            </div>)}
-        </Accordion>
+                <div key={petition.petition_id}>
+                    <PetitionListElement id={petition.petition_id} title={petition.title} description={petition.description}/>
+                </div>
+            )}
       </div>
     );
   }
