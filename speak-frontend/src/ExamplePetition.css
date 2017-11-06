@@ -21,8 +21,12 @@ h1.title {
 h3.desc {
   text-align: center;
   background: #589
-   url("https://i.pinimg.com/736x/4e/68/59/4e6859e3d959228ea7444a01992e45d2--blue-gray-bathroom-paint-blue-gray-bedroom.jpg")  
+   url("https://i.pinimg.com/736x/4e/68/59/4e6859e3d959228ea7444a01992e45d2--blue-gray-bathroom-paint-blue-gray-bedroom.jpg")
   center center no-repeat;
   padding-top: 5%;
   padding-bottom: 5%;
+}
+
+.socialmedia {
+  display: inline-block;
 }
