@@ -7,6 +7,8 @@ class LogIn extends Component {
   render() {
     return (
       <div className="LogIn">
+      <h1> Log in </h1>
+      <h4> Don't have an account? <a href="/signup">Sign up.</a></h4> 
       <Form horizontal>
       <Grid>
       <Row>

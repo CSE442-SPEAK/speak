@@ -3,6 +3,14 @@ import { FormGroup, Button, Table } from 'react-bootstrap';
 import SignButton from './SignButton';
 import './ExamplePetition.css';
 import { Grid, Row, Col} from 'react-bootstrap';
+import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
+
+const { TwitterShareButton, EmailShareButton, FacebookShareButton, GooglePlusShareButton } = ShareButtons;
+
+const EmailIcon = generateShareIcon('email');
+const GooglePlusIcon = generateShareIcon('google');
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
 
 class ExamplePetition extends Component {
 
@@ -130,6 +138,8 @@ class ExamplePetition extends Component {
   }
 
   render() {
+    const shareUrl = 'https://speak-frontend.appspot.com/petitions/' + this.props.match.params.id
+    const title = 'speak - UB Petitions '
 
     return (
       <div className="ExamplePetition">
@@ -141,14 +151,42 @@ class ExamplePetition extends Component {
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
-                <div className="Signatures">
-                    <Button type="submit" onClick={this.displaySignatures}>See Signatures</Button>
-                </div>
             </div>)
            }
-
-           {JSON.stringify(this.state.signatures)}
-        </FormGroup>
+           <div className="socialmedia">
+             <TwitterShareButton
+                 url={shareUrl}
+                 title={title}
+                 className="ExamplePetition">
+                 <TwitterIcon
+                   size={48}
+                   round />
+               </TwitterShareButton>
+               <FacebookShareButton
+               url={shareUrl}
+               className="ExamplePetition">
+               <FacebookIcon
+               size={48}
+               round />
+               </FacebookShareButton>
+               <GooglePlusShareButton
+                 url={shareUrl}
+                 className="ExamplePetition">
+               <GooglePlusIcon
+               size={48}
+               round />
+               </GooglePlusShareButton>
+               <EmailShareButton
+               url={shareUrl}
+               subject={title}
+               body="body"
+               className="ExamplePetition">
+               <EmailIcon
+               size={48}
+               round />
+               </EmailShareButton>
+             </div>
+             </FormGroup>
       </div>
     );
   }

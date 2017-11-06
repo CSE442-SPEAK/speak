@@ -68,6 +68,7 @@ class CreatePetition extends Component {
   render() {
     return (
       <div className="CreatePetition">
+        <h1> Create a Petition </h1>
         <Grid>
             <Row classname="show-grid">
                 <Col xs={12} md={8} xsOffset={2}>
