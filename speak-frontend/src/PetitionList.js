@@ -28,14 +28,14 @@ class PetitionList extends Component {
     return (
       <div className="PetitionList">
         <h2>Petitions</h2>
-        <Accordion>
+      //  <Accordion>
           {this.state.petitions.map(petition =>
             <div key={petition.petition_id}>
-                <Accordion>
+              //  <Accordion>
                 <PetitionListElement id={petition.petition_id} title={petition.title} description={petition.description}/>
-                </Accordion>
+              //  </Accordion>
             </div>)}
-        </Accordion>
+      //  </Accordion>
       </div>
     );
   }
