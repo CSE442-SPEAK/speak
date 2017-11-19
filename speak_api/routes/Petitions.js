@@ -1,6 +1,25 @@
 var express = require('express');
 var router = express.Router();
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 var Petition = require('../models/Petition');
+require('dotenv').config();
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri:`https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+  }),
+
+  audience:process.env.AUTH0_AUDIENCE,
+  issuer:'https://${process.env.AUTH0_DOMAIN}/',
+  algorithms: ['RS256']
+});
+
+const checkScopes = jwtAuthz(['create:petitions'])
 
 router.get('/', function(req, res, next) {
 
@@ -39,7 +58,7 @@ else {
 }
 }); // GET request, passing in petition_id
 
-router.get('/user_id/:user_id', function(req, res, next) {
+router.get('/user_id/:user_id', checkJwt, function(req, res, next) {
 if(req.params.user_id) {
     Petition.getPetitionsOfUser(req.params.user_id, function(err, rows) {
         if(err) {
@@ -52,7 +71,7 @@ if(req.params.user_id) {
 }
 }); // GET request, passing in user_id
 
-router.post('/', function(req, res, next) {
+router.post('/', checkJwt, checkScopes, function(req, res, next) {
 	Petition.addPetition(req.body,function(err,count) {
 		if(err) {
 			res.json(err);

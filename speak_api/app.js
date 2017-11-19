@@ -1,3 +1,31 @@
+const express = require('express');
+const config = require('./config');
+const app = express();
+/**const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');*/
+const cors = require('cors');
+const morgan = require('morgan');
+var Users = require('./routes/Users');
+var Petitions = require('./routes/Petitions');
+var Signatures = require('./routes/Signatures');
+require('dotenv').config();
+
+if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
+  throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
+}
+
+app.use(cors());
+app.use(morgan('API Request (port 3001): :method :url :status :response-time ms - :res[content-length]'));
+
+app.use('/Users', Users);
+app.use('/Petitions', Petitions);
+app.use('/Signatures', Signatures);
+
+app.listen(3001);
+console.log('Server listening on http://localhost:3001.')
+
+/**==========================================================
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -58,4 +86,4 @@ if (module === require.main) {
     })}
 
 
-module.exports = app;
+module.exports = app; */
