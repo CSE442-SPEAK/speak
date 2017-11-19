@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Switch, Redirect, BrowserRouter, Route } from 'react-router-dom';
 import App from './App';
 import Home from './Home';
+import Profile from './Profile';
 import ExamplePetition from './ExamplePetition';
 import CreatePetition from './CreatePetition';
 import PetitionList from './PetitionList';
@@ -26,6 +27,13 @@ export const createRoutes = () => {
       <div>
         <Route path='/' render={(props) => <App auth={auth} {...props} />} />
         <Route path='/home' render={(props) => <Home auth={auth} {...props} />} />
+        <Route path="/profile" render={(props) => (
+          !auth.isAuthenticated() ? (
+            <Redirect to="/home"/>
+          ) : (
+            <Profile auth={auth} {...props} />
+          )
+        )} />
         <Route path="/callback" render={(props) => {
           handleAuthentication(props);
           return <Callback {...props} />
