@@ -16,7 +16,7 @@ class PetitionListElement extends Component {
         <Accordion>
         <Panel collapsible header={this.props.title}>
           <p>{this.props.description}</p>
-          <Button bsStyle="success" href ={'/petitions'+this.props.id}>Learn More</Button>
+          <Button bsStyle="success" href ={'/petitions/'+this.props.id}>Learn More</Button>
         </Panel>
         </Accordion>
       </div>
