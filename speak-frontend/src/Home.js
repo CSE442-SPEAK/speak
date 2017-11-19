@@ -19,11 +19,11 @@ const Home = () => (
   <div className="Home">
       <Banner/>
       <Grid>
-      <Row>
-      <Col xs={12} xsOffset={2} md={8}>
-      <PetitionList/>
-      </Col>
-      </Row>
+        <Row>
+          <Col xs={12}>
+            <PetitionList/>
+          </Col>
+        </Row>
       </Grid>
       <Button classname="reportBug"
           type="submit"

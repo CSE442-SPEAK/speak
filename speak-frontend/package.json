@@ -4,14 +4,15 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "react": "^15.6.1",
+    "react": "^15.6.2",
     "react-bootstrap": "^0.31.3",
-    "react-dom": "^15.6.1",
+    "react-bootstrap-card": "^0.1.5",
+    "react-dom": "^15.6.2",
     "react-router": "^3.0.5",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
     "react-share": "^1.16.0",
-    "react-bootstrap-card": "^0.1.5"
+    "reactstrap": "^5.0.0-alpha.4"
   },
   "scripts": {
     "start": "react-scripts start",

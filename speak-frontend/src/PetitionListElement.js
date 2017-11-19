@@ -1,23 +1,6 @@
 import React, { Component } from 'react';
-import { Panel, Button } from 'react-bootstrap';
-
-import {
-  Card,
-  CardBlock,
-  CardFooter,
-  CardTitle,
-  CardText,
-  CardImg,
-  CardBody,
-  CardSubtitle
-} from 'react-bootstrap-card';
-
-import {
-  Col,
-  Row,
-} from 'react-bootstrap';
-
-import PropTypes from 'prop-types';
+import { Col, Panel, Accordion, Button } from 'react-bootstrap';
+import './PetitionList.css';
 
 class PetitionListElement extends Component {
 
@@ -28,19 +11,16 @@ class PetitionListElement extends Component {
   render() {
 
     return (
+      <Col xs="4">
       <div className="PetitionListElement">
-        <Card>
-          <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-          <div>
-            <CardBody>
-              <CardTitle>this.props.title</CardTitle>
-              <CardSubtitle>Subtitle</CardSubtitle>
-              <CardText>this.props.description</CardText>
-              <Button bsStyle="success" hreft ={'/petitions'+this.props.id}>Learn More</Button>
-            </CardBody>
-          </div>
-        </Card>
+        <Accordion>
+        <Panel collapsible header={this.props.title}>
+          <p>{this.props.description}</p>
+          <Button bsStyle="success" href ={'/petitions'+this.props.id}>Learn More</Button>
+        </Panel>
+        </Accordion>
       </div>
+      </Col>
     );
   }
 }
