@@ -18,7 +18,7 @@ const checkJwt = jwt({
   algorithms: ['RS256']
 });
 
-router.get('/:user_id', function(req, res, next) {
+router.get('/:user_id', checkJwt, function(req, res, next) {
 
 if(req.params.user_id) {
     User.getUserById(req.params.user_id, function(err,rows) {
@@ -43,7 +43,7 @@ else {
 }
 });
 
-router.get('/', function(req, res, next) {
+router.get('/', checkJwt, function(req, res, next) {
     User.getAllUsers(function(err,rows) {
         if(err) {
             res.json(err);
@@ -54,7 +54,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', checkJwt, function(req, res, next) {
     User.addUser(req.body,function(err,count) {
         if(err) {
             res.json(err);
@@ -65,7 +65,7 @@ router.post('/', function(req, res, next) {
     });
 });
 
-router.delete('/:user_id', function(req,res,next) {
+router.delete('/:user_id', checkJwt, function(req,res,next) {
 if(req.params.user_id) {
     User.deleteUser(req.params.user_id, function(err,rows) {
         if(err) {
