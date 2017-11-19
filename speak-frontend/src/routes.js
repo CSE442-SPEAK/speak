@@ -33,7 +33,6 @@ export const createRoutes = () => {
         <Route exact path='/petitions' component={PetitionList}/>
           <Route path='/petitions/:id' render={(props) => <ExamplePetition auth={auth} {...props} />}/>
         <Route path='/create' render={(props) => <CreatePetition auth={auth} {...props} />} />
-        <Route component={ErrorPage} />
       </div>
     </BrowserRouter>
   );
