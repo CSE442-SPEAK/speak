@@ -1,8 +1,0 @@
-matrix:
-  include:
-    - language: node_js
-
-test:
-  adapter: sqlite3
-  database: ":memory:"
-  timeout: 500
