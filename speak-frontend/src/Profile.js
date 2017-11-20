@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Panel, ControlLabel, Glyphicon } from 'react-bootstrap';
-import './Profile.css';
 
 class Profile extends Component {
   componentWillMount() {
@@ -26,7 +25,6 @@ class Profile extends Component {
               <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
               <h3>{profile.nickname}</h3>
             </div>
-            <pre>{JSON.stringify(profile, null, 2)}</pre>
           </Panel>
         </div>
       </div>
