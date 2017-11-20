@@ -2,8 +2,8 @@ const mysql = require('mysql');
 const config = require('../config');
 
 const options = {
-    user: config.get('MYSQL_USER');
-    password: config.get('MYSQL_PASSWORD');
+    user: config.get('MYSQL_USER'),
+    password: config.get('MYSQL_PASSWORD'),
     database: 'speak'
 };
 
