@@ -10,13 +10,15 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri:`https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    jwksUri:`https://speak-ub.auth0.com/.well-known/jwks.json`
   }),
 
-  audience:process.env.AUTH0_AUDIENCE,
-  issuer:'https://${process.env.AUTH0_DOMAIN}/',
+  audience:`speak-test`,
+  issuer:`https://speak-ub.auth0.com/`,
   algorithms: ['RS256']
 });
+
+console.log(process.env.AUTH0_DOMAIN);
 
 router.get('/email/:email', checkJwt, function(req, res, next) {
 
