@@ -2,13 +2,12 @@ const mysql = require('mysql');
 const config = require('../config');
 
 const options = {
-    host: 'localhost',
     user: config.get('MYSQL_USER'),
     password: config.get('MYSQL_PASSWORD'),
     database: 'speak'
 };
 
-//options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
+options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
 
 const db = mysql.createPool(options);
 
