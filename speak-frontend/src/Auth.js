@@ -9,7 +9,7 @@ export default class Auth extends EventEmitter{
   auth0 = new auth0.WebAuth({
     domain: 'speak-ub.auth0.com',
     clientID: '3AENWl_-dFQnyEOBAlq7AMMhi_K7RUwy',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'http://speak-frontend.appspot.com/callback',
     audience: 'speak-test',
     responseType: 'token id_token',
     scope: this.requestedScopes
