@@ -33,7 +33,7 @@ nconf
     // This is the id of your project in the Google Cloud Developers Console.
     GCLOUD_PROJECT: 'speak-api-186516',
 
-    MYSQL_USER: 'test-account',
+    MYSQL_USER: 'userA',
     MYSQL_PASSWORD: '',
 
     PORT: 3001
