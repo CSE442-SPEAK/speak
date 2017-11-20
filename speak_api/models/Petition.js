@@ -71,11 +71,7 @@ getPetitionCategory:function(petition_id, callback){
 },
 
 getPetitionSignatureCount:function(petition_id, callback){
-    return db.query("Select signature_count from petition where petition_id=?", [petition_id], callback);
-},
-
-updatePetitionSignatureCount:function(petition_id, count, callback) {
-    return db.query("Update petition set count=?, where petition_id=?",[count,petition_id],callback);
+    return db.query("select count(signature_id) from signature where petition_id=?", [petition_id], callback);
 },
 
 // Petition date of creation
