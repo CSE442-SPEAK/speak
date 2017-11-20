@@ -1,28 +1,24 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const config = require('./config');
+const app = express();
+const cors = require('cors');
+const morgan = require('morgan');
 var bodyParser = require('body-parser');
-var cors = require('cors');
-var routes = require('./routes/index');
 var Users = require('./routes/Users');
 var Petitions = require('./routes/Petitions');
 var Signatures = require('./routes/Signatures');
-const config = require('./config');
-const app = express();
+require('dotenv').config();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
+  throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file'
+}
 
 app.use(cors());
-app.use(logger('dev'));
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended:false }));
+app.use(morgan('API Request (port 8080): :method :url :status :response-time ms - :res[content-length]'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
 
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/',routes);
 app.use('/Users', Users);
 app.use('/Petitions', Petitions);
 app.use('/Signatures', Signatures);
@@ -35,21 +31,22 @@ app.use(function(req,res,next) {
 
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.send({
 	message: err.message,
 	error: {}
     });
 });
+/*
 
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error', {
+        res.send({
             message: err.message,
             error: err
         });
     });
-}
+} **/
 
 if (module === require.main) {
     const server = app.listen(process.env.PORT || 8080, () => {
