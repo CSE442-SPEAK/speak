@@ -58,9 +58,9 @@ else {
 }
 }); // GET request, passing in petition_id
 
-router.get('/user_id/:user_id', checkJwt, function(req, res, next) {
-if(req.params.user_id) {
-    Petition.getPetitionsOfUser(req.params.user_id, function(err, rows) {
+router.get('/email/:email', checkJwt, function(req, res, next) {
+if(req.params.email) {
+    Petition.getPetitionsOfUser(req.params.email, function(err, rows) {
         if(err) {
             res.json(err);
         }

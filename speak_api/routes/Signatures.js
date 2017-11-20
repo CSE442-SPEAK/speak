@@ -71,10 +71,10 @@ if(req.params.petition_id) {
 }
 }); // GET request, passing in petition_id
 
-router.get('/user_id/:user_id', checkJwt, jwtAuthz(['read:signatures']), function(req, res, next) {
+router.get('/email/:email', checkJwt, jwtAuthz(['read:signatures']), function(req, res, next) {
 
-if(req.params.user_id) {
-    Signature.getSignaturesOfUser(req.params.user_id, function(err, rows) {
+if(req.params.email) {
+    Signature.getSignaturesOfUser(req.params.email, function(err, rows) {
         if(err) {
             res.json(err);
         }

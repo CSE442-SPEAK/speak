@@ -37,8 +37,8 @@ updatePetition:function(petition_id, Petition, callback){
     return db.query("Update petition set title=?,status=? where petition_id=?", [Petition.title, Petition.status, petition_id], callback);
 },
 
-getPetitionsOfUser:function(user_id, callback){
-    return db.query("Select * from petition where owner=?", [user_id], callback);
+getPetitionsOfUser:function(email, callback){
+    return db.query(select * from ("select * from petition inner join user on petition.owner=user.user_id) as temp where temp.email=?", [email], callback);
 },
 
 getPetitionsOfCategory:function(category, callback){
