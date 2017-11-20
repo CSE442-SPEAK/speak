@@ -22,6 +22,7 @@ getUserById:function(email, callback){
 },
 
 addUser:function(User, callback){
+  console.log(User);
   if (db.query("select count(email) from user where email=?", [User.email], callback) == 0) {
     return db.query("Insert into user(name,email,ubit,type,major) values(?,?,?,?,?)", [User.name, User.email, User.ubit, User.type, User.major], callback);
   } else {

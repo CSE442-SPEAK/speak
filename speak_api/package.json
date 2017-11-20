@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/CSE442-SPEAK/speak#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "config": "^1.26.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",

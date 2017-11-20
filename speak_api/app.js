@@ -3,6 +3,7 @@ const config = require('./config');
 const app = express();
 const cors = require('cors');
 const morgan = require('morgan');
+var bodyParser = require('body-parser');
 var Users = require('./routes/Users');
 var Petitions = require('./routes/Petitions');
 var Signatures = require('./routes/Signatures');
@@ -14,6 +15,9 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 
 app.use(cors());
 app.use(morgan('API Request (port 8080): :method :url :status :response-time ms - :res[content-length]'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:false}));
+
 
 app.use('/Users', Users);
 app.use('/Petitions', Petitions);
