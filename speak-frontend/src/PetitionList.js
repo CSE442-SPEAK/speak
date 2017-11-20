@@ -15,7 +15,7 @@ class PetitionList extends Component {
   }
 
   componentDidMount() {
-      fetch('https://speak-api-186516.appspot.com/petitions/')
+      fetch('https://speak-182609.appspot.com/petitions/')
       .then( response => response.json())
       .then( petitions =>
           this.setState(

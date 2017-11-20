@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid, Row, Col, Button} from 'react-bootstrap';
 import './Home.css';
 import PetitionList from './PetitionList';
+import UsersList from './UsersList';
 import Banner from './Banner';
 import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
 

@@ -6,6 +6,7 @@ import Profile from './Profile';
 import ExamplePetition from './ExamplePetition';
 import CreatePetition from './CreatePetition';
 import PetitionList from './PetitionList';
+import UsersList from './UsersList';
 import ErrorPage from'./ErrorPage';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
