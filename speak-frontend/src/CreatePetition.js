@@ -33,7 +33,8 @@ class CreatePetition extends Component {
   }
   addPetition = event => {
       event.preventDefault();
-
+      const { getAccessToken } = this.props.auth;
+      const API_URL = 'https://speak-182609.appspot.com';
       this.setState({
           title: event.target.value,
           description: event.target.value,
@@ -42,7 +43,6 @@ class CreatePetition extends Component {
       var petition = {
         'title': this.state.title,
         'description': this.state.description,
-        'owner': '2',
         'signature_goal': this.state.signatureGoal
       };
 
@@ -50,6 +50,7 @@ class CreatePetition extends Component {
       fetch('https://speak-182609.appspot.com/Petitions/', {
           method: 'POST',
           headers: {
+              'Authorization': `Bearer ${getAccessToken()}`,
               'Content-Type': 'application/json'
           },
           body: JSON.stringify(petition)

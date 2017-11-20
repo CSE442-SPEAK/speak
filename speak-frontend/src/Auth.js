@@ -8,9 +8,9 @@ export default class Auth extends EventEmitter{
     domain: 'speak-ub.auth0.com',
     clientID: '3AENWl_-dFQnyEOBAlq7AMMhi_K7RUwy',
     redirectUri: 'http://localhost:3000/callback',
-    audience: 'https://speak-ub.auth0.com/userinfo',
+    audience: 'speak-test',
     responseType: 'token id_token',
-    scope: 'openid profile'
+    scope: 'openid profile create:petitions'
   });
 
   userProfile;
@@ -87,6 +87,5 @@ export default class Auth extends EventEmitter{
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
-
 
 }
