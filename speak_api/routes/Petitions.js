@@ -19,8 +19,6 @@ const checkJwt = jwt({
   algorithms: ['RS256']
 });
 
-const checkScopes = jwtAuthz(['create:petitions'])
-
 router.get('/', function(req, res, next) {
 
   Petition.getAllPetitions(function(err, rows) {
