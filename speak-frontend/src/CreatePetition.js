@@ -18,13 +18,16 @@ class CreatePetition extends Component {
   }
 
   componentWillMount() {
-    const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-    } else {
-      this.setState({ profile: userProfile });
+    const { isAuthenticated } = this.props.auth;
+    if (isAuthenticated) {
+      const { userProfile, getProfile } = this.props.auth;
+      if (!userProfile) {
+        getProfile((err, profile) => {
+          this.setState({ profile });
+        });
+      } else {
+        this.setState({ profile: userProfile });
+      }
     }
   }
 
@@ -58,6 +61,7 @@ class CreatePetition extends Component {
         'description': this.state.description,
         'owner': this.state.profile.email,
       };
+      window.alert(JSON.stringify(petition))
       fetch('https://speak-api-186516.appspot.com/Petitions/', {
           method: 'POST',
           headers: {
@@ -83,6 +87,7 @@ class CreatePetition extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
+
     return (
       <div classname="container">
       {

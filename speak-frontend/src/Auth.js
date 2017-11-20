@@ -28,6 +28,29 @@ export default class Auth extends EventEmitter{
 
   login() {
     this.auth0.authorize();
+    let accessToken = this.getAccessToken();
+    var user = {
+      'name': 'Wenxuan Shi',
+      'email': 'wenxuans@buffalo.edu',
+      'ubit': 50114738,
+      'type': 'Student',
+      'major': 'Computer Science'
+    };
+    fetch('https://speak-api-186516.appspot.com/Users/', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => {
+          console.log(response, 'User added!');
+          window.alert("Successfully logged in/registered!");
+    })
+    .catch(err => {
+          console.log(err, 'Unsuccessful sign-in, try again');
+    });
   }
 
   handleAuthentication() {
@@ -67,14 +90,6 @@ export default class Auth extends EventEmitter{
       throw new Error('No access token found');
     }
     return accessToken;
-  }
-
-  getIdToken() {
-    const idToken = localStorage.getItem('id_token');
-    if (!idToken) {
-      throw new Error('No id token found');
-    }
-    return idToken;
   }
 
   getProfile(cb) {
