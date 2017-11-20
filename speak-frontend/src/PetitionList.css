@@ -1,3 +1,7 @@
 h2 {
     color: white;
 }
+
+Panel.header {
+  font-size: 100px;
+}

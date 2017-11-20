@@ -11,6 +11,33 @@
 
 }
 
+.reportBug {
+  grid-row: 2/4;
+  grid-column: 2;
+}
+
+.submitFeedback {
+  grid-row: 2/4;
+  grid-column: 2;
+}
+
 .socialmedia {
   display: inline-block;
+  bottom: 0;
+}
+
+.socialmedia2 {
+  display: inline-block;
+  bottom: 0;
+
+}
+.socialmedia3 {
+  display: inline-block;
+  bottom: 0;
+
+}
+.socialmedia4 {
+  display: inline-block;
+  bottom: 0;
+
 }

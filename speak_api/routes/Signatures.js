@@ -1,8 +1,27 @@
 var express = require('express');
 var router = express.Router();
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 var Signature  = require('../models/Signature');
 
-router.get('/', function(req, res, next) {
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri:`https://speak-ub.auth0.com/.well-known/jwks.json`
+  }),
+
+  audience:`speak-test`,
+  issuer:`https://speak-ub.auth0.com/`,
+  algorithms: ['RS256']
+});
+
+
+
+router.get('/', checkJwt, function(req, res, next) {
     Signature.getAllSignatures(function(err, rows) {
         if(err) {
             res.json(err);
@@ -13,7 +32,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/:signature_id', function(req, res, next) {
+router.get('/:signature_id', checkJwt, function(req, res, next) {
 
 if(req.params.signature_id) {
     Signature.getSignatureById(req.params.signature_id, function(err, rows) {
@@ -38,7 +57,7 @@ else {
 }
 }); // GET request, passing in signature_id
 
-router.get('/petition_id/:petition_id', function(req, res, next) {
+router.get('/petition_id/:petition_id', checkJwt, function(req, res, next) {
 
 if(req.params.petition_id) {
     Signature.getSignaturesOfPetition(req.params.petition_id, function(err, rows) {
@@ -52,10 +71,10 @@ if(req.params.petition_id) {
 }
 }); // GET request, passing in petition_id
 
-router.get('/user_id/:user_id', function(req, res, next) {
+router.get('/email/:email', checkJwt, function(req, res, next) {
 
-if(req.params.user_id) {
-    Signature.getSignaturesOfUser(req.params.user_id, function(err, rows) {
+if(req.params.email) {
+    Signature.getSignaturesOfUser(req.params.email, function(err, rows) {
         if(err) {
             res.json(err);
         }
@@ -91,7 +110,7 @@ else {
 }
 }); // POST request, passing in signature_id */
 
-router.post('/', function(req, res, next) {
+router.post('/', checkJwt,function(req, res, next) {
 
     Signature.addSignature(req.body, function(err, rows) {
         if(err) {
@@ -105,7 +124,7 @@ router.post('/', function(req, res, next) {
 }); // POST request, passing in user_id and petition_id
 
 
-router.delete('/:signature_id', function(req, res, next) {
+router.delete('/:signature_id', checkJwt, function(req, res, next) {
 
     Signature.deleteSignature(req.param.signature_id, function(err, count) {
         if(err) {

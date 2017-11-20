@@ -31,9 +31,9 @@ nconf
     DATA_BACKEND: 'datastore',
 
     // This is the id of your project in the Google Cloud Developers Console.
-    GCLOUD_PROJECT: 'speak-182609',
+    GCLOUD_PROJECT: 'speak-api-186516',
 
-    MYSQL_USER: '',
+    MYSQL_USER: 'userA',
     MYSQL_PASSWORD: '',
 
     PORT: 8080

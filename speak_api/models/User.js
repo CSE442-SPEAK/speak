@@ -1,4 +1,15 @@
-var db = require('../dbconnection');
+const mysql = require('mysql');
+const config = require('../config');
+
+const options = {
+    user: config.get('MYSQL_USER'),
+    password: config.get('MYSQL_PASSWORD'),
+    database: 'speak'
+};
+
+options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
+
+const db = mysql.createPool(options);
 
 var User = {
 
@@ -6,12 +17,17 @@ getAllUsers:function(callback) {
     return db.query("Select * from user", callback);
 },
 
-getUserById:function(user_id, callback){
-    return db.query("Select * from user where user_id=?", [user_id], callback);
+getUserById:function(email, callback){
+    return db.query("Select * from user where email=?", [email], callback);
 },
 
 addUser:function(User, callback){
+  console.log(User);
+  if (db.query("select count(email) from user where email=?", [User.email], callback) == 0) {
     return db.query("Insert into user(name,email,ubit,type,major) values(?,?,?,?,?)", [User.name, User.email, User.ubit, User.type, User.major], callback);
+  } else {
+    return "User already exists";
+  }
 },
 
 deleteUser:function(user_id, callback){
