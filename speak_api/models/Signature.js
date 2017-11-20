@@ -1,4 +1,15 @@
-var db = require('../dbconnection');
+const mysql = require('mysql');
+const config = require('../config');
+
+const options = {
+    user: config.get('MYSQL_USER'),
+    password: config.get('MYSQL_PASSWORD'),
+    database: 'speak'
+};
+
+options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
+
+const db = mysql.createConnection(options);
 
 var Signature = {
 
