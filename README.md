@@ -5,7 +5,7 @@ ___
 
 ## How-to Instructions to Deploy speak
 
-#### *Disclaimer:* These instructions are for \*nix systems.
+#### *Disclaimer:* These instructions are for \*nix systems. Also, speak is only compatible with Firefox, Chrome, Internet Explorer, and Microsoft Edge. 
 
 ### 1. In order for **speak** to work on your machine, you will first need to have `Node.js` and `npm` installed.
 
