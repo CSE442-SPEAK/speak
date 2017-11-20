@@ -4,7 +4,7 @@ import history from './history';
 
 export default class Auth extends EventEmitter{
 
-  requestedScopes = 'openid profile create:petitions';
+  requestedScopes = 'openid email profile';
 
   auth0 = new auth0.WebAuth({
     domain: 'speak-ub.auth0.com',
@@ -69,6 +69,14 @@ export default class Auth extends EventEmitter{
     return accessToken;
   }
 
+  getIdToken() {
+    const idToken = localStorage.getItem('id_token');
+    if (!idToken) {
+      throw new Error('No id token found');
+    }
+    return idToken;
+  }
+
   getProfile(cb) {
     let accessToken = this.getAccessToken();
     this.auth0.client.userInfo(accessToken, (err, profile) => {
@@ -99,6 +107,6 @@ export default class Auth extends EventEmitter{
   userHasScopes(scopes) {
     const grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
     return scopes.every(scope => grantedScopes.includes(scope));
-  }  
+  }
 
 }

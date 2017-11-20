@@ -13,7 +13,19 @@ class CreatePetition extends Component {
           title: "",
           description: "",
           signatureGoal: "",
+          profile: {}
       };
+  }
+
+  componentWillMount() {
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
   }
 
   handleTitle(event) {
@@ -31,10 +43,11 @@ class CreatePetition extends Component {
       this.setState({
           signatureGoal: event.target.value });
   }
+
   addPetition = event => {
       event.preventDefault();
       const { getAccessToken } = this.props.auth;
-      const API_URL = 'https://speak-182609.appspot.com';
+      const API_URL = 'https://speak-api-186516.appspot.com/';
       this.setState({
           title: event.target.value,
           description: event.target.value,
@@ -43,11 +56,10 @@ class CreatePetition extends Component {
       var petition = {
         'title': this.state.title,
         'description': this.state.description,
-        'signature_goal': this.state.signatureGoal
+        'owner': this.state.profile.email,
       };
 
-//      window.alert(JSON.stringify(petition));
-      fetch('https://speak-182609.appspot.com/Petitions/', {
+      fetch('https://speak-api-186516.appspot.com/Petitions/', {
           method: 'POST',
           headers: {
               'Authorization': `Bearer ${getAccessToken()}`,

@@ -34,7 +34,7 @@ class ExamplePetition extends Component {
 
   // Get the signatures with the same petition id
   getSignatures() {
-          fetch('https://speak-182609.appspot.com/Signatures/petition_id/' + this.props.match.params.id)
+          fetch('https://speak-api-186516.appspot.com/Signatures/petition_id/' + this.props.match.params.id)
           .then( response => response.json())
           .then( signatures =>
               this.setState(
@@ -49,7 +49,7 @@ class ExamplePetition extends Component {
           if(this.state.signatures){
 //              var names = [];
               this.state.signatures.map(signature =>
-                fetch('https://speak-182609.appspot.com/Users/' + signature.user_id)
+                fetch('https://speak-api-186516.appspot.com/Users/' + signature.user_id)
                 .then( response => response.json())
                 .then( users =>
                     {users}
@@ -71,7 +71,7 @@ class ExamplePetition extends Component {
 
   // Get petition from Petitions table
   componentDidMount() {
-      fetch('https://speak-182609.appspot.com/Petitions/' + parseInt(this.props.match.params.id))
+      fetch('https://speak-api-186516.appspot.com/Petitions' + parseInt(this.props.match.params.id))
       .then( response => response.json())
       .then( petitions =>
           this.setState(
@@ -99,10 +99,10 @@ class ExamplePetition extends Component {
   //                'date': this.state.signatureDate,
                 };
 
-                fetch('https://speak-182609.appspot.com/Signatures/', {
+                fetch('https://speak-api-186516.appspot.com/Signatures/', {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${getAccessToken()}`,                      
+                        'Authorization': `Bearer ${getAccessToken()}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(signature)
