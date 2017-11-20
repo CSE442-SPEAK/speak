@@ -4,13 +4,15 @@ import history from './history';
 
 export default class Auth extends EventEmitter{
 
+  requestedScopes = 'openid profile create:petitions';
+
   auth0 = new auth0.WebAuth({
     domain: 'speak-ub.auth0.com',
     clientID: '3AENWl_-dFQnyEOBAlq7AMMhi_K7RUwy',
     redirectUri: 'http://localhost:3000/callback',
     audience: 'speak-test',
     responseType: 'token id_token',
-    scope: 'openid profile create:petitions'
+    scope: this.requestedScopes
   });
 
   userProfile;
@@ -41,35 +43,41 @@ export default class Auth extends EventEmitter{
   }
 
   setSession(authResult) {
-    // Set the time that the access token will expire at
     if (authResult && authResult.accessToken && authResult.idToken) {
+      // Set the time that the access token will expire at
       let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+      // If there is a value on the `scope` param from the authResult,
+      // use it to set scopes in the session for the user. Otherwise
+      // use the scopes as requested. If no scopes were requested,
+      // set it to nothing
+      const scopes = authResult.scope || this.requestedScopes || '';
       localStorage.setItem('access_token', authResult.accessToken);
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
+      localStorage.setItem('scopes', JSON.stringify(scopes));
       // navigate to the home route
       history.replace('/home');
     }
   }
 
 
-    getAccessToken() {
-      const accessToken = localStorage.getItem('access_token');
-      if (!accessToken) {
-        throw new Error('No access token found');
-      }
-      return accessToken;
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('No access token found');
     }
+    return accessToken;
+  }
 
-    getProfile(cb) {
-      let accessToken = this.getAccessToken();
-      this.auth0.client.userInfo(accessToken, (err, profile) => {
-        if (profile) {
-          this.userProfile = profile;
-        }
-        cb(err, profile);
-      });
-    }
+  getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
+  }
 
   logout() {
     // Clear access token and ID token from local storage
@@ -87,5 +95,10 @@ export default class Auth extends EventEmitter{
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
+
+  userHasScopes(scopes) {
+    const grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
+    return scopes.every(scope => grantedScopes.includes(scope));
+  }  
 
 }

@@ -86,6 +86,7 @@ class ExamplePetition extends Component {
 //      var today = new Date();
       const { isAuthenticated } = this.props.auth;
       if(isAuthenticated()) {
+        const { getAccessToken } = this.props.auth;
         this.setState(
           {
           // Need to get ID of signed in user
@@ -101,6 +102,7 @@ class ExamplePetition extends Component {
                 fetch('https://speak-182609.appspot.com/Signatures/', {
                     method: 'POST',
                     headers: {
+                        'Authorization': `Bearer ${getAccessToken()}`,                      
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(signature)
