@@ -10,7 +10,7 @@ const options = {
 
 //options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
 
-const db = mysql.createConnection(options);
+const db = mysql.createPool(options);
 
 var Signature = {
 
