@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PetitionListElement from './PetitionListElement';
 import { Accordion } from 'react-bootstrap';
 import './PetitionList.css';
+import 'whatwg-fetch'; 
 
 class PetitionList extends Component {
 

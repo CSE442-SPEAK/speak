@@ -4,6 +4,7 @@ import SignButton from './SignButton';
 import './ExamplePetition.css';
 import { Grid, Row, Col} from 'react-bootstrap';
 import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
+import 'whatwg-fetch'; 
 
 const { TwitterShareButton, EmailShareButton, FacebookShareButton, GooglePlusShareButton } = ShareButtons;
 

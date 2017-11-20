@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CreatePetition.css';
 import { FormGroup, Grid, Row, Col, Button, ControlLabel, FormControl } from 'react-bootstrap';
+import 'whatwg-fetch';
 
 class CreatePetition extends Component {
 
