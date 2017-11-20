@@ -71,7 +71,7 @@ if(req.params.email) {
 }
 }); // GET request, passing in user_id
 
-router.post('/', checkJwt, checkScopes, function(req, res, next) {
+router.post('/', checkJwt, function(req, res, next) {
 	Petition.addPetition(req.body,function(err,count) {
 		if(err) {
 			res.json(err);
