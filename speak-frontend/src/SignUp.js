@@ -17,6 +17,7 @@ class SignUp extends Component {
   render() {
     return (
       <div className="SignUp">
+        <h1>Create an Account</h1>
         <Grid>
         <form>
             <Row className="name">
@@ -64,6 +65,12 @@ class SignUp extends Component {
             <FieldGroup
                 id="formControlsPassword"
                 label="Password"
+                type="password"
+            />
+        
+            <FieldGroup
+                id="formControlsPassword"
+                label="Confirm Password"
                 type="password"
             />
           
