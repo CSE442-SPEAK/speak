@@ -3,7 +3,6 @@ import { Button, Navbar, Nav } from 'react-bootstrap';
 import SignUpButton from './SignUpButton';
 import LogInButton from './LogInButton';
 import AccountButton from './AccountButton';
-import Auth0Lock from 'auth0-lock';
 import './App.css';
 //import Navigation from './Navigation';
 
