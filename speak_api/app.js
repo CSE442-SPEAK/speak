@@ -13,7 +13,7 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 }
 
 app.use(cors());
-app.use(morgan('API Request (port 3001): :method :url :status :response-time ms - :res[content-length]'));
+app.use(morgan('API Request (port 8080): :method :url :status :response-time ms - :res[content-length]'));
 
 app.use('/Users', Users);
 app.use('/Petitions', Petitions);

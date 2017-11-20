@@ -36,7 +36,7 @@ nconf
     MYSQL_USER: 'userA',
     MYSQL_PASSWORD: '',
 
-    PORT: 3001
+    PORT: 8080
   });
 
 // Check for required settings
