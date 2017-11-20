@@ -58,7 +58,6 @@ class CreatePetition extends Component {
         'description': this.state.description,
         'owner': this.state.profile.email,
       };
-
       fetch('https://speak-api-186516.appspot.com/Petitions/', {
           method: 'POST',
           headers: {
