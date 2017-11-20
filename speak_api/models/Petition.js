@@ -26,7 +26,7 @@ getCreatorOfPetition:function(petition_id, callback){
 },
 
 addPetition:function(Petition, callback){
-    return db.query("insert into petition (petition_id,title,description,owner) values (4,'Petition 4', 'Description of petition 4', (select user_id from user where email=?));", [Petition.title, Petition.description, Petition.owner, Petition.signature_goal], callback);
+    return db.query("insert into petition (title,description,owner) values (?,?, (select user_id from user where email=?));", [Petition.title, Petition.description, Petition.owner], callback);
 },
 
 deletePetition:function(petiton_id, callback){
