@@ -84,35 +84,43 @@ class ExamplePetition extends Component {
   addSignature = event => {
       event.preventDefault();
 //      var today = new Date();
-      this.setState(
-        {
-        // Need to get ID of signed in user
-         signatureUser: 1,
-//         signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
-        }, function(){
-              var signature = {
-                'petition_id': this.props.match.params.id,
-                'user_id': this.state.signatureUser,
-//                'date': this.state.signatureDate,
-              };
+      const { isAuthenticated } = this.props.auth;
+      if(isAuthenticated()) {
+        const { getAccessToken } = this.props.auth;
+        this.setState(
+          {
+          // Need to get ID of signed in user
+           signatureUser: 1,
+  //         signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
+          }, function(){
+                var signature = {
+                  'petition_id': this.props.match.params.id,
+                  'user_id': this.state.signatureUser,
+  //                'date': this.state.signatureDate,
+                };
 
-              fetch('https://speak-182609.appspot.com/Signatures/', {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(signature)
-              })
-              .then(response => {
-                    console.log(response, 'Signature added!');
+                fetch('https://speak-182609.appspot.com/Signatures/', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${getAccessToken()}`,                      
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(signature)
+                })
+                .then(response => {
+                      console.log(response, 'Signature added!');
 
-                    window.alert("Successfully signed petition!");
-              })
-              .catch(err => {
-                    console.log(err, 'Signature not added, try again');
-              });
-        }
-      );
+                      window.alert("Successfully signed petition!");
+                })
+                .catch(err => {
+                      console.log(err, 'Signature not added, try again');
+                });
+          }
+        );
+      }
+      else {
+        window.alert("You must be logged in to sign this petition.")
+      }
   }
 
   // Does not work

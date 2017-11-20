@@ -19,11 +19,11 @@ const Home = () => (
   <div className="Home">
       <Banner/>
       <Grid>
-      <Row>
-      <Col xs={12} xsOffset={2} md={8}>
-      <PetitionList/>
-      </Col>
-      </Row>
+        <Row>
+          <Col xs={12}>
+            <PetitionList/>
+          </Col>
+        </Row>
       </Grid>
       <Button classname="reportBug"
           type="submit"
@@ -44,6 +44,8 @@ const Home = () => (
               size={48}
               round />
           </TwitterShareButton>
+        </div>
+        <div className="socialmedia2">
           <FacebookShareButton
           url={shareUrl}
           className="ExamplePetition">
@@ -51,6 +53,8 @@ const Home = () => (
           size={48}
           round />
           </FacebookShareButton>
+        </div>
+        <div className="socialmedia3">
           <GooglePlusShareButton
             url={shareUrl}
             className="ExamplePetition">
@@ -58,6 +62,8 @@ const Home = () => (
           size={48}
           round />
           </GooglePlusShareButton>
+        </div>
+        <div className = "socialmedia4">
           <EmailShareButton
           url={shareUrl}
           subject={title}
