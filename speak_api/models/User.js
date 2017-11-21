@@ -22,15 +22,11 @@ getUserById:function(email, callback){
 },
 
 addUser:function(User, callback){
-  var count = 0;
-  var query = db.query("select count(email) from user where email=?", [User.email], function(err, result){
-    count = result[0].total;
-  })
-  if (count == 0) {
-    return db.query("Insert into user(name,email,ubit,type,major) values(?,?,?,?,?)", [User.name, User.email, User.ubit, User.type, User.major], callback);
-   } else {
-     return "User already exists";
-   }
+  return db.query("select * from user where email=?", [User.email], function(err, result){
+    if(result.length == 0) {
+      return db.query("Insert into user(name,email,ubit,type,major) values(?,?,?,?,?)", [User.name, User.email, User.ubit, User.type, User.major], callback);
+    }
+  });
 },
 
 deleteUser:function(user_id, callback){
