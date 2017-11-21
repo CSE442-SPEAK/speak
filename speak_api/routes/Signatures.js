@@ -121,7 +121,7 @@ router.post('/', checkJwt,function(req, res, next) {
         }
     });
 
-}); // POST request, passing in user_id and petition_id
+}); // POST request, passing in email and petition_id
 
 
 router.delete('/:signature_id', checkJwt, function(req, res, next) {

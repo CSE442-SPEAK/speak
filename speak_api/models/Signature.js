@@ -30,7 +30,7 @@ getSignatureById:function(signature_id, callback) {
 },
 
 addSignature:function(Signature, callback) {
-    return db.query("Insert into signature(petition_id, user_id) values(?,?)", [Signature.petition_id, Signature.user_id], callback);
+    return db.query("Insert into signature(petition_id, user_id) values(?,(select user_id from user where email=?))", [Signature.petition_id, Signature.email], callback);
 },
 
 deleteSignature:function(signature_id, callback){
