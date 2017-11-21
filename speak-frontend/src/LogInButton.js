@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
-import Auth0Lock from 'auth0-lock';
 import Auth from './Auth.js'
 
 class LogInButton extends Component {
