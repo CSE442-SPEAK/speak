@@ -22,12 +22,15 @@ getUserById:function(email, callback){
 },
 
 addUser:function(User, callback){
-  console.log(User);
-//  if (db.query("select count(email) from user where email=?", [User.email], callback) == 0) {
+  var count = 0;
+  var query = connection.query("select count(email) from user where email=?", [User.email], function(err, result){
+    count = result[0].total;
+  })
+  if (count == 0) {
     return db.query("Insert into user(name,email,ubit,type,major) values(?,?,?,?,?)", [User.name, User.email, User.ubit, User.type, User.major], callback);
-  // } else {
-  //   return "User already exists";
-  // }
+   } else {
+     return "User already exists";
+   }
 },
 
 deleteUser:function(user_id, callback){
