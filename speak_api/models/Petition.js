@@ -1,4 +1,15 @@
-var db = require('../dbconnection');
+const mysql = require('mysql');
+const config = require('../config');
+
+const options = {
+    user: config.get('MYSQL_USER'),
+    password: config.get('MYSQL_PASSWORD'),
+    database: 'speak'
+};
+
+options.socketPath = `/cloudsql/${config.get('INSTANCE_CONNECTION_NAME')}`;
+
+var db = mysql.createPool(options);
 
 var Petition = {
 
@@ -15,7 +26,7 @@ getCreatorOfPetition:function(petition_id, callback){
 },
 
 addPetition:function(Petition, callback){
-    return db.query("Insert into petition(title, description, owner, signature_goal) values(?,?,?,?)", [Petition.title, Petition.description, Petition.owner, Petition.signature_goal], callback);
+    return db.query("insert into petition (title,description,owner) values (?,?, (select user_id from user where email=?));", [Petition.title, Petition.description, Petition.owner], callback);
 },
 
 deletePetition:function(petiton_id, callback){
@@ -26,8 +37,8 @@ updatePetition:function(petition_id, Petition, callback){
     return db.query("Update petition set title=?,status=? where petition_id=?", [Petition.title, Petition.status, petition_id], callback);
 },
 
-getPetitionsOfUser:function(user_id, callback){
-    return db.query("Select * from petition where owner=?", [user_id], callback);
+getPetitionsOfUser:function(email, callback){
+    return db.query("select * from (select * from petition inner join user on petition.owner=user.user_id) as temp where temp.email=?", [email], callback);
 },
 
 getPetitionsOfCategory:function(category, callback){
@@ -60,11 +71,7 @@ getPetitionCategory:function(petition_id, callback){
 },
 
 getPetitionSignatureCount:function(petition_id, callback){
-    return db.query("Select signature_count from petition where petition_id=?", [petition_id], callback);
-},
-
-updatePetitionSignatureCount:function(petition_id, count, callback) {
-    return db.query("Update petition set count=?, where petition_id=?",[count,petition_id],callback);
+    return db.query("select count(signature_id) from signature where petition_id=?", [petition_id], callback);
 },
 
 // Petition date of creation

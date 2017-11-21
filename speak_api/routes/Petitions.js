@@ -1,6 +1,23 @@
 var express = require('express');
 var router = express.Router();
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
 var Petition = require('../models/Petition');
+require('dotenv').config();
+
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri:`https://speak-ub.auth0.com/.well-known/jwks.json`
+  }),
+
+  audience:`speak-test`,
+  issuer:`https://speak-ub.auth0.com/`,
+  algorithms: ['RS256']
+});
 
 router.get('/', function(req, res, next) {
 
@@ -39,9 +56,9 @@ else {
 }
 }); // GET request, passing in petition_id
 
-router.get('/user_id/:user_id', function(req, res, next) {
-if(req.params.user_id) {
-    Petition.getPetitionsOfUser(req.params.user_id, function(err, rows) {
+router.get('/email/:email', checkJwt, function(req, res, next) {
+if(req.params.email) {
+    Petition.getPetitionsOfUser(req.params.email, function(err, rows) {
         if(err) {
             res.json(err);
         }
@@ -52,7 +69,7 @@ if(req.params.user_id) {
 }
 }); // GET request, passing in user_id
 
-router.post('/', function(req, res, next) {
+router.post('/', checkJwt, function(req, res, next) {
 	Petition.addPetition(req.body,function(err,count) {
 		if(err) {
 			res.json(err);
