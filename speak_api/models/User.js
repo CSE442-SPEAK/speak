@@ -23,7 +23,7 @@ getUserById:function(email, callback){
 
 addUser:function(User, callback){
   var count = 0;
-  var query = connection.query("select count(email) from user where email=?", [User.email], function(err, result){
+  var query = db.query("select count(email) from user where email=?", [User.email], function(err, result){
     count = result[0].total;
   })
   if (count == 0) {
