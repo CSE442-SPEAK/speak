@@ -19,7 +19,7 @@ class CreatePetition extends Component {
 
   componentWillMount() {
     const { isAuthenticated } = this.props.auth;
-    if (isAuthenticated) {
+    if (isAuthenticated()) {
       const { userProfile, getProfile } = this.props.auth;
       if (!userProfile) {
         getProfile((err, profile) => {

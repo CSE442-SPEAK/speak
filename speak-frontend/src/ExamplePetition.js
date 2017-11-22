@@ -33,26 +33,34 @@ class ExamplePetition extends Component {
   }
 
   componentWillMount() {
-    const { userProfile, getProfile } = this.props.auth;
-    if (!userProfile) {
-      getProfile((err, profile) => {
-        this.setState({ profile });
-      });
-    } else {
-      this.setState({ profile: userProfile });
+    const { isAuthenticated } = this.props.auth;
+    if (isAuthenticated()) {
+      const { userProfile, getProfile } = this.props.auth;
+      if (!userProfile) {
+        getProfile((err, profile) => {
+          this.setState({ profile });
+        });
+      } else {
+        this.setState({ profile: userProfile });
+      }
     }
   }
 
   // Get the signatures with the same petition id
   getSignatures() {
-          fetch('https://speak-182609.appspot.com/Signatures/petition_id/' + this.props.match.params.id)
-          .then( response => response.json())
-          .then( signatures =>
-              this.setState(
-                  {signatures},
-                  this.getUsers
-              ),
-           )
+    const { isAuthenticated } = this.props.auth;
+    if (isAuthenticated()) {
+      const { getAccessToken } = this.props.auth;
+      const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+      fetch('https://speak-api-186516.appspot.com/Signatures/petition_id/' + this.props.match.params.id, { headers })
+      .then( response => response.json())
+      .then( signatures =>
+          this.setState(
+              {signatures},
+              this.getUsers
+          ),
+       )
+    }
   }
 
   // Get users who have signed the petition from Users table
@@ -60,7 +68,7 @@ class ExamplePetition extends Component {
           if(this.state.signatures){
 //              var names = [];
               this.state.signatures.map(signature =>
-                fetch('https://speak-182609.appspot.com/Users/' + signature.user_id)
+                fetch('https://speak-api-186516.appspot.com/Users/' + signature.user_id)
                 .then( response => response.json())
                 .then( users =>
                     {users}
@@ -82,7 +90,7 @@ class ExamplePetition extends Component {
 
   // Get petition from Petitions table
   componentDidMount() {
-      fetch('https://speak-182609.appspot.com/Petitions' + parseInt(this.props.match.params.id))
+      fetch('https://speak-api-186516.appspot.com/Petitions/' + parseInt(this.props.match.params.id))
       .then( response => response.json())
       .then( petitions =>
           this.setState(
@@ -110,7 +118,7 @@ class ExamplePetition extends Component {
   //                'date': this.state.signatureDate,
                 };
 
-                fetch('https://speak-182609.appspot.com/Signatures/', {
+                fetch('https://speak-api-186516.appspot.com/Signatures', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${getAccessToken()}`,
