@@ -21,7 +21,17 @@ getUserById:function(email, callback){
     return db.query("Select * from user where email=?", [email], callback);
 },
 
-addUser:function(User, callback){
+addUser:function(User, callback) {
+  return db.query("select * from user where email=?", [User.email], function(err, result){
+    if(result.length == 0) {
+      return db.query("Insert into user(name, email) values(?,?)", [User.name, User.email], callback);
+    } else {
+      return "User already in database.";
+    }
+  });
+},
+
+addUserFull:function(User, callback){
   return db.query("select * from user where email=?", [User.email], function(err, result){
     if(result.length == 0) {
       return db.query("Insert into user(name,email,ubit,type,major) values(?,?,?,?,?)", [User.name, User.email, User.ubit, User.type, User.major], callback);
