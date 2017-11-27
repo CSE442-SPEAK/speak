@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { FormGroup, Button, Table } from 'react-bootstrap';
+import { FormGroup, Button, Table, Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import SignButton from './SignButton';
 import './ExamplePetition.css';
-import { Grid, Row, Col} from 'react-bootstrap';
 import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
 
 const { TwitterShareButton, EmailShareButton, FacebookShareButton, GooglePlusShareButton } = ShareButtons;
@@ -22,14 +21,13 @@ class ExamplePetition extends Component {
           users: [],
           names: [],
           profile: {},
-          signaturesCount: []
-//          signatureDate: "",
+          signaturesCount: [],
+          signatureDate: "",
       };
       this.componentDidMount = this.componentDidMount.bind(this);
       this.addSignature = this.addSignature.bind(this);
       this.getSignatures = this.getSignatures.bind(this);
       this.getNames = this.getNames.bind(this);
-      this.displaySignatures = this.displaySignatures.bind(this);
       this.getSignaturesCount = this.getSignaturesCount.bind(this);
 
   }
@@ -50,33 +48,30 @@ class ExamplePetition extends Component {
 
   // Get the signatures with the same petition id
   getSignatures() {
-    const { isAuthenticated } = this.props.auth;
-    if (isAuthenticated()) {
-      const { getAccessToken } = this.props.auth;
-      const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
-      fetch('https://speak-api-186516.appspot.com/Signatures/petition_id/' + this.props.match.params.id, { headers })
-      .then( response => response.json())
-      .then( signatures =>
-          this.setState(
-              {signatures},
-              this.getUsers
-          ),
-       )
-    }
+    const { getAccessToken } = this.props.auth;
+    const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+    fetch('https://speak-api-186516.appspot.com/Signatures/petition_id/' + this.props.match.params.id, { headers })
+    .then( response => response.json())
+    .then( signatures =>
+        this.setState(
+            {signatures},
+            this.getUsers
+        ),
+     )
   }
 
   // Get users who have signed the petition from Users table
   getUsers() {
-          if(this.state.signatures){
-//              var names = [];
-              this.state.signatures.map(signature =>
-                fetch('https://speak-api-186516.appspot.com/Users/' + signature.user_id)
-                .then( response => response.json())
-                .then( users =>
-                    {users}
-                  )
-              );
-          }
+      if(this.state.signatures){
+  //              var names = [];
+          this.state.signatures.map(signature =>
+            fetch('https://speak-api-186516.appspot.com/Users/' + signature.user_id)
+            .then( response => response.json())
+            .then( users =>
+                {users}
+              )
+          );
+      }
   }
 
   // Get user names
@@ -107,20 +102,18 @@ class ExamplePetition extends Component {
 
   addSignature = event => {
       event.preventDefault();
-//      var today = new Date();
+      var today = new Date();
       const { isAuthenticated } = this.props.auth;
       if(isAuthenticated()) {
         const { getAccessToken } = this.props.auth;
         this.setState(
           {
-          // Need to get ID of signed in user
-           signatureUser: this.state.profile.email,
-  //         signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
+            signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
           }, function(){
                 var signature = {
                   'petition_id': this.props.match.params.id,
-                  'email': this.state.signatureUser,
-  //                'date': this.state.signatureDate,
+                  'email': this.state.profile.email,
+                  'date': this.state.signatureDate,
                 };
 
                 fetch('https://speak-api-186516.appspot.com/Signatures', {
@@ -147,101 +140,66 @@ class ExamplePetition extends Component {
       }
   }
 
-  // Does not work
-  displaySignatures = event => {
-      event.preventDefault();
-      return (
-        <Table striped bordered condensed hover>
-        <thead>
-        <tr>
-        <th>#</th>
-        <th>Signatures</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-           <td>1</td>
-           <td>Mark</td>
-          </tr>
-
-         </tbody>
-        </Table>
-      );
-  }
-
   getSignaturesCount() {
-    const { isAuthenticated } = this.props.auth;
-    if (isAuthenticated()) {
-      alert("I'm here");
-      const { getAccessToken } = this.props.auth;
-      const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
-      fetch('https://speak-api-186516.appspot.com/petitions/' + this.props.match.params.id + '/count', { headers })
-      .then( response => response.json())
-      .then( signaturesCount =>
-          this.setState(
-              {signaturesCount},
-          ),
-       )
-    }
+    const { getAccessToken } = this.props.auth;
+    const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+    fetch('https://speak-api-186516.appspot.com/petitions/' + this.props.match.params.id + '/count', { headers })
+    .then( response => response.json())
+    .then( signaturesCount =>
+        this.setState(
+            {signaturesCount},
+        ),
+     )
   }
 
   render() {
-    const shareUrl = 'https://speak-frontend.appspot.com/petitions/' + this.props.match.params.id
-    const title = 'speak - UB Petitions '
+    const shareUrl = 'https://speak-frontend.appspot.com/petitions/' + this.props.match.params.id;
+    const title = 'speak - UB Petitions ';
 
     return (
       <div className="ExamplePetition">
-        <FormGroup>
+        <Grid>
           {this.state.petitions.map(petition =>
             <div key={petition.petition_id}>
                 <h1 class="title"> {petition.title} </h1>
                 <h3 class="desc"> {petition.description} </h3>
-                <div className="SignButton">
-                    <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
-                </div>
                 <div className="SignaturesCount">
                     {this.state.signaturesCount.map(signaturesCount =>
                       <div key={signaturesCount.count}>
-                        <h4> Number of Signatures: {signaturesCount.count} </h4>
+                        <h4> Number of signatures: {signaturesCount.count} </h4>
                       </div>
                     )}
                 </div>
+                <div className="SignButton">
+                    <Button type="submit" bsSize="large" bsStyle="success" onClick={this.addSignature}>Sign</Button>
+                </div>
+                <div className="container-fluid SignaturesList">
+                    <ListGroup>
+                      <h3> Signatures </h3>
+                      {this.state.signatures.map(signatures =>
+                        <div key={signatures.name}>
+                          <ListGroupItem className="listItem">
+                            {signatures.name}
+                          </ListGroupItem>
+                        </div>
+                      )}
+                    </ListGroup>
+                </div>
             </div>)
           }
-           <div className="socialmedia">
-             <TwitterShareButton
-                 url={shareUrl}
-                 title={title}
-                 className="ExamplePetition">
-                 <TwitterIcon
-                   size={48}
-                   round />
-               </TwitterShareButton>
-               <FacebookShareButton
-               url={shareUrl}
-               className="ExamplePetition">
-               <FacebookIcon
-               size={48}
-               round />
-               </FacebookShareButton>
-               <GooglePlusShareButton
-                 url={shareUrl}
-                 className="ExamplePetition">
-               <GooglePlusIcon
-               size={48}
-               round />
-               </GooglePlusShareButton>
-               <EmailShareButton
-               url={shareUrl}
-               subject={title}
-               body="body"
-               className="ExamplePetition">
-               <EmailIcon
-               size={48}
-               round />
-               </EmailShareButton>
-             </div>
-             </FormGroup>
+          <TwitterShareButton url={shareUrl} title={title} className="socialmedia">
+            <TwitterIcon size={48} round />
+          </TwitterShareButton>
+          <FacebookShareButton url={shareUrl} className="socialmedia">
+            <FacebookIcon size={48} round />
+          </FacebookShareButton>
+          <GooglePlusShareButton url={shareUrl} className="socialmedia">
+            <GooglePlusIcon size={48} round />
+          </GooglePlusShareButton>
+         <EmailShareButton url={shareUrl} subject={title} body="body" className="socialmedia">
+            <EmailIcon size={48} round />
+         </EmailShareButton>
+        </Grid>
       </div>
     );
   }

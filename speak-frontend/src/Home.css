@@ -23,21 +23,7 @@
 
 .socialmedia {
   display: inline-block;
+  padding: 5px;
+  margin-top: 15px;
   bottom: 0;
-}
-
-.socialmedia2 {
-  display: inline-block;
-  bottom: 0;
-
-}
-.socialmedia3 {
-  display: inline-block;
-  bottom: 0;
-
-}
-.socialmedia4 {
-  display: inline-block;
-  bottom: 0;
-
 }
