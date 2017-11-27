@@ -67,6 +67,16 @@ router.post('/', checkJwt, function(req, res, next) {
     });
 });
 
+router.post('/full', checkJwt, function(req, res, next) {
+  User.addUserFull(req.body, function(err,count) {
+    if(err) {
+      res.json(err);
+    } else {
+      res.json(req.body);
+    }
+  })
+})
+
 router.delete('/user_id/:user_id', checkJwt, function(req,res,next) {
 if(req.params.user_id) {
     User.deleteUser(req.params.user_id, function(err,rows) {
