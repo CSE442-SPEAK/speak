@@ -100,6 +100,10 @@ getPetitionUpdates:function(petition_id, callback){
     return db.query("Select updates from petition where petition_id=?", [petition_id], callback);
 }
 
+deletePetition:function(petition_id, callback) {
+    return db.query("Delete from petition where petition_id=?", [petition_id], callback);
+}
+
 }; // var Petition
 
 module.exports = Petition;

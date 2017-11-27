@@ -63,6 +63,10 @@ getUserMajor:function(user_id, callback) {
     return db.query("Select major from user where user_id=?", [user_id], callback);
 },
 
+deleteUser:function(user_id, callback) {
+    return db.query("Delete from user where user_id=?", [user_id], callback);
+}
+
 };
 
 module.exports = User;

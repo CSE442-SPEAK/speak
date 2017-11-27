@@ -78,7 +78,10 @@ router.post('/', checkJwt, function(req, res, next) {
 			res.json(res.body);
 		}
 	});
-
 });
+
+router.delete('/:petition_id')
+
+
 
 module.exports = router;
