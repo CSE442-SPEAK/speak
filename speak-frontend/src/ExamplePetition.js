@@ -173,8 +173,8 @@ class ExamplePetition extends Component {
                 <div className="SignButton">
                     <Button type="submit" bsSize="large" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
-                <div className="container-fluid SignaturesList">
-                    <ListGroup>
+                <div className="container-fluid bg-blue">
+                    <ListGroup className="SignaturesList">
                       <h3> Signatures </h3>
                       {this.state.signatures.map(signatures =>
                         <div key={signatures.name}>
@@ -196,9 +196,6 @@ class ExamplePetition extends Component {
           <GooglePlusShareButton url={shareUrl} className="socialmedia">
             <GooglePlusIcon size={48} round />
           </GooglePlusShareButton>
-         <EmailShareButton url={shareUrl} subject={title} body="body" className="socialmedia">
-            <EmailIcon size={48} round />
-         </EmailShareButton>
         </Grid>
       </div>
     );

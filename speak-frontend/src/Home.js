@@ -47,9 +47,6 @@ const Home = () => (
           <GooglePlusShareButton url={shareUrl} className="socialmedia">
             <GooglePlusIcon size={48} round />
           </GooglePlusShareButton>
-         <EmailShareButton url={shareUrl} subject={title} body="body" className="socialmedia">
-            <EmailIcon size={48} round />
-         </EmailShareButton>
         </Row>
       </Grid>
   </div>
