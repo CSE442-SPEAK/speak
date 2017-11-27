@@ -152,23 +152,24 @@ class ExamplePetition extends Component {
      )
   }
 
-  getSignaturePercent() {
-    const str = JSON.stringify(this.state.signaturesCount);
-    const array = JSON.parse(str);
-    console.log(array);
-    var current = 0;
-    array.forEach(function(obj) {
-      console.log("obj: " + obj);
-      var keys = Object.keys(obj);
-      keys.forEach(function(key) {
-          console.log("key: " + key);
-          current = parseInt(obj[key]);
-          console.log("current: " + current);
-      })
+  getCount() {
+    var count = 0;
+    this.state.signaturesCount.forEach(function(obj) {
+      count = parseInt(obj["count"]);
     });
-    const goal = JSON.stringify(this.state.petitions);
-    console.log(goal);
-    return (current/goal) * 100;
+    return count;
+  }
+
+  getGoal() {
+    var goal = 0;
+    this.state.petitions.forEach(function(obj) {
+      goal = parseInt(obj["signature_goal"]);
+    })
+    return goal;
+  }
+
+  getSignaturePercent() {
+    return (this.getCount()/this.getGoal()) * 100;
   }
 
   render() {
@@ -182,16 +183,8 @@ class ExamplePetition extends Component {
             <div key={petition.petition_id}>
                 <h1 class="title"> {petition.title} </h1>
                 <h3 class="desc"> {petition.description} </h3>
-                <div className="SignaturesCount">
-                    {this.state.signaturesCount.map(signaturesCount =>
-                      <div key={signaturesCount.count}>
-                        <h4> Number of signatures: {signaturesCount.count} </h4>
-                      </div>
-                    )}
-                </div>
-                <h3>{this.getSignaturePercent()}</h3>
                 <div className="ProgressBar">
-                  <ProgressBar now={this.getSignaturePercent()} label={`${this.getSignaturePercent()}%`} />
+                  <ProgressBar now={this.getSignaturePercent()} label={`${this.getCount()}`} />
                 </div>
                 <div className="SignButton">
                     <Button type="submit" bsSize="large" bsStyle="success" onClick={this.addSignature}>Sign</Button>
