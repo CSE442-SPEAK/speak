@@ -32,7 +32,7 @@ getSignatureById:function(signature_id, callback) {
 addSignature:function(Signature, callback) {
   return db.query("select * from signature where petition_id=? and user_id=(select user_id from user where email=?)", [Signature.petition_id, Signature.email], function(err, result){
     if (result.length == 0) {
-      return db.query("Insert into signature(petition_id, user_id) values(?,(select user_id from user where email=?))", [Signature.petition_id, Signature.email], callback);
+      return db.query("Insert into signature(petition_id, user_id, date) values(?,(select user_id from user where email=?),?)", [Signature.petition_id, Signature.email, Signature.date], callback);
     } else {
       return "User has already signed this petition.";
     }

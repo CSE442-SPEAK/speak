@@ -56,7 +56,7 @@ else {
 }
 }); // GET request, passing in petition_id
 
-router.get('/:petition_id/count', checkJwt, function(req, res, next) {
+router.get('/:petition_id/count', function(req, res, next) {
   if (req.params.petition_id) {
     Petition.getPetitionSignatureCount(req.params.petition_id, function(err, count) {
       if(err) {

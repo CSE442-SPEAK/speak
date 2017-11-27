@@ -57,7 +57,7 @@ else {
 }
 }); // GET request, passing in signature_id
 
-router.get('/petition_id/:petition_id', checkJwt, function(req, res, next) {
+router.get('/petition_id/:petition_id', function(req, res, next) {
 
 if(req.params.petition_id) {
     Signature.getSignaturesOfPetition(req.params.petition_id, function(err, rows) {
