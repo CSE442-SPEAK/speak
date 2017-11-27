@@ -80,7 +80,15 @@ router.post('/', checkJwt, function(req, res, next) {
 	});
 });
 
-router.delete('/:petition_id')
+router.delete('/:petition_id', checkJwt, function(req, res, next) {
+  Petition.deletePetition(req.params.petition_id, function(err, ret) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(ret);
+    }
+  })
+})
 
 
 
