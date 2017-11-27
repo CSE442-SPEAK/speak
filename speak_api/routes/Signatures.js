@@ -126,7 +126,7 @@ router.post('/', checkJwt,function(req, res, next) {
 
 router.delete('/:signature_id', checkJwt, function(req, res, next) {
 
-    Signature.deleteSignature(req.param.signature_id, function(err, ret) {
+    Signature.deleteSignature(req.params.signature_id, function(err, ret) {
         if(err) {
             res.json(err);
         }
