@@ -26,7 +26,7 @@ getCreatorOfPetition:function(petition_id, callback){
 },
 
 addPetition:function(Petition, callback){
-    return db.query("insert into petition (title,description,owner,signature_goal) values (?,?, (select user_id from user where email=?),?);", [Petition.title, Petition.description, Petition.owner, Petition.signature_goal], callback);
+    return db.query("insert into petition (title,description,owner,signature_goal,signatures) values (?,?, (select user_id from user where email=?),?,0);", [Petition.title, Petition.description, Petition.owner, Petition.signature_goal], callback);
 },
 
 deletePetition:function(petiton_id, callback){
@@ -38,7 +38,7 @@ updatePetition:function(petition_id, Petition, callback){
 },
 
 getPetitionsOfUser:function(email, callback){
-    return db.query("select * from (select * from petition inner join user on petition.owner=user.user_id) as temp where temp.email=?", [email], callback);
+    return db.query("select petition.title,petition.description,petition.petition_id,petition.signature_goal,petition.signatures from (select * from petition inner join user on petition.owner=user.user_id) as temp where temp.email=?", [email], callback);
 },
 
 getPetitionsOfCategory:function(category, callback){
