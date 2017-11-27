@@ -36,12 +36,10 @@ export default class Auth extends EventEmitter{
         this.setSession(authResult);
         history.replace('/home');
         var user = {
-          'name': 'Wenxuan Shi',
-          'email': 'wenxuans@buffalo.edu',
-          'ubit': 50114738,
-          'type': 'Student',
-          'major': 'Computer Science'
+          'name': this.userProfile.name,
+          'email': this.userProfile.email,
         };
+        alert(JSON.stringify(user));
         fetch('https://speak-api-186516.appspot.com/Users', {
             method: 'POST',
             headers: {
@@ -57,7 +55,6 @@ export default class Auth extends EventEmitter{
         .catch(err => {
               console.log(err, 'Unsuccessful sign-in, try again');
         });
-        window.alert("API call occurred")
       } else if (err) {
         history.replace('/home');
         console.log(err);
