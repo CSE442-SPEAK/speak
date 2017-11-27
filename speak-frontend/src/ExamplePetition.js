@@ -179,39 +179,51 @@ class ExamplePetition extends Component {
     return (
       <div className="ExamplePetition">
         <Grid>
-          {this.state.petitions.map(petition =>
-            <div key={petition.petition_id}>
-                <h1 class="title"> {petition.title} </h1>
-                <h3 class="desc"> {petition.description} </h3>
-                <div className="ProgressBar">
-                  <ProgressBar now={this.getSignaturePercent()} label={`${this.getCount()}`} />
-                </div>
-                <div className="SignButton">
-                    <Button type="submit" bsSize="large" bsStyle="success" onClick={this.addSignature}>Sign</Button>
-                </div>
-                <div className="container-fluid bg-blue">
-                    <ListGroup className="SignaturesList">
-                      <h3> Signatures </h3>
-                      {this.state.signatures.map(signatures =>
-                        <div key={signatures.name}>
-                          <ListGroupItem className="listItem">
-                            {signatures.name}
-                          </ListGroupItem>
-                        </div>
-                      )}
-                    </ListGroup>
-                </div>
-            </div>)
-          }
-          <TwitterShareButton url={shareUrl} title={title} className="socialmedia">
-            <TwitterIcon size={48} round />
-          </TwitterShareButton>
-          <FacebookShareButton url={shareUrl} className="socialmedia">
-            <FacebookIcon size={48} round />
-          </FacebookShareButton>
-          <GooglePlusShareButton url={shareUrl} className="socialmedia">
-            <GooglePlusIcon size={48} round />
-          </GooglePlusShareButton>
+          <Row>
+            {this.state.petitions.map(petition =>
+              <div key={petition.petition_id}>
+                  <h1 className="title"> {petition.title} </h1>
+                  <Col xs="7" mdOffset="1" className="section left">
+                    <h3 className="desc"> {petition.description} </h3>
+                  </Col>
+
+              </div>)
+            }
+            <Col xs="3" mdOffset="-1" className="section left">
+            <div className="ProgressBar">
+              <ProgressBar now={this.getSignaturePercent()} />
+            </div>
+            <div className="SignatureCount">
+              <h5>{this.getCount()} / {this.getGoal()} signatures</h5>
+            </div>
+              <Button type="submit" bsSize="large" bsStyle="success" onClick={this.addSignature} className="SignButton">Sign</Button>
+            </Col>
+          </Row>
+          <div className="share">
+            <h3> Share </h3>
+            <TwitterShareButton url={shareUrl} title={title} className="socialmedia">
+              <TwitterIcon size={48} round />
+            </TwitterShareButton>
+            <FacebookShareButton url={shareUrl} className="socialmedia">
+              <FacebookIcon size={48} round />
+            </FacebookShareButton>
+            <GooglePlusShareButton url={shareUrl} className="socialmedia">
+              <GooglePlusIcon size={48} round />
+            </GooglePlusShareButton>
+          </div>
+          <hr />
+          <div className="container-fluid bg-blue">
+              <ListGroup className="SignaturesList">
+                <h3> Signatures </h3>
+                {this.state.signatures.map(signatures =>
+                  <div key={signatures.name}>
+                    <ListGroupItem className="listItem">
+                      {signatures.name}
+                    </ListGroupItem>
+                  </div>
+                )}
+              </ListGroup>
+          </div>
         </Grid>
       </div>
     );
