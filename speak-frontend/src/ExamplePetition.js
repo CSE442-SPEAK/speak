@@ -109,12 +109,12 @@ class ExamplePetition extends Component {
         this.setState(
           {
           // Need to get ID of signed in user
-           signatureUser: 1,
+           signatureUser: this.state.profile.email,
   //         signatureDate: today.getFullYear() + '-' + (today.getMonth()) + '-' + today.getDate(),
           }, function(){
                 var signature = {
                   'petition_id': this.props.match.params.id,
-                  'user_id': this.state.signatureUser,
+                  'email': this.state.signatureUser,
   //                'date': this.state.signatureDate,
                 };
 
