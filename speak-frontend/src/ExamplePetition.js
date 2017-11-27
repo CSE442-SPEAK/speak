@@ -21,7 +21,8 @@ class ExamplePetition extends Component {
           signatures: [],
           users: [],
           names: [],
-          profile: {}
+          profile: {},
+          signaturesCount: []
 //          signatureDate: "",
       };
       this.componentDidMount = this.componentDidMount.bind(this);
@@ -29,6 +30,7 @@ class ExamplePetition extends Component {
       this.getSignatures = this.getSignatures.bind(this);
       this.getNames = this.getNames.bind(this);
       this.displaySignatures = this.displaySignatures.bind(this);
+      this.getSignaturesCount = this.getSignaturesCount.bind(this);
 
   }
 
@@ -95,7 +97,10 @@ class ExamplePetition extends Component {
       .then( petitions =>
           this.setState(
               {petitions: petitions},
-              this.getSignatures
+              function() {
+                this.getSignatures();
+                this.getSignaturesCount();
+              }
           ),
       )
   }
@@ -164,6 +169,22 @@ class ExamplePetition extends Component {
       );
   }
 
+  getSignaturesCount() {
+    const { isAuthenticated } = this.props.auth;
+    if (isAuthenticated()) {
+      alert("I'm here");
+      const { getAccessToken } = this.props.auth;
+      const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+      fetch('https://speak-api-186516.appspot.com/petitions/' + this.props.match.params.id + '/count', { headers })
+      .then( response => response.json())
+      .then( signaturesCount =>
+          this.setState(
+              {signaturesCount},
+          ),
+       )
+    }
+  }
+
   render() {
     const shareUrl = 'https://speak-frontend.appspot.com/petitions/' + this.props.match.params.id
     const title = 'speak - UB Petitions '
@@ -178,8 +199,15 @@ class ExamplePetition extends Component {
                 <div className="SignButton">
                     <Button type="submit" bsStyle="success" onClick={this.addSignature}>Sign</Button>
                 </div>
+                <div className="SignaturesCount">
+                    {this.state.signaturesCount.map(signaturesCount =>
+                      <div key={signaturesCount.count}>
+                        <h4> Number of Signatures: {signaturesCount.count} </h4>
+                      </div>
+                    )}
+                </div>
             </div>)
-           }
+          }
            <div className="socialmedia">
              <TwitterShareButton
                  url={shareUrl}
