@@ -18,7 +18,7 @@ getAllSignatures:function(callback) {
 },
 
 getSignaturesOfPetition:function(petition_id, callback) {
-    return db.query("select name from user where user_id=(Select user_id from signature where petition_id=?)", [petition_id], callback);
+    return db.query("select user.name from user inner join (select * from signature where signature.petition_id=?) as temp on user.user_id=temp.user_id", [petition_id], callback);
 },
 
 getSignaturesOfUser:function(email, callback) {

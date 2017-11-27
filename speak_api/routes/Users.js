@@ -67,9 +67,9 @@ router.post('/', checkJwt, function(req, res, next) {
     });
 });
 
-router.delete('/email/:email', checkJwt, function(req,res,next) {
-if(req.params.email) {
-    User.deleteUser(req.params.email, function(err,rows) {
+router.delete('/user_id/:user_id', checkJwt, function(req,res,next) {
+if(req.params.user_id) {
+    User.deleteUser(req.params.user_id, function(err,rows) {
         if(err) {
             res.json(err);
         }
