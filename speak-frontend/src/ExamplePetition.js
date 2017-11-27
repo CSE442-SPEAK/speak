@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormGroup, Button, Table, Grid, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { FormGroup, Button, Table, Grid, Row, Col, ListGroup, ListGroupItem, ProgressBar } from 'react-bootstrap';
 import SignButton from './SignButton';
 import './ExamplePetition.css';
 import { ShareButtons, ShareCounts, generateShareIcon } from 'react-share';
@@ -152,6 +152,25 @@ class ExamplePetition extends Component {
      )
   }
 
+  getSignaturePercent() {
+    const str = JSON.stringify(this.state.signaturesCount);
+    const array = JSON.parse(str);
+    console.log(array);
+    var current = 0;
+    array.forEach(function(obj) {
+      console.log("obj: " + obj);
+      var keys = Object.keys(obj);
+      keys.forEach(function(key) {
+          console.log("key: " + key);
+          current = parseInt(obj[key]);
+          console.log("current: " + current);
+      })
+    });
+    const goal = JSON.stringify(this.state.petitions);
+    console.log(goal);
+    return (current/goal) * 100;
+  }
+
   render() {
     const shareUrl = 'https://speak-frontend.appspot.com/petitions/' + this.props.match.params.id;
     const title = 'speak - UB Petitions ';
@@ -169,6 +188,10 @@ class ExamplePetition extends Component {
                         <h4> Number of signatures: {signaturesCount.count} </h4>
                       </div>
                     )}
+                </div>
+                <h3>{this.getSignaturePercent()}</h3>
+                <div className="ProgressBar">
+                  <ProgressBar now={this.getSignaturePercent()} label={`${this.getSignaturePercent()}%`} />
                 </div>
                 <div className="SignButton">
                     <Button type="submit" bsSize="large" bsStyle="success" onClick={this.addSignature}>Sign</Button>

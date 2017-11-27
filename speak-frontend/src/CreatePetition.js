@@ -60,6 +60,7 @@ class CreatePetition extends Component {
             'title': this.state.title,
             'description': this.state.description,
             'owner': this.state.profile.email,
+            'signature_goal': this.state.signatureGoal,
           };
           fetch('https://speak-api-186516.appspot.com/petitions/', {
             method: 'POST',
