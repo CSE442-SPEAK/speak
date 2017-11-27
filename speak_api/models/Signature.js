@@ -22,7 +22,7 @@ getSignaturesOfPetition:function(petition_id, callback) {
 },
 
 getSignaturesOfUser:function(email, callback) {
-    return db.query("select * from (select signature.signature_id, signature.petition_id, signature.user_id,user.email from signature inner join user on signature.user_id=user.user_id) as temp where temp.email=?", [email], callback);
+    return db.query("select * from petition inner join ((select signature.petition_id from signature inner join user on signature.user_id=user.user_id) as temp where temp.email=?) as temp2 where petition.petition_id=temp2.petition_id", [email], callback);
 },
 
 getSignatureById:function(signature_id, callback) {
