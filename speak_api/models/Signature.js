@@ -30,6 +30,11 @@ getSignatureById:function(signature_id, callback) {
 },
 
 addSignature:function(Signature, callback) {
+  db.query("select * from user where email=?", [Signature.email], function(err, result){
+    if(result.length == 0) {
+      db.query("Insert into user(email) values(?)", [Signature.email], callback);
+    }
+  );
   return db.query("select * from signature where petition_id=? and user_id=(select user_id from user where email=?)", [Signature.petition_id, Signature.email], function(err, result){
     if (result.length == 0) {
       db.query("update petition set signatures = signatures + 1 where petition_id=?", [Signature.petition_id], callback);
