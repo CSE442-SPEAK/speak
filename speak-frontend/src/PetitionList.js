@@ -26,7 +26,7 @@ class PetitionList extends Component {
   render() {
     return (
       <div className="PetitionList">
-        <h2>Petitions</h2>
+        <h1>Petitions</h1>
           {this.state.petitions.map(petition =>
             <div key={petition.petition_id}>
                 <PetitionListElement id={petition.petition_id} title={petition.title} description={petition.description}/>
