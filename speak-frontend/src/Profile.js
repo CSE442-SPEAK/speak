@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Panel, ControlLabel, Glyphicon, Grid, Row, Col } from 'react-bootstrap';
 import PetitionListElement from './PetitionListElement';
+import './Profile.css';
 
 class Profile extends Component {
 
   constructor(props) {
     super(props);
+    this.getOwnedPetitions = this.getOwnedPetitions.bind(this);
+    this.getSignedPetitions = this.getSignedPetitions.bind(this);
     this.state = {
-      owned_petitions: [],
-      signed_petitions: [],
+      ownedPetitions: [],
+      signedPetitions: [],
       profile: {},
     }
   }
@@ -29,7 +32,7 @@ class Profile extends Component {
     const headers = {'Authorization':`Bearer ${getAccessToken()}`};
     fetch('https://speak-api-186516.appspot.com/petitions/email/'+ email, {headers})
     .then(response => response.json())
-    .then(owned_petitions => this.setState({owned_petitions}));
+    .then(ownedPetitions => this.setState({ownedPetitions}));
   }
 
   getSignedPetitions(email) {
@@ -37,8 +40,10 @@ class Profile extends Component {
     const headers = {'Authorization':`Bearer ${getAccessToken()}`};
     fetch('https://speak-api-186516.appspot.com/signatures/email/'+ this.state.profile.email, {headers})
     .then(response => response.json())
-    .then(signed_petitions => this.setState({signed_petitions}));
-    alert(JSON.stringify(this.state.signed_petitions));
+    .then(signedPetitions =>
+      this.setState({signedPetitions},
+      ),
+    )
   }
 
   render() {
@@ -48,13 +53,12 @@ class Profile extends Component {
     return (
       <div className="container">
         <div className="profile-area">
-          <h1>{profile.name}</h1>
-          <h1>{profile.email}</h1>
           <Panel header="Profile">
-            <img src={profile.picture} alt="profile" />
-            <div>
-              <ControlLabel><Glyphicon glyph="user" /> Nickname</ControlLabel>
-              <h3>{profile.nickname}</h3>
+            <h1>{profile.name}</h1>
+            <img className="profile-pic" src={profile.picture} alt="profile" />
+            <div className="info">
+              <h4>Nickname: {profile.nickname}</h4>
+              <h4>Email: {profile.email}</h4>
             </div>
           </Panel>
         </div>
@@ -62,30 +66,17 @@ class Profile extends Component {
           <Grid>
           <Row>
             <Col xs={12}>
-              <h2>Your Petitions</h2>
-                {this.state.owned_petitions.map(owned_petition =>
-                  <div key={owned_petition.petition_id}>
-                    <PetitionListElement id={owned_petition.petition_id} title={owned_petition.title} description={owned_petition.description}/>
+              <h3>Your Petitions</h3>
+                {this.state.ownedPetitions.map(ownedPetition =>
+                  <div key={ownedPetition.petition_id}>
+                    <PetitionListElement id={ownedPetition.petition_id} title={ownedPetition.title} description={ownedPetition.description}/>
                   </div>
                 )}
             </Col>
           </Row>
           </Grid>
         </div>
-        <div>
-          <Grid>
-          <Row>
-            <Col xs={12}>
-              <h2>Signed Petitions</h2>
-                {this.state.signed_petitions.map(signed_petition =>
-                  <div key={signed_petition.petition_id}>
-                    <PetitionListElement id={signed_petition.petition_id} title={signed_petition.title} description={signed_petition.description}/>
-                  </div>
-                )}
-            </Col>
-          </Row>
-          </Grid>
-        </div>
+
       </div>
     );
   }
