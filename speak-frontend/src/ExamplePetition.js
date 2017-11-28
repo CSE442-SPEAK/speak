@@ -112,6 +112,7 @@ class ExamplePetition extends Component {
           }, function(){
                 var signature = {
                   'petition_id': this.props.match.params.id,
+                  'name': this.state.profile.name,
                   'email': this.state.profile.email,
                   'date': this.state.signatureDate,
                 };
@@ -128,6 +129,7 @@ class ExamplePetition extends Component {
                       console.log(response, 'Signature added!');
 
                       window.alert("Successfully signed petition!");
+                      window.location.reload();
                 })
                 .catch(err => {
                       console.log(err, 'Signature not added, try again');
