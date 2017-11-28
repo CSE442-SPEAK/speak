@@ -35,26 +35,6 @@ export default class Auth extends EventEmitter{
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
         history.replace('/home');
-        var user = {
-          'name': this.userProfile.name,
-          'email': this.userProfile.email,
-        };
-        alert(JSON.stringify(user));
-        fetch('https://speak-api-186516.appspot.com/Users', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${this.getAccessToken()}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-        .then(response => {
-              console.log(response, 'User added!');
-              window.alert("Successfully logged in/registered!");
-        })
-        .catch(err => {
-              console.log(err, 'Unsuccessful sign-in, try again');
-        });
       } else if (err) {
         history.replace('/home');
         console.log(err);
