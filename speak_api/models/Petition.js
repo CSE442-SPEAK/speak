@@ -26,12 +26,12 @@ getCreatorOfPetition:function(petition_id, callback){
 },
 
 addPetition:function(Petition, callback){
-  db.query("select * from user where email=?", [Petition.owner], function(err, result){
+  return db.query("select * from user where email=?", [Petition.owner], function(err, result){
     if(result.length == 0) {
-      db.query("Insert into user(email) values(?)", [Petition.owner], callback);
+      db.query("Insert into user(email,name) values(?,?)", [Petition.owner, Petition.name], callback);
     }
-  });
     return db.query("insert into petition (title,description,owner,signature_goal,signatures) values (?,?, (select user_id from user where email=?),?,0);", [Petition.title, Petition.description, Petition.owner, Petition.signature_goal], callback);
+  });
 },
 
 deletePetition:function(petiton_id, callback){

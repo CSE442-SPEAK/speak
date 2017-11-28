@@ -27,25 +27,25 @@ getSignaturesOfUser:function(email, callback) {
 
 getSignatureById:function(signature_id, callback) {
     return db.query("Select * from signature where signature_id=?", [signature_id], callback);
-},
+  },
 
-addSignature:function(Signature, callback) {
-  return db.query("select * from user where email=?", [Signature.email], function(err, result){
-    if(result.length == 0) {
-      db.query("Insert into user(email) values(?)", [Signature.email], callback);
-    }
-    db.query("select * from signature where petition_id=? and user_id=(select user_id from user where email=?)", [Signature.petition_id, Signature.email], function(err, result){
-      if (result.length == 0) {
-        db.query("update petition set signatures = signatures + 1 where petition_id=?", [Signature.petition_id], callback);
-        return db.query("Insert into signature(petition_id, user_id, date) values(?,(select user_id from user where email=?),?)", [Signature.petition_id, Signature.email, Signature.date], callback);
-      } else {
-        return "User has already signed this petition.";
+  addSignature:function(Signature, callback) {
+    return db.query("select * from user where email=?", [Signature.email], function(err, result){
+      if(result.length == 0) {
+        db.query("Insert into user(email, name) values(?, ?)", [Signature.email, Signature.name], callback);
       }
-  });
-});
-},
+      db.query("select * from signature where petition_id=? and user_id=(select user_id from user where email=?)", [Signature.petition_id, Signature.email], function(err, result){
+        if (result.length == 0) {
+          db.query("update petition set signatures = signatures + 1 where petition_id=?", [Signature.petition_id], callback);
+          return db.query("Insert into signature(petition_id, user_id, date) values(?,(select user_id from user where email=?),?)", [Signature.petition_id, Signature.email, Signature.date], callback);
+        } else {
+          return "User has already signed this petition.";
+        }
+      });
+    });
+  },
 
-deleteSignature:function(signature_id, callback){
+  deleteSignature:function(signature_id, callback){
     return db.query("Delete from signature where signature_id=?", [signature_id], callback);
 }
 }; // var Signature
