@@ -27,7 +27,6 @@ class UsersList extends Component {
   }
 
   render() {
-    window.alert(JSON.stringify(this.state.users));
     return (
       <div className="UsersList">
         <h2>Users</h2>

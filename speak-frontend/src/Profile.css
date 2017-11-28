@@ -1,8 +1,15 @@
-.profile-area img {
-  max-width: 150px;
-  margin-bottom: 20px;
+.profile-area {
+  text-align: center;
 }
 
-.panel-body h3 {
-  margin-top: 0;
+.info{
+  display: inline-block;
+  text-align: left;
+}
+
+.profile-pic {
+  display: block;
+  max-width: 250px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }

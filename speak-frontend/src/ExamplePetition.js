@@ -48,9 +48,9 @@ class ExamplePetition extends Component {
 
   // Get the signatures with the same petition id
   getSignatures() {
-    const { getAccessToken } = this.props.auth;
-    const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
-    fetch('https://speak-api-186516.appspot.com/Signatures/petition_id/' + this.props.match.params.id, { headers })
+    //const { getAccessToken } = this.props.auth;
+    //const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+    fetch('https://speak-api-186516.appspot.com/Signatures/petition_id/' + this.props.match.params.id)
     .then( response => response.json())
     .then( signatures =>
         this.setState(
@@ -141,9 +141,9 @@ class ExamplePetition extends Component {
   }
 
   getSignaturesCount() {
-    const { getAccessToken } = this.props.auth;
-    const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
-    fetch('https://speak-api-186516.appspot.com/petitions/' + this.props.match.params.id + '/count', { headers })
+    //const { getAccessToken } = this.props.auth;
+    //const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
+    fetch('https://speak-api-186516.appspot.com/petitions/' + this.props.match.params.id + '/count')
     .then( response => response.json())
     .then( signaturesCount =>
         this.setState(
