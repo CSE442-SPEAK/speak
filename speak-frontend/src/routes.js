@@ -31,7 +31,7 @@ export const createRoutes = () => {
         <Route path='/home' render={(props) => <Home auth={auth} {...props} />} />
         <Route path="/profile" render={(props) => (
           !auth.isAuthenticated() ? (
-            <Redirect to="/home"/>
+            <Redirect to="/"/>
           ) : (
             <Profile auth={auth} {...props} />
           )
@@ -44,7 +44,7 @@ export const createRoutes = () => {
           <Route path='/petitions/:id' render={(props) => <ExamplePetition auth={auth} {...props} />}/>
         <Route path='/users' render={(props) => (
           !auth.isAuthenticated() ? (
-            <Redirect to="/home"/>
+            <Redirect to="/"/>
           ) : (
             <UsersList auth={auth} {...props} />
           )
