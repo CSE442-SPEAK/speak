@@ -42,7 +42,13 @@ export const createRoutes = () => {
         }} />
         <Route exact path='/petitions' component={PetitionList}/>
           <Route path='/petitions/:id' render={(props) => <ExamplePetition auth={auth} {...props} />}/>
-        <Route path='/users' render={(props) => <UsersList auth={auth} {...props} />}/>
+        <Route path='/users' render={(props) => (
+          !auth.isAuthenticated() ? (
+            <Redirect to="/home"/>
+          ) : (
+            <UsersList auth={auth} {...props} />
+          )
+        )}/>
         <Route path='/create' render={(props) => <CreatePetition auth={auth} {...props} />} />
       </div>
     </BrowserRouter>
