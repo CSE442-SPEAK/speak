@@ -50,7 +50,6 @@ class CreatePetition extends Component {
         addPetition = event => {
           event.preventDefault();
           const { getAccessToken } = this.props.auth;
-          const API_URL = 'https://speak-api-186516.appspot.com/';
           this.setState({
             title: event.target.value,
             description: event.target.value,

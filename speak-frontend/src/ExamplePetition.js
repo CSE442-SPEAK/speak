@@ -11,6 +11,8 @@ const GooglePlusIcon = generateShareIcon('google');
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
+const API_URL = 'https://speak-api-186516.appspot.com';
+
 class ExamplePetition extends Component {
 
   constructor(props) {
@@ -50,7 +52,7 @@ class ExamplePetition extends Component {
   getSignatures() {
     //const { getAccessToken } = this.props.auth;
     //const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
-    fetch('https://speak-api-186516.appspot.com/Signatures/petition_id/' + this.props.match.params.id)
+    fetch(API_URL + '/Signatures/petition_id/' + this.props.match.params.id)
     .then( response => response.json())
     .then( signatures =>
         this.setState(
@@ -65,7 +67,7 @@ class ExamplePetition extends Component {
       if(this.state.signatures){
   //              var names = [];
           this.state.signatures.map(signature =>
-            fetch('https://speak-api-186516.appspot.com/Users/' + signature.user_id)
+            fetch(API_URL + '/Users/' + signature.user_id)
             .then( response => response.json())
             .then( users =>
                 {users}
@@ -87,7 +89,7 @@ class ExamplePetition extends Component {
 
   // Get petition from Petitions table
   componentDidMount() {
-      fetch('https://speak-api-186516.appspot.com/Petitions/' + parseInt(this.props.match.params.id))
+      fetch(API_URL + '/Petitions/' + parseInt(this.props.match.params.id))
       .then( response => response.json())
       .then( petitions =>
           this.setState(
@@ -117,7 +119,7 @@ class ExamplePetition extends Component {
                   'date': this.state.signatureDate,
                 };
 
-                fetch('https://speak-api-186516.appspot.com/Signatures', {
+                fetch(API_URL + '/Signatures', {
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${getAccessToken()}`,
@@ -145,7 +147,7 @@ class ExamplePetition extends Component {
   getSignaturesCount() {
     //const { getAccessToken } = this.props.auth;
     //const headers = { 'Authorization': `Bearer ${getAccessToken()}`};
-    fetch('https://speak-api-186516.appspot.com/petitions/' + this.props.match.params.id + '/count')
+    fetch(API_URL + '/petitions/' + this.props.match.params.id + '/count')
     .then( response => response.json())
     .then( signaturesCount =>
         this.setState(
