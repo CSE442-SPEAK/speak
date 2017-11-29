@@ -43,7 +43,19 @@ class App extends Component {
                     onClick={this.logout.bind(this)}>
                     Log Out
                   </Button>
-                  )
+                )
+                }
+              </Nav>
+              <Nav pullRight>
+                { isAuthenticated() && (
+                  <Button
+                    bsStyle="primary"
+                    className="btn-margin"
+                    bsSize="large"
+                    href="/profile">
+                    Profile
+                  </Button>
+                )
                 }
               </Nav>
               <Nav pullRight>

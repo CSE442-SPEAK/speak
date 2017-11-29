@@ -1,5 +1,6 @@
-h2 {
-    color: white;
+.PetitionList h1 {
+    font-family: Roboto;
+    font-size: 3vw
 }
 
 Panel.header {
