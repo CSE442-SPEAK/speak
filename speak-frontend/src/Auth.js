@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
+import { AUTH_CONFIG } from './auth0-variables';
 import history from './history';
 
 export default class Auth extends EventEmitter{
@@ -7,10 +8,10 @@ export default class Auth extends EventEmitter{
   requestedScopes = 'openid email profile';
 
   auth0 = new auth0.WebAuth({
-    domain: 'speak-ub.auth0.com',
-    clientID: '3AENWl_-dFQnyEOBAlq7AMMhi_K7RUwy',
-    redirectUri: 'https://speak-187321.appspot.com/callback',
-    audience: 'speak-test',
+    domain: AUTH_CONFIG.domain,
+    clientID: AUTH_CONFIG.clientId,
+    redirectUri: AUTH_CONFIG.callbackUrl,
+    audience: AUTH_CONFIG.apiUrl,
     responseType: 'token id_token',
     scope: this.requestedScopes
   });

@@ -49,7 +49,6 @@ class Profile extends Component {
   render() {
     const { profile } = this.state;
     this.getOwnedPetitions(this.state.profile.email);
-    this.getSignedPetitions(this.state.profile.email);
     return (
       <div className="container">
         <div className="profile-area">

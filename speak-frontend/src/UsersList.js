@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PetitionListElement from './PetitionListElement';
-import { Accordion } from 'react-bootstrap';
+import { Col, Panel, Accordion } from 'react-bootstrap';
 import './PetitionList.css';
 
 class UsersList extends Component {
@@ -29,10 +29,17 @@ class UsersList extends Component {
   render() {
     return (
       <div className="UsersList">
-        <h2>Users</h2>
+        <h2>User Directory</h2>
           {this.state.users.map(user =>
             <div key={user.name}>
-                <PetitionListElement id={user.name} title={user.email} />
+            <Col xs="4">
+            <div className="UsersListElement">
+              <Accordion>
+              <Panel collapsible header={user.name}>
+              </Panel>
+              </Accordion>
+            </div>
+            </Col>
             </div>)}
       </div>
     );
