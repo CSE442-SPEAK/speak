@@ -1,12 +1,6 @@
 .Home {
   text-align: center;
-  background: #589
-   url("http://holytrinity.academy/wp-content/uploads/2016/11/Blue-Background.jpg")
-  center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: #fff;
   color: #4682B4;
 
 }
@@ -23,21 +17,7 @@
 
 .socialmedia {
   display: inline-block;
+  padding: 5px;
+  margin-top: 15px;
   bottom: 0;
-}
-
-.socialmedia2 {
-  display: inline-block;
-  bottom: 0;
-
-}
-.socialmedia3 {
-  display: inline-block;
-  bottom: 0;
-
-}
-.socialmedia4 {
-  display: inline-block;
-  bottom: 0;
-
 }

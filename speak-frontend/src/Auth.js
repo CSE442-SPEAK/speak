@@ -1,16 +1,17 @@
 import { EventEmitter } from 'events';
 import auth0 from 'auth0-js';
+import { AUTH_CONFIG } from './auth0-variables';
 import history from './history';
 
 export default class Auth extends EventEmitter{
 
-  requestedScopes = 'openid profile create:petitions';
+  requestedScopes = 'openid email profile';
 
   auth0 = new auth0.WebAuth({
-    domain: 'speak-ub.auth0.com',
-    clientID: '3AENWl_-dFQnyEOBAlq7AMMhi_K7RUwy',
-    redirectUri: 'http://speak-frontend.appspot.com/callback',
-    audience: 'speak-test',
+    domain: AUTH_CONFIG.domain,
+    clientID: AUTH_CONFIG.clientId,
+    redirectUri: AUTH_CONFIG.callbackUrl,
+    audience: AUTH_CONFIG.apiUrl,
     responseType: 'token id_token',
     scope: this.requestedScopes
   });
@@ -34,9 +35,9 @@ export default class Auth extends EventEmitter{
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        history.replace('/home');
+        history.replace('/');
       } else if (err) {
-        history.replace('/home');
+        history.replace('/');
         console.log(err);
       }
     });
@@ -99,6 +100,6 @@ export default class Auth extends EventEmitter{
   userHasScopes(scopes) {
     const grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
     return scopes.every(scope => grantedScopes.includes(scope));
-  }  
+  }
 
 }
