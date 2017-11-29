@@ -1,8 +1,18 @@
 .jumbotron {
 	background: #589
-	 url("http://www.pptbackground.net/background/Raising-hands-Together-Powerpoint-for-Powerpoint-Templates.jpg")
-	center center no-repeat;
-        color: #4682B4;
+	 url("https://photos.smugmug.com/Years/2015/15242-Student-Affairs-New-Stud/i-Mw5d9Dw/0/ed26d286/X4/3X5A8497-X4.jpg") center center no-repeat;
+	background-size: cover;
+  color: #FFF;
   padding-top: 10%;
 	padding-bottom: 10%;
+}
+
+.jumbotron h1 {
+	font-family: roboto;
+	font-size: 15vw;
+}
+
+.jumbotron h2 {
+	font-family: roboto;
+	font-size: 4vw;
 }
