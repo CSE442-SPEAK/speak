@@ -14,7 +14,7 @@ const checkJwt = jwt({
     jwksUri:`https://speak-ub.auth0.com/.well-known/jwks.json`
   }),
 
-  audience:`speak-test`,
+  audience:`https://speak-api-186516.appspot.com/`,
   issuer:`https://speak-ub.auth0.com/`,
   algorithms: ['RS256']
 });
