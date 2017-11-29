@@ -6,7 +6,6 @@ import Profile from './Profile';
 import ExamplePetition from './ExamplePetition';
 import CreatePetition from './CreatePetition';
 import PetitionList from './PetitionList';
-import UsersList from './UsersList';
 import ErrorPage from'./ErrorPage';
 import LogIn from './LogIn';
 import SignUp from './SignUp';
@@ -31,7 +30,7 @@ export const createRoutes = () => {
         <Route path='/home' render={(props) => <Home auth={auth} {...props} />} />
         <Route path="/profile" render={(props) => (
           !auth.isAuthenticated() ? (
-            <Redirect to="/"/>
+            <Redirect to="/home"/>
           ) : (
             <Profile auth={auth} {...props} />
           )
@@ -42,13 +41,6 @@ export const createRoutes = () => {
         }} />
         <Route exact path='/petitions' component={PetitionList}/>
           <Route path='/petitions/:id' render={(props) => <ExamplePetition auth={auth} {...props} />}/>
-        <Route path='/users' render={(props) => (
-          !auth.isAuthenticated() ? (
-            <Redirect to="/"/>
-          ) : (
-            <UsersList auth={auth} {...props} />
-          )
-        )}/>
         <Route path='/create' render={(props) => <CreatePetition auth={auth} {...props} />} />
       </div>
     </BrowserRouter>

@@ -9,8 +9,7 @@ class Banner extends Component {
       <div className="Banner">
         <Jumbotron>
           <h1>speak</h1>
-          <h2>Be heard.</h2>
-          <br />
+          <p>Be heard.</p>
           <CreatePetitionButton/>
         </Jumbotron>
       </div>

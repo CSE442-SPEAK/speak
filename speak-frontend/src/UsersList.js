@@ -15,24 +15,27 @@ class UsersList extends Component {
   }
 
   componentDidMount() {
-      const { getAccessToken } = this.props.auth;
-      const headers = { 'Authorization': `Bearer ${getAccessToken()}`}
-      fetch('https://speak-api-186516.appspot.com/users', { headers })
-      .then( response => response.json())
-      .then( users =>
-          this.setState(
-              {users}
-          )
-       );
+    const { getAccessToken } = this.props.auth;
+    fetch('https://speak-182609.appspot.com/petitions/', {
+        'Authorization': `Bearer ${getAccessToken()}`,
+        'Content-Type': 'application/json'
+    })
+    .then( response => response.json())
+    .then( petitions =>
+        this.setState(
+            {petitions}
+        )
+     );
   }
 
   render() {
+
     return (
-      <div className="UsersList">
-        <h2>Users</h2>
+      <div className="PetitionList">
+        <h2>Petitions</h2>
           {this.state.users.map(user =>
             <div key={user.name}>
-                <PetitionListElement id={user.name} title={user.email} />
+                <PetitionListElement id={user.name} title={user.name} description={user.email}/>
             </div>)}
       </div>
     );
