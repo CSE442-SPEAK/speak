@@ -8,10 +8,17 @@ export default class Auth extends EventEmitter{
   requestedScopes = 'openid email profile';
 
   auth0 = new auth0.WebAuth({
+<<<<<<< HEAD
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: AUTH_CONFIG.apiUrl,
+=======
+    domain: 'speak-ub.auth0.com',
+    clientID: '3AENWl_-dFQnyEOBAlq7AMMhi_K7RUwy',
+    redirectUri: 'http://speak-frontend.appspot.com/callback',
+    audience: 'speak-test',
+>>>>>>> develop
     responseType: 'token id_token',
     scope: this.requestedScopes
   });
