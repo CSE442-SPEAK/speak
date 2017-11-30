@@ -30,7 +30,7 @@ addPetition:function(Petition, callback){
     if(result.length == 0) {
       db.query("Insert into user(email,name) values(?,?)", [Petition.owner, Petition.name], callback);
     }
-    return db.query("insert into petition (title,description,owner,signature_goal,signatures) values (?,?, (select user_id from user where email=?),?,0);", [Petition.title, Petition.description, Petition.owner, Petition.signature_goal], callback);
+    return db.query("insert into petition (title,snippet,description,owner,signature_goal,signatures) values (?,?,?, (select user_id from user where email=?),?,0);", [Petition.title, Petition.snippet, Petition.description, Petition.owner, Petition.signature_goal], callback);
   });
 },
 
@@ -56,6 +56,10 @@ getPetitionStatus:function(petition_id, callback){
 
 getPetitionTitle:function(petition_id, callback){
     return db.query("Select title from petition where petition_id=?", [petition_id], callback);
+},
+
+getPetitionSnippet:function(petition_id, callback){
+    return db.query("Select snippet from petition where petition_id=?", [petition_id], callback);
 },
 
 getPetitionDescription:function(petition_id, callback){

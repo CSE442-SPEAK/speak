@@ -6,6 +6,7 @@ CREATE DATABASE speak;
 CREATE TABLE IF NOT EXISTS `petition` (
   `petition_id` int not null auto_increment,
   `title` varchar(500) not null,
+  `snippet` varchar(50) not null,
   `description` text(1500),
   `tags` varchar(500),
   `owner` int not null,
