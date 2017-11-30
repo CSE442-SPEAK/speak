@@ -13,7 +13,7 @@ const checkJwt = jwt({
     jwksUri:`https://speak-ub.auth0.com/.well-known/jwks.json`
   }),
 
-  audience:`speak-test`,
+  audience:`https://speak-api-186516.appspot.com/`,
   issuer:`https://speak-ub.auth0.com/`,
   algorithms: ['RS256']
 });
@@ -67,9 +67,19 @@ router.post('/', checkJwt, function(req, res, next) {
     });
 });
 
-router.delete('/email/:email', checkJwt, function(req,res,next) {
-if(req.params.email) {
-    User.deleteUser(req.params.email, function(err,rows) {
+router.post('/full', checkJwt, function(req, res, next) {
+  User.addUserFull(req.body, function(err,count) {
+    if(err) {
+      res.json(err);
+    } else {
+      res.json(req.body);
+    }
+  })
+})
+
+router.delete('/user_id/:user_id', checkJwt, function(req,res,next) {
+if(req.params.user_id) {
+    User.deleteUser(req.params.user_id, function(err,rows) {
         if(err) {
             res.json(err);
         }
