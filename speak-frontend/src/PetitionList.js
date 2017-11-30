@@ -29,7 +29,7 @@ class PetitionList extends Component {
         <h1>Petitions</h1>
           {this.state.petitions.map(petition =>
             <div key={petition.petition_id}>
-                <PetitionListElement id={petition.petition_id} title={petition.title} description={petition.description}/>
+                <PetitionListElement id={petition.petition_id} title={petition.title} snippet={petition.snippet}/>
             </div>)}
       </div>
     );
