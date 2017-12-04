@@ -68,7 +68,7 @@ class Profile extends Component {
               <h3>Your Petitions</h3>
                 {this.state.ownedPetitions.map(ownedPetition =>
                   <div key={ownedPetition.petition_id}>
-                    <PetitionListElement id={ownedPetition.petition_id} title={ownedPetition.title} description={ownedPetition.description}/>
+                    <PetitionListElement id={ownedPetition.petition_id} title={ownedPetition.title} snippet={ownedPetition.snippet}}/>
                   </div>
                 )}
             </Col>
