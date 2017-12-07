@@ -14,7 +14,7 @@ const checkJwt = jwt({
     jwksUri:`https://speak-ub.auth0.com/.well-known/jwks.json`
   }),
 
-  audience:`speak-test`,
+  audience:`https://speak-api-186516.appspot.com/`,
   issuer:`https://speak-ub.auth0.com/`,
   algorithms: ['RS256']
 });
@@ -56,6 +56,18 @@ else {
 }
 }); // GET request, passing in petition_id
 
+router.get('/:petition_id/count', function(req, res, next) {
+  if (req.params.petition_id) {
+    Petition.getPetitionSignatureCount(req.params.petition_id, function(err, count) {
+      if(err) {
+        res.json(err);
+      } else {
+        res.json(count);
+      }
+    })
+  }
+})
+
 router.get('/email/:email', checkJwt, function(req, res, next) {
 if(req.params.email) {
     Petition.getPetitionsOfUser(req.params.email, function(err, rows) {
@@ -78,7 +90,18 @@ router.post('/', checkJwt, function(req, res, next) {
 			res.json(res.body);
 		}
 	});
-
 });
+
+router.delete('/:petition_id', checkJwt, function(req, res, next) {
+  Petition.deletePetition(req.params.petition_id, function(err, ret) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(ret);
+    }
+  })
+})
+
+
 
 module.exports = router;

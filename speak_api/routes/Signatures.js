@@ -14,7 +14,7 @@ const checkJwt = jwt({
     jwksUri:`https://speak-ub.auth0.com/.well-known/jwks.json`
   }),
 
-  audience:`speak-test`,
+  audience:`https://speak-api-186516.appspot.com/`,
   issuer:`https://speak-ub.auth0.com/`,
   algorithms: ['RS256']
 });
@@ -57,7 +57,7 @@ else {
 }
 }); // GET request, passing in signature_id
 
-router.get('/petition_id/:petition_id', checkJwt, function(req, res, next) {
+router.get('/petition_id/:petition_id', function(req, res, next) {
 
 if(req.params.petition_id) {
     Signature.getSignaturesOfPetition(req.params.petition_id, function(err, rows) {
@@ -121,17 +121,17 @@ router.post('/', checkJwt,function(req, res, next) {
         }
     });
 
-}); // POST request, passing in user_id and petition_id
+}); // POST request, passing in email and petition_id
 
 
 router.delete('/:signature_id', checkJwt, function(req, res, next) {
 
-    Signature.deleteSignature(req.param.signature_id, function(err, count) {
+    Signature.deleteSignature(req.params.signature_id, function(err, ret) {
         if(err) {
             res.json(err);
         }
         else {
-            res.json(count);
+            res.json(ret);
         }
     });
 }); // DELETE request, passing in signature_id

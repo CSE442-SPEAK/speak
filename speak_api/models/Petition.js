@@ -26,7 +26,12 @@ getCreatorOfPetition:function(petition_id, callback){
 },
 
 addPetition:function(Petition, callback){
-    return db.query("insert into petition (title,description,owner) values (?,?, (select user_id from user where email=?));", [Petition.title, Petition.description, Petition.owner], callback);
+  return db.query("select * from user where email=?", [Petition.owner], function(err, result){
+    if(result.length == 0) {
+      db.query("Insert into user(email,name) values(?,?)", [Petition.owner, Petition.name], callback);
+    }
+    return db.query("insert into petition (title,snippet,description,owner,signature_goal,signatures) values (?,?,?, (select user_id from user where email=?),?,0);", [Petition.title, Petition.snippet, Petition.description, Petition.owner, Petition.signature_goal], callback);
+  });
 },
 
 deletePetition:function(petiton_id, callback){
@@ -38,7 +43,7 @@ updatePetition:function(petition_id, Petition, callback){
 },
 
 getPetitionsOfUser:function(email, callback){
-    return db.query("select * from (select * from petition inner join user on petition.owner=user.user_id) as temp where temp.email=?", [email], callback);
+    return db.query("select petition.*,user.email from petition p inner join user u on p.owner=u.user_id where u.email=?", [email], callback);
 },
 
 getPetitionsOfCategory:function(category, callback){
@@ -51,6 +56,10 @@ getPetitionStatus:function(petition_id, callback){
 
 getPetitionTitle:function(petition_id, callback){
     return db.query("Select title from petition where petition_id=?", [petition_id], callback);
+},
+
+getPetitionSnippet:function(petition_id, callback){
+    return db.query("Select snippet from petition where petition_id=?", [petition_id], callback);
 },
 
 getPetitionDescription:function(petition_id, callback){
@@ -71,7 +80,7 @@ getPetitionCategory:function(petition_id, callback){
 },
 
 getPetitionSignatureCount:function(petition_id, callback){
-    return db.query("select count(signature_id) from signature where petition_id=?", [petition_id], callback);
+    return db.query("select count(signature_id) as count from signature where petition_id=?", [petition_id], callback);
 },
 
 // Petition date of creation
@@ -98,6 +107,10 @@ getPetitionResponse:function(petition_id, callback){
 
 getPetitionUpdates:function(petition_id, callback){
     return db.query("Select updates from petition where petition_id=?", [petition_id], callback);
+},
+
+deletePetition:function(petition_id, callback) {
+    return db.query("Delete from petition where petition_id=?", [petition_id], callback);
 }
 
 }; // var Petition

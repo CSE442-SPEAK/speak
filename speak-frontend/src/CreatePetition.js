@@ -7,10 +7,12 @@ class CreatePetition extends Component {
   constructor(props) {
     super(props);
     this.handleTitle = this.handleTitle.bind(this);
+    this.handleSnippet = this.handleSnippet.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
     this.handleSignatureGoal = this.handleSignatureGoal.bind(this);
     this.state = {
       title: "",
+      snippet: "",
       description: "",
       signatureGoal: "",
       profile: {}
@@ -37,6 +39,11 @@ class CreatePetition extends Component {
       //      window.alert(event.target.value)
     }
 
+  handleSnippet(event){
+    this.setState({
+      snippet: event.target.value });
+  }
+
     handleDescription(event) {
       this.setState({
         description: event.target.value });
@@ -52,11 +59,13 @@ class CreatePetition extends Component {
           const { getAccessToken } = this.props.auth;
           this.setState({
             title: event.target.value,
+            snippet: event.target.value,
             description: event.target.value,
             signatureGoal: event.target.value
           });
           var petition = {
             'title': this.state.title,
+            'snippet': this.state.snippet,
             'description': this.state.description,
             'owner': this.state.profile.email,
             'name': this.state.profile.name,
@@ -92,6 +101,13 @@ class CreatePetition extends Component {
 
         }
 
+        getValidationStateSnippet() {
+          const length = this.state.snippet.length;
+          if (length > 0 && length <= 50) return 'success';
+          if (length > 50) return 'error';
+          return null;
+        }
+
         getValidationStateDescription() {
           const length = this.state.description.length;
           if (length > 0) return 'success';
@@ -125,64 +141,78 @@ class CreatePetition extends Component {
             {
               isAuthenticated() && (
                 <div className="CreatePetition">
-                  <h1> Create a Petition </h1>
-                  <Grid>
-                    <Row classname="show-grid">
-                    <Col xs={12} md={8} xsOffset={2}>
-                    <FormGroup
-                      validationState = {this.getValidationStateTitle()}>
-                        <div className="TitleForm">
-                        <ControlLabel>Petition Title</ControlLabel>
-                        <FormControl
-                          type="text"
-                          value = {this.state.title}
-                          placeholder="Title"
-                          bsSize="large"
-                          onChange={this.handleTitle}
-                        />
-                        <FormControl.Feedback />
-                        </div>
-                    </FormGroup>
-                    <FormGroup
-                      validationState={this.getValidationStateDescription()}>
-                        <div className="DescriptionForm">
-                        <ControlLabel>Petition description</ControlLabel>
-                        <FormControl
-                          componentClass="textarea"
-                          value = {this.state.description}
-                          placeholder="Description"
-                          bsSize="large"
-                          onChange={this.handleDescription}
-                        />
-                        <FormControl.Feedback />
-                        </div>
-                    </FormGroup>
-                    <FormGroup
-                      validationState={this.getValidationStateCount()}>
-                        <div className="MinimumForm">
-                        <ControlLabel>Minimum number of signatures required</ControlLabel>
-                        <FormControl
-                          type="text"
-                          value={this.state.signatureGoal}
-                          placeholder="Integer value"
-                          bsSize="large"
-                          onChange={this.handleSignatureGoal}
-                        />
-                        <FormControl.Feedback />
-                        <HelpBlock>The signature goal must be greater than 50.</HelpBlock>
-                        </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <Button classname="createPetition"
-                        type="submit"
-                        onClick={this.addPetition}
-                        bsStyle="success">
-                          Submit Your Petition
-                      </Button>
-                    </FormGroup>
-                    </Col>
-                    </Row>
-                  </Grid>
+                <h1> Create a Petition </h1>
+                <Grid>
+                <Row classname="show-grid">
+                <Col xs={12} md={8} xsOffset={2}>
+                <FormGroup
+                validationState = {this.getValidationStateTitle()}>
+                <div className="TitleForm">
+                <ControlLabel>Petition Title</ControlLabel>
+                <FormControl
+                type="text"
+                value = {this.state.title}
+                placeholder="Title"
+                bsSize="large"
+                onChange={this.handleTitle}
+                />
+                <FormControl.Feedback />
+                </div>
+                </FormGroup>
+                <FormGroup
+                validationState = {this.getValidationStateSnippet()}>
+                <div className="SnippetForm">
+                <ControlLabel>Petition Snippet</ControlLabel>
+                <FormControl
+                type="text"
+                value = {this.state.snippet}
+                placeholder="50 character petition preview"
+                bsSize="large"
+                onChange={this.handleSnippet}
+                />
+                <FormControl.Feedback />
+                </div>
+                </FormGroup>
+                <FormGroup
+                validationState={this.getValidationStateDescription()}>
+                <div className="DescriptionForm">
+                <ControlLabel>Petition description</ControlLabel>
+                <FormControl
+                componentClass="textarea"
+                value = {this.state.description}
+                placeholder="Description"
+                bsSize="large"
+                onChange={this.handleDescription}
+                />
+                <FormControl.Feedback />
+                </div>
+                </FormGroup>
+                <FormGroup
+                validationState={this.getValidationStateCount()}>
+                <div className="MinimumForm">
+                <ControlLabel>Minimum number of signatures required</ControlLabel>
+                <FormControl
+                type="text"
+                value={this.state.signatureGoal}
+                placeholder="Integer value"
+                bsSize="large"
+                onChange={this.handleSignatureGoal}
+                />
+                <FormControl.Feedback />
+                <HelpBlock>The signature goal must be greater than 50.</HelpBlock>
+                </div>
+                </FormGroup>
+                <FormGroup>
+                <Button classname="createPetition"
+                type="submit"
+                onClick={this.addPetition}
+                bsStyle="success">
+                Submit Your Petition
+                </Button>
+                </FormGroup>
+                </Col>
+                </Row>
+                </Grid>
                 </div>
               )
             }
