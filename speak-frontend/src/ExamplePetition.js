@@ -187,6 +187,7 @@ class ExamplePetition extends Component {
             {this.state.petitions.map(petition =>
               <div key={petition.petition_id}>
                   <h1 className="title"> {petition.title} </h1>
+                  <p> Created by: {petition.owner} </p>
                   <Col xs="7" mdOffset="1" className="section left">
                     <h3 className="desc"> {petition.description} </h3>
                   </Col>
@@ -220,9 +221,9 @@ class ExamplePetition extends Component {
               <ListGroup className="SignaturesList">
                 <h3> Signatures </h3>
                 {this.state.signatures.map(signatures =>
-                  <div key={signatures.name}>
+                  <div key={signatures.email}>
                     <ListGroupItem className="listItem">
-                      {signatures.name}
+                      {signatures.email.split("@")[0]}
                     </ListGroupItem>
                   </div>
                 )}
