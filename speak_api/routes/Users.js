@@ -45,7 +45,7 @@ else {
 }
 });
 
-router.get('/:user_id', checkJwt, function(req, res, next) {
+router.get('/:user_id', function(req, res, next) {
     User.getUserById(function(err,rows) {
         if(err) {
             res.json(err);
