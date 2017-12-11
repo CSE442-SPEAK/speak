@@ -31,6 +31,7 @@ class ExamplePetition extends Component {
       this.getSignatures = this.getSignatures.bind(this);
       this.getNames = this.getNames.bind(this);
       this.getSignaturesCount = this.getSignaturesCount.bind(this);
+      this.getOwner = this.getOwner.bind(this);
 
   }
 
@@ -129,8 +130,6 @@ class ExamplePetition extends Component {
                 })
                 .then(response => {
                       console.log(response, 'Signature added!');
-
-                      window.alert("Successfully signed petition!");
                       window.location.reload();
                 })
                 .catch(err => {
@@ -176,6 +175,16 @@ class ExamplePetition extends Component {
     return (this.getCount()/this.getGoal()) * 100;
   }
 
+  getOwner(user_id) {
+    var petitionOwner = "";
+    fetch(API_URL + '/Users/' + user_id)
+    .then( response => response.json())
+    .then( owner =>
+        petitionOwner = owner,
+    );
+    return petitionOwner;
+  }
+
   render() {
     const shareUrl = 'https://speak-frontend.appspot.com/petitions/' + this.props.match.params.id;
     const title = 'speak - UB Petitions ';
@@ -187,7 +196,7 @@ class ExamplePetition extends Component {
             {this.state.petitions.map(petition =>
               <div key={petition.petition_id}>
                   <h1 className="title"> {petition.title} </h1>
-                  <p> Created by: {petition.owner} </p>
+                  <p> Created by: {this.getOwner(petition.owner)} </p>
                   <Col xs="7" mdOffset="1" className="section left">
                     <h3 className="desc"> {petition.description} </h3>
                   </Col>

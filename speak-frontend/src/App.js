@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Navbar, Nav } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavItem } from 'react-bootstrap';
 import SignUpButton from './SignUpButton';
 import LogInButton from './LogInButton';
 import AccountButton from './AccountButton';
@@ -36,37 +36,24 @@ class App extends Component {
             <Navbar.Collapse>
               <Nav pullRight>
                 { isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    bsSize="large"
-                    onClick={this.logout.bind(this)}>
+                  <NavItem
+                    onSelect={this.logout.bind(this)}>
                     Log Out
-                  </Button>
+                  </NavItem>
                 )
                 }
-              </Nav>
-              <Nav pullRight>
                 { isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    bsSize="large"
+                  <NavItem
                     href="/profile">
                     Profile
-                  </Button>
+                  </NavItem>
                 )
                 }
-              </Nav>
-              <Nav pullRight>
                 { !isAuthenticated() && (
-                  <Button
-                    bsStyle="primary"
-                    className="btn-margin"
-                    bsSize="large"
-                    onClick={this.login.bind(this)}>
+                  <NavItem
+                    onSelect={this.login.bind(this)}>
                     Log In
-                  </Button>
+                  </NavItem>
                   )
                 }
               </Nav>
