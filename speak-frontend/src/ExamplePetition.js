@@ -25,6 +25,7 @@ class ExamplePetition extends Component {
           profile: {},
           signaturesCount: [],
           signatureDate: "",
+          owner: "",
       };
       this.componentDidMount = this.componentDidMount.bind(this);
       this.addSignature = this.addSignature.bind(this);
@@ -98,6 +99,8 @@ class ExamplePetition extends Component {
               function() {
                 this.getSignatures();
                 this.getSignaturesCount();
+                console.log(petitions[0]);
+                this.getOwner(petitions[0].owner)
               }
           ),
       )
@@ -176,13 +179,15 @@ class ExamplePetition extends Component {
   }
 
   getOwner(user_id) {
-    var petitionOwner = "";
+    var ownerEmail = "";
+    console.log(user_id);
     fetch(API_URL + '/Users/' + user_id)
     .then( response => response.json())
-    .then( owner =>
-        petitionOwner = owner,
-    );
-    return petitionOwner;
+    .then( petitionOwner => {
+        this.setState(
+          {owner: petitionOwner[0].email.split("@")[0]}
+        )
+    });
   }
 
   render() {
@@ -196,7 +201,7 @@ class ExamplePetition extends Component {
             {this.state.petitions.map(petition =>
               <div key={petition.petition_id}>
                   <h1 className="title"> {petition.title} </h1>
-                  <p> Created by: {this.getOwner(petition.owner)} </p>
+                  <h4> Created by: {this.state.owner} </h4>
                   <Col xs="7" mdOffset="1" className="section left">
                     <h3 className="desc"> {petition.description} </h3>
                   </Col>
