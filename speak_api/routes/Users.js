@@ -23,7 +23,7 @@ console.log(process.env.AUTH0_DOMAIN);
 router.get('/email/:email', checkJwt, function(req, res, next) {
 
 if(req.params.email) {
-    User.getUserById(req.params.email, function(err,rows) {
+    User.getUserByEmail(req.params.email, function(err,rows) {
         if(err) {
             res.json(err);
         }
@@ -43,6 +43,16 @@ else {
         }
     });
 }
+});
+
+router.get('/:user_id', checkJwt, function(req, res, next) {
+    User.getUserById(function(err,rows) {
+        if(err) {
+            res.json(err);
+        } else {
+            res.json(rows);
+        }
+    })
 });
 
 router.get('/', checkJwt, function(req, res, next) {
