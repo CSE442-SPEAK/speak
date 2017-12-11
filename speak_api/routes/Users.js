@@ -46,7 +46,7 @@ else {
 });
 
 router.get('/:user_id', function(req, res, next) {
-    User.getUserById(function(err,rows) {
+    User.getUserById(req.params.user_id, function(err,rows) {
         if(err) {
             res.json(err);
         } else {
