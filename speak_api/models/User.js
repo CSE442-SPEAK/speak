@@ -23,7 +23,7 @@ getUserByEmail:function(email, callback){
 
 getUserById:function(user_id, callback) {
     return db.query("Select * from user where user_id=?", [user_id], callback);
-}
+},
 
 addUser:function(User, callback) {
   return db.query("select * from user where email=?", [User.email], function(err, result){
